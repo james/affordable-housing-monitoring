@@ -23,3 +23,8 @@
           %li.govuk-header__navigation-item
             %a.govuk-header__link{:href => "#3"}
               Navigation item 3
+      - if current_user
+        %p= current_user.email
+        %p= button_to 'Logout', destroy_user_session_path, method: :delete
+    %p.notice= notice
+    %p.alert= alert
