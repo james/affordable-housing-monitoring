@@ -1,0 +1,41 @@
+!!!
+%html.govuk-template.app-html-class{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title AffordableHousingMonitoring
+    = csrf_meta_tags
+    = csp_meta_tag
+    %meta{:content => "width=device-width, initial-scale=1, viewport-fit=cover", :name => "viewport"}/
+    %meta{:content => "blue", :name => "theme-color"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %link{:href => "/images/favicon.ico", :rel => "shortcut icon", :sizes => "16x16 32x32 48x48", :type => "image/x-icon"}/
+    %link{:color => "blue", :href => "/images/govuk-mask-icon.svg", :rel => "mask-icon"}/
+    %link{:href => "/images/govuk-apple-touch-icon-180x180.png", :rel => "apple-touch-icon", :sizes => "180x180"}/
+    %link{:href => "/images/govuk-apple-touch-icon-167x167.png", :rel => "apple-touch-icon", :sizes => "167x167"}/
+    %link{:href => "/images/govuk-apple-touch-icon-152x152.png", :rel => "apple-touch-icon", :sizes => "152x152"}/
+    %link{:href => "/images/govuk-apple-touch-icon.png", :rel => "apple-touch-icon"}/
+
+    = stylesheet_link_tag 'application', media: 'all'
+    %link{:href => "https://use.typekit.net/kif6luo.css", :rel => "stylesheet"}/
+    = javascript_pack_tag 'application'
+
+    / [if !IE 8]><!
+    -# %link{:href => "/govuk-frontend/all.css", :rel => "stylesheet"}/
+    / <![endif]
+    /[if IE 8]
+      <link href="/govuk-frontend/all-ie8.css" rel="stylesheet" />
+    /[if lt IE 9]
+      <script src="/html5-shiv/html5shiv.js"></script>
+    %meta{:content => "/images/govuk-opengraph-image.png", :property => "og:image"}/
+  %body.govuk-template__body.app-body-class
+    :javascript
+      document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    %a.govuk-skip-link{:href => "#main-content"} Skip to main content
+
+    = render "partials/header"
+
+    = yield
+
+    = render "partials/footer"
+
+    = javascript_pack_tag 'govuk'
