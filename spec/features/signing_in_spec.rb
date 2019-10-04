@@ -29,7 +29,7 @@ RSpec.feature 'Signing in', type: :feature do
 
   scenario 'signing out' do
     login
-    click_button 'Logout'
+    click_on 'Logout'
 
     expect(page).to have_text('You need to sign in before continuing')
   end
