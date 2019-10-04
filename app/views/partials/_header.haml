@@ -26,5 +26,3 @@
       - if current_user
         %p= current_user.email
         %p= button_to 'Logout', destroy_user_session_path, method: :delete
-    %p.notice= notice
-    %p.alert= alert
