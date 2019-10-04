@@ -1,17 +1,27 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.govuk-width-container
+
+  %main#main-content.govuk-main-wrapper.app-main-class{:role => "main"}
+    %h1.govuk-heading-xl Sign in
+
+    .govuk-grid-row
+      .govuk-grid-column-full
+
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .govuk-form-group
+            = f.label :email, class: "govuk-label"
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "govuk-input govuk-input--width-20"
+          .govuk-form-group
+            = f.label :password, class: "govuk-label"
+            = f.password_field :password, autocomplete: "current-password", class: "govuk-input govuk-input--width-20"
+
+          - if devise_mapping.rememberable?
+            .govuk-form-group
+              .govuk-checkboxes
+                .govuk-checkboxes__item
+                  = f.check_box :remember_me, class: "govuk-checkboxes__input", name: "remember_me", type: "checkbox", value: "remember_me"
+                  = f.label :remember_me, for: "remember_me", class: "govuk-label govuk-checkboxes__label"
+
+          .actions
+            = f.submit "Log in", class: "govuk-button", "data-module": "govuk-button"
+
+        -# = render "devise/shared/links"
