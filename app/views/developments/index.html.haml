@@ -7,10 +7,12 @@
         %th{class: "govuk-table__header", scope: "col"}= t('developments.application_number')
         %th{class: "govuk-table__header", scope: "col"}= t('developments.site_address')
         %th{class: "govuk-table__header govuk-!-width-one-half", scope: "col"}= t('developments.proposal')
+        %th{class: "govuk-table__header", scope: "col"} Actions
 
     %tbody.govuk-table__body
       - @developments.each do |development|
         %tr.govuk-table__row
-          %th.govuk-table__header{scope: "row"}= link_to development.application_number, "#", class: "govuk-link"
+          %th.govuk-table__header{scope: "row"}= link_to development.application_number, "#", class: "govuk-link", "aria-label": "view development #{development.application_number}"
           %td.govuk-table__cell= development.site_address
           %td.govuk-table__cell= development.proposal
+          %td.govuk-table__cell= link_to 'edit', edit_development_path(development), class: "govuk-link", "aria-label": "edit development #{development.application_number}"

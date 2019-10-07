@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature 'Signing in', type: :feature do
-  scenario 'succesfully adding a development' do
+RSpec.feature 'Creating developments', type: :feature do
+  scenario 'successfully' do
     login
     click_link 'Add a new development'
     fill_in 'Application number', with: 'AP/2019/1234'
