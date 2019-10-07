@@ -40,8 +40,9 @@
 
     = render "partials/header"
     = render "partials/phase_banner"
-    = render "partials/subnavigation"
-    = yield
+    = render "partials/subnavigation" if current_user
+    %main#main-content.govuk-main-wrapper.app-main-class{:role => "main"}
+      = yield
     = render "partials/footer"
 
     = javascript_pack_tag 'govuk'
