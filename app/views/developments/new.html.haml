@@ -1,8 +1,23 @@
-= form_for @development do |form|
-  = form.label :application_number
-  = form.text_field :application_number
-  = form.label :site_address
-  = form.text_field :site_address
-  = form.label :proposal
-  = form.text_field :proposal
-  = form.submit
+.govuk-width-container
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %fieldset.govuk-fieldset
+        %legend.govuk-fieldset__legend.govuk-fieldset__legend--xl
+          %h1.govuk-fieldset__heading Details of your new development
+
+        = form_for @development do |f|
+          .govuk-form-group
+            = f.label :application_number, class: "govuk-label"
+            = f.text_field :application_number, class: "govuk-input govuk-input--width-20"
+
+          .govuk-form-group
+            = f.label :site_address, class: "govuk-label"
+            = f.text_field :site_address, class: "govuk-input govuk-input--width-20"
+
+          .govuk-form-group
+            = f.label :proposal, class: "govuk-label"
+            = f.text_field :proposal, class: "govuk-input govuk-input--width-20"
+
+          .govuk-form-group
+            = f.submit "Save and continue", class: "govuk-button govuk-!-margin-right-1"
+            = link_to "Cancel", developments_path, class: "govuk-button govuk-button--secondary", "data-module": "govuk-button"

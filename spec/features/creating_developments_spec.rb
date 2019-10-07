@@ -7,7 +7,7 @@ RSpec.feature 'Signing in', type: :feature do
     fill_in 'Application number', with: 'AP/2019/1234'
     fill_in 'Site address', with: '1 Site Address, London, SE1 1AA'
     fill_in 'Proposal', with: 'Build a building'
-    click_button 'Create Development'
+    click_button 'Save and continue'
     expect(page).to have_text('Development successfully created')
     expect(page).to have_text('AP/2019/1234')
     expect(page).to have_text('1 Site Address, London, SE1 1AA')
