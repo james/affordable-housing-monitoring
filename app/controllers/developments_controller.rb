@@ -13,6 +13,17 @@ class DevelopmentsController < ApplicationController
     redirect_to action: :index
   end
 
+  def edit
+    @development = Development.find(params[:id])
+  end
+
+  def update
+    @development = Development.find(params[:id])
+    @development.update(development_params)
+    flash[:notice] = 'Development successfully saved'
+    redirect_to action: :index
+  end
+
   private
 
   def development_params

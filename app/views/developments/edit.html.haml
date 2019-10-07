@@ -3,7 +3,7 @@
     .govuk-grid-column-full
       %fieldset.govuk-fieldset
         %legend.govuk-fieldset__legend.govuk-fieldset__legend--xl
-          %h1.govuk-fieldset__heading= t('developments.new_heading')
+          %h1.govuk-fieldset__heading Edit details of development
 
         = form_for @development do |f|
           = render partial: 'form', locals: {f: f}
