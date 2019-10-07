@@ -12,7 +12,7 @@
     %tbody.govuk-table__body
       - @developments.each do |development|
         %tr.govuk-table__row
-          %th.govuk-table__header{scope: "row"}= link_to development.application_number, "#", class: "govuk-link"
+          %th.govuk-table__header{scope: "row"}= link_to development.application_number, "#", class: "govuk-link", "aria-label": "view development #{development.application_number}"
           %td.govuk-table__cell= development.site_address
           %td.govuk-table__cell= development.proposal
-          %td.govuk-table__cell= link_to 'edit', edit_development_path(development)
+          %td.govuk-table__cell= link_to 'edit', edit_development_path(development), class: "govuk-link", "aria-label": "edit development #{development.application_number}"
