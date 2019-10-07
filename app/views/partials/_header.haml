@@ -14,12 +14,9 @@
       %button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls" => "navigation", "aria-label" => "Show or hide Top Level Navigation", :role => "button", :type => "button"} Menu
       %nav
         %ul#navigation.govuk-header__navigation{"aria-label" => "Top Level Navigation"}
-          %li.govuk-header__navigation-item.govuk-header__navigation-item--active
-            %a.govuk-header__link{:href => "#1"}
-              Navigation item 1
-          %li.govuk-header__navigation-item
-            %a.govuk-header__link{:href => "#2"}
-              Navigation item 2
-          %li.govuk-header__navigation-item
-            %a.govuk-header__link{:href => "#3"}
-              Navigation item 3
+          - if current_user
+            %li.govuk-header__navigation-item
+              Logged in as
+              = current_user.email
+            %li.govuk-header__navigation-item
+              = button_to 'Logout', destroy_user_session_path, method: :delete, class: "button-as-link govuk-header__link"
