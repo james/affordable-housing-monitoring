@@ -1,0 +1,16 @@
+.govuk-width-container
+
+  %table.govuk-table
+    %caption.govuk-table__caption.govuk-heading-xl All developments
+    %thead.govuk-table__head
+      %tr.govuk-table__row
+        %th{class: "govuk-table__header", scope: "col"} Application number
+        %th{class: "govuk-table__header", scope: "col"} Site address
+        %th{class: "govuk-table__header govuk-!-width-one-half", scope: "col"} Proposal
+
+    %tbody.govuk-table__body
+      - @developments.each do |development|
+        %tr.govuk-table__row
+          %th.govuk-table__header{scope: "row"}= link_to development.application_number, "#", class: "govuk-link"
+          %td.govuk-table__cell= development.site_address
+          %td.govuk-table__cell= development.proposal
