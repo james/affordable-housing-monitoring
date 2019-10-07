@@ -9,8 +9,7 @@
           %span.govuk-header__logotype-text
             GOV.UK
     .govuk-header__content
-      %a.govuk-header__link.govuk-header__link--service-name{:href => "#"}
-        Service name
+      %a.govuk-header__link.govuk-header__link--service-name{:href => "#"}= t('service_name')
       %button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls" => "navigation", "aria-label" => "Show or hide Top Level Navigation", :role => "button", :type => "button"} Menu
       %nav
         %ul#navigation.govuk-header__navigation{"aria-label" => "Top Level Navigation"}
@@ -19,4 +18,4 @@
               Logged in as
               = current_user.email
             %li.govuk-header__navigation-item
-              = button_to 'Logout', destroy_user_session_path, method: :delete, class: "button-as-link govuk-header__link"
+              = button_to t('authentication.log_out'), destroy_user_session_path, method: :delete, class: "button-as-link govuk-header__link"

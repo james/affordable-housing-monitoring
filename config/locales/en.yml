@@ -30,4 +30,19 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  service_name: "Affordable homes monitoring"
+  navigation:
+    developments: "View all developments"
+    new_development: "Add a new development"
+  authentication:
+    log_in: "Log in"
+    log_out: "Log out"
+  developments:
+    index_heading: "All developments"
+    new_heading: "Details of your new development"
+    application_number: "Application number"
+    site_address: "Site address"
+    proposal: "Proposal"
+  buttons:
+    submit: "Save and continue"
+    cancel: "Cancel and go back"

@@ -3,7 +3,7 @@
     .govuk-grid-column-full
       %fieldset.govuk-fieldset
         %legend.govuk-fieldset__legend.govuk-fieldset__legend--xl
-          %h1.govuk-fieldset__heading Details of your new development
+          %h1.govuk-fieldset__heading= t('developments.new_heading')
 
         = form_for @development do |f|
           .govuk-form-group
@@ -19,5 +19,5 @@
             = f.text_field :proposal, class: "govuk-input govuk-input--width-20"
 
           .govuk-form-group
-            = f.submit "Save and continue", class: "govuk-button govuk-!-margin-right-1"
-            = link_to "Cancel", developments_path, class: "govuk-button govuk-button--secondary", "data-module": "govuk-button"
+            = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
+            = link_to t('buttons.cancel'), developments_path, class: "govuk-button govuk-button--secondary", "data-module": "govuk-button"

@@ -1,12 +1,12 @@
 .govuk-width-container
 
   %table.govuk-table
-    %caption.govuk-table__caption.govuk-heading-xl All developments
+    %caption.govuk-table__caption.govuk-heading-xl= t('developments.index_heading')
     %thead.govuk-table__head
       %tr.govuk-table__row
-        %th{class: "govuk-table__header", scope: "col"} Application number
-        %th{class: "govuk-table__header", scope: "col"} Site address
-        %th{class: "govuk-table__header govuk-!-width-one-half", scope: "col"} Proposal
+        %th{class: "govuk-table__header", scope: "col"}= t('developments.application_number')
+        %th{class: "govuk-table__header", scope: "col"}= t('developments.site_address')
+        %th{class: "govuk-table__header govuk-!-width-one-half", scope: "col"}= t('developments.proposal')
 
     %tbody.govuk-table__body
       - @developments.each do |development|
