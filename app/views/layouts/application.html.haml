@@ -2,7 +2,7 @@
 %html.govuk-template.app-html-class{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title AffordableHousingMonitoring
+    %title= content_for?(:page_title) ? yield(:page_title) : "Southwark Affordable Homes Monitoring"
     = csrf_meta_tags
     = csp_meta_tag
     %meta{:content => "width=device-width, initial-scale=1, viewport-fit=cover", :name => "viewport"}/
