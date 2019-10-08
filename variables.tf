@@ -1,3 +1,7 @@
+variable "app_github_token" {
+  description = "App GitHub Token"
+}
+
 variable "container_command" {
   description = "command to run in container"
   type        = "list"
