@@ -9,3 +9,6 @@
 
         = form_for @development do |f|
           = render partial: 'form', locals: {f: f}
+          .govuk-form-group
+            = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
+            = link_to t('buttons.cancel'), development_path(@development), class: "govuk-button govuk-button--secondary", "data-module": "govuk-button"

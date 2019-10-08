@@ -5,6 +5,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     login
     create(:development)
     visit developments_path
+    click_link 'AP/2019/1234'
     click_link 'edit'
     fill_in 'Application number', with: 'AP/2019/1235'
     fill_in 'Site address', with: 'new 1 Site Address, London, SE1 1AA'
