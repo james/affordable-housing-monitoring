@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root 'developments#index'
 
   resources :developments, only: %i[index new create edit update]
+
+  get '/check', to: proc { [200, {}, ['OK']] }
 end
