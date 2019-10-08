@@ -50,9 +50,9 @@ resource "aws_iam_role_policy" "task_role_policy" {
 module "ecs-service" {
   source = "./vendor/terraform_modules/terraform-aws-ecs-service"
 
-  environment = "ahm"
+  environment = "app"
 
-  service_name          = "${var.environment}"
+  service_name          = "${local.app_name}-${var.environment}"
   service_desired_count = 1
 
   vpc_id   = "${data.aws_vpc.vpc.id}"
