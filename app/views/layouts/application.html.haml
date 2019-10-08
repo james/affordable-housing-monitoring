@@ -16,14 +16,11 @@
 
   %body.govuk-template__body.app-body-class
 
-    .govuk-width-container
-      - flash.each do |name, msg|
-        %div{class: "flash #{name}"}
-          %p{class: "govuk-!-margin-top-1 govuk-!-margin-bottom-1"}= msg
+    = render "partials/flashes"
 
     :javascript
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
-      
+
     %a.govuk-skip-link{:href => "#main-content"} Skip to main content
 
     = render "partials/header"
