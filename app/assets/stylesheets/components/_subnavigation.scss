@@ -6,8 +6,7 @@
     display: inline-block;
     margin-bottom: 0;
     a {
-      @include govuk-font(19, $weight: regular);
-      // @extend .bold-small;
+      @include govuk-font(19, $weight: bold);
       color: $govuk-link-colour;
       display: inline-block;
       padding: 15px 10px 10px 10px;
@@ -27,7 +26,6 @@
     &.active a:hover {
       color: #0B0C0C;
       border-bottom: 3px solid #0B0C0C !important;
-      font-weight: bold;
     }
   }
 }

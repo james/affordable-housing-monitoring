@@ -1,0 +1,23 @@
+// Override the govuk-frontend font stack
+$govuk-font-family: "myriad-pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+
+$southwark-brand-colour: #256f8a;
+
+$govuk-brand-colour: $southwark-brand-colour;
+$govuk-header-background: $govuk-brand-colour;
+
+.govuk-phase-banner__content {
+  .govuk-tag.govuk-phase-banner__content__tag {
+    background-color: $govuk-brand-colour;
+  }
+}
+
+.govuk-header {
+  background-color: darken( $govuk-header-background, 20% ) !important;
+}
+
+.govuk-header__logotype {
+  img {
+    max-width: 140px;
+  }
+}
