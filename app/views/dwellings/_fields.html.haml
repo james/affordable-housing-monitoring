@@ -1,8 +1,11 @@
 - @dwelling.errors.full_messages.each do |msg|
   = msg
-= form.label :tenure
-= form.select :tenure, Dwelling::TENURES
-= form.label :habitable_rooms, 'Number of habitable rooms'
-= form.number_field :habitable_rooms
-= form.label :bedrooms, 'Number of bedrooms'
-= form.number_field :bedrooms
+.govuk-form-group
+  = form.label :tenure, class: "govuk-label"
+  = form.select :tenure, Dwelling::TENURES, {}, { class: "govuk-select" }
+.govuk-form-group
+  = form.label :habitable_rooms, 'Number of habitable rooms', class: "govuk-label"
+  = form.number_field :habitable_rooms, class: "govuk-input govuk-input--width-2"
+.govuk-form-group
+  = form.label :bedrooms, 'Number of bedrooms', class: "govuk-label"
+  = form.number_field :bedrooms, class: "govuk-input govuk-input--width-2"
