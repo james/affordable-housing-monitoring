@@ -1,3 +1,6 @@
 = form_for([@development, @dwelling]) do |form|
   = render partial: 'fields', locals: { form: form }
   = form.submit 'Save dwelling'
+
+= form_for([@development, @dwelling], method: :delete) do |form|
+  = form.submit 'Delete dwelling', data: {confirm: 'Are you sure?'}
