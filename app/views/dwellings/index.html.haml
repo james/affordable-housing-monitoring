@@ -3,20 +3,15 @@
     %th Tenure
     %th Number of habitable rooms
     %th Number of bedrooms
+    %th Actions
 
   - @dwellings.each do |dwelling|
     %tr
       %td= dwelling.tenure
       %td= dwelling.habitable_rooms
       %td= dwelling.bedrooms
+      %td= link_to 'edit', edit_development_dwelling_path(@development, dwelling)
 
 = form_for([@development, @dwelling]) do |form|
-  - @dwelling.errors.full_messages.each do |msg|
-    = msg
-  = form.label :tenure
-  = form.select :tenure, Dwelling::TENURES
-  = form.label :habitable_rooms, 'Number of habitable rooms'
-  = form.number_field :habitable_rooms
-  = form.label :bedrooms, 'Number of bedrooms'
-  = form.number_field :bedrooms
+  = render partial: 'fields', locals: { form: form }
   = form.submit 'Add dwelling'

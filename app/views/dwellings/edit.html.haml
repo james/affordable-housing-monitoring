@@ -1,0 +1,3 @@
+= form_for([@development, @dwelling]) do |form|
+  = render partial: 'fields', locals: { form: form }
+  = form.submit 'Save dwelling'

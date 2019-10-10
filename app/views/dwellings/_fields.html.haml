@@ -1,0 +1,8 @@
+- @dwelling.errors.full_messages.each do |msg|
+  = msg
+= form.label :tenure
+= form.select :tenure, Dwelling::TENURES
+= form.label :habitable_rooms, 'Number of habitable rooms'
+= form.number_field :habitable_rooms
+= form.label :bedrooms, 'Number of bedrooms'
+= form.number_field :bedrooms

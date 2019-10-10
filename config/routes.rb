@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'developments#index'
 
   resources :developments do
-    resources :dwellings, only: %i[index create]
+    resources :dwellings, only: %i[index create edit update]
   end
 
   get '/check', to: proc { [200, {}, ['OK']] }

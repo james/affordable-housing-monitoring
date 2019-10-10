@@ -17,6 +17,20 @@ class DwellingsController < ApplicationController
     end
   end
 
+  def edit
+    @dwelling = @development.dwellings.find(params[:id])
+  end
+
+  def update
+    @dwelling = @development.dwellings.find(params[:id])
+    if @dwelling.update(dwelling_params)
+      flash[:notice] = 'Dwelling successfully saved'
+      redirect_to development_dwellings_path(@development)
+    else
+      render action: :edit
+    end
+  end
+
   private
 
   def find_development
