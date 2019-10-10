@@ -1,4 +1,11 @@
 FactoryBot.define do
+  factory :dwelling do
+    tenure { 'open' }
+    habitable_rooms { 1 }
+    bedrooms { 1 }
+    development
+  end
+
   factory :user do
     sequence(:email) { |n| "person#{n}@example.com" }
     password { 'password' }

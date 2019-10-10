@@ -2,3 +2,4 @@
 = @development.proposal
 = @development.site_address
 = link_to 'edit', edit_development_path(@development), class: "govuk-link", "aria-label": "edit development #{@development.application_number}"
+= link_to 'Manage dwellings', development_dwellings_path(@development), class: "govuk-link", "aria-label": "manage dwellings for development #{@development.application_number}"
