@@ -39,7 +39,7 @@ RSpec.feature 'Managing dwellings of a new development', type: :feature do
     visit developments_path
     click_link 'AP/2019/1234'
     click_link 'Manage dwellings'
-    click_link 'edit'
+    click_link 'Edit'
     select 'social', from: 'Tenure'
     fill_in 'Number of habitable rooms', with: 3
     fill_in 'Number of bedrooms', with: 2
@@ -58,7 +58,7 @@ RSpec.feature 'Managing dwellings of a new development', type: :feature do
     visit developments_path
     click_link 'AP/2019/1234'
     click_link 'Manage dwellings'
-    click_link 'edit'
+    click_link 'Edit'
     select 'social', from: 'Tenure'
     fill_in 'Number of habitable rooms', with: ''
     fill_in 'Number of bedrooms', with: ''
@@ -74,7 +74,7 @@ RSpec.feature 'Managing dwellings of a new development', type: :feature do
     visit developments_path
     click_link 'AP/2019/1234'
     click_link 'Manage dwellings'
-    click_link 'edit'
+    click_link 'Edit'
     click_button 'Delete dwelling'
     expect(page).to have_content('Dwelling deleted')
     development.reload
