@@ -76,9 +76,5 @@ USER app
 VOLUME ["/srv/affordable-housing-monitoring/public"]
 
 EXPOSE 3000
-# the entrypoint is used to create the database, but for some reason it keeps trying to
-# connect to a local postgresql db rather than the one specificed in the docker-compose.env.sample
-# file
-# Once started, exec onto the container and run `rake db:create RAILS_ENV=development && rake db:migrate RAILS_ENV=development`
-#ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["bundle", "exec", "puma"]
