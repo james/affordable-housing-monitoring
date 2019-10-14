@@ -9,7 +9,3 @@
 .govuk-form-group
   = f.label :proposal, class: "govuk-label"
   = f.text_field :proposal, class: "govuk-input govuk-input--width-20"
-
-.govuk-form-group
-  = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
-  = link_to t('buttons.cancel'), developments_path, class: "govuk-button govuk-button--secondary", "data-module": "govuk-button"

@@ -1,0 +1,36 @@
+.govuk-width-container
+  = link_to "Back", development_path(@development), class: "govuk-back-link"
+
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %h1.govuk-heading-xl Dwellings for #{@development.application_number}
+
+      %table.govuk-table
+        %caption.govuk-table__caption.govuk-visually-hidden Dwellings
+        %thead.govuk-table__head
+          %tr.govuk-table__row
+            %th{class: "govuk-table__header", scope: "col"} ID
+            %th{class: "govuk-table__header", scope: "col"} Tenure
+            %th{class: "govuk-table__header govuk-table__header--numeric", scope: "col"} Habitable rooms
+            %th{class: "govuk-table__header govuk-table__header--numeric", scope: "col"} Bedrooms
+            %th{class: "govuk-table__header", scope: "col"} Last updated
+            %th{class: "govuk-table__header", scope: "col"} Actions
+
+        %tbody.govuk-table__body
+          -@development.dwellings.each do |dwelling|
+            %tr.govuk-table__row
+              %th.govuk-table__header{scope: "row"}= dwelling.id
+              %td.govuk-table__cell= dwelling.tenure
+              %td.govuk-table__cell.govuk-table__cell--numeric=dwelling.habitable_rooms
+              %td.govuk-table__cell.govuk-table__cell--numeric=dwelling.bedrooms
+              %td.govuk-table__cell= distance_of_time_in_words(dwelling.updated_at, Time.now) + " ago"
+              %td.govuk-table__cell= link_to 'Edit', edit_development_dwelling_path(@development, dwelling), class: "govuk-link", "aria-label": "Edit dwelling #{dwelling.id}"
+
+  .govuk-grid-row
+    .govuk-grid-column-full
+
+      %h2.govuk-heading-l{class: "govuk-!-margin-top-5"} Add a dwelling
+
+      = form_for([@development, @dwelling]) do |form|
+        = render partial: 'fields', locals: { form: form }
+        = form.submit 'Add dwelling', class: "govuk-button"

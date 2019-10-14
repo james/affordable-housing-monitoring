@@ -13,6 +13,10 @@ class DevelopmentsController < ApplicationController
     redirect_to action: :index
   end
 
+  def show
+    @development = Development.find(params[:id])
+  end
+
   def edit
     @development = Development.find(params[:id])
   end

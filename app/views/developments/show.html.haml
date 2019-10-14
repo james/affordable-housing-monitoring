@@ -1,0 +1,26 @@
+- content_for(:page_title) { t("page_title_prefix") + "development " + @development.application_number }
+
+.govuk-width-container
+  = link_to "Back", developments_path, class: "govuk-back-link"
+
+  .govuk-grid-row
+    .govuk-grid-column-full{class: "govuk-!-margin-bottom-8"}
+      %h1.govuk-heading-xl{class: "govuk-!-margin-bottom-3"} Development #{@development.application_number}
+      = link_to 'Edit development', edit_development_path(@development), class: "govuk-body govuk-link", "aria-label": "edit development #{@development.application_number}"
+
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      %h2.govuk-heading-m Proposal
+      %p.govuk-body= @development.proposal
+
+    .govuk-grid-column-one-third
+      %h2.govuk-heading-m Address
+      %p.govuk-body= @development.site_address
+
+
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %h2.govuk-heading-l{class: "govuk-!-margin-top-3"} Dwellings
+      %p.govuk-body
+        There are #{@development.dwellings.count} dwellings on this development.
+        = link_to 'Manage dwellings', development_dwellings_path(@development), class: "govuk-body govuk-link", "aria-label": "manage dwellings for development #{@development.application_number}"
