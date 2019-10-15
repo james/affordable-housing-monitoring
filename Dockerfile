@@ -60,7 +60,7 @@ COPY . $APP_PATH
 RUN yarn install
 
 # compile assets for production
-RUN bundle exec rake assets:precompile
+RUN SECRET_KEY_BASE=dummy bundle exec rake assets:precompile
 
 # make app own the project files
 RUN chown -R app:app $APP_PATH
