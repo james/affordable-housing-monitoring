@@ -9,7 +9,7 @@ data "template_file" "container_definition" {
   vars = {
     image          = "${var.account_id}.dkr.ecr.${var.region}.amazonaws.com/${terraform.workspace}-${local.app_name}"
     container_name = "${terraform.workspace}-${local.app_name}"
-    container_port = "3049"
+    container_port = "3000"
     log_group      = "${aws_cloudwatch_log_group.service_logs.name}"
     log_region     = "${var.region}"
     entrypoint     = "${jsonencode(list("/bin/bash", "-c", join(" ", concat(local.install_postgres_cert_command, local.ssm_parameters_command, var.container_command))))}"
@@ -80,7 +80,7 @@ module "ecs-service" {
   lb_target_group = {
     target_type          = "instance"
     container_name       = "${terraform.workspace}-${local.app_name}"
-    container_port       = "3049"
+    container_port       = "3000"
     deregistration_delay = "60"
   }
 
@@ -118,7 +118,7 @@ module "daemon-service" {
   task_execution_role_arn = "${aws_iam_role.ecs_execution_role.arn}"
   lb_target_group_arn     = "${module.ecs-service.lb_target_group_arn}"
   container_name          = "${terraform.workspace}-${local.app_name}"
-  container_port          = "3049"
+  container_port          = "3000"
 }
 
 resource "aws_lb_listener" "port-80" {
