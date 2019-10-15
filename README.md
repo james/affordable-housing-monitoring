@@ -1,24 +1,36 @@
-# README
+# Affordable Housing Monitoring
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An alpha project for Southwark for monitoring affordable housing in the borough.
 
-Things you may want to cover:
+More information can be found at https://www.southwark.gov.uk/innovate/collabrative-project/affordable-housing-monitoring
 
-* Ruby version
+## Setting up the project
 
-* System dependencies
+Project can either be run locally or via Docker Compose
 
-* Configuration
+### Local setup
 
-* Database creation
+Requirements: Ruby 2.6.5, [Postgres](https://postgresapp.com/)
 
-* Database initialization
+```bash
+bundle
+yarn
+rake db:setup
+rails s
+```
 
-* How to run the test suite
+### Docker compose setup
 
-* Services (job queues, cache servers, search engines, etc.)
+Requirements: [Docker](https://docs.docker.com/docker-for-mac)
 
-* Deployment instructions
+```bash
+docker-compose up
+```
 
-* ...
+---
+
+In either setup, the server will be running on http://localhost:3000, and the default user is email@example.com with the password of 'password'
+
+## Running the tests
+
+Tests can be run by running `rake`.
