@@ -17,6 +17,10 @@
       %h2.govuk-heading-m Address
       %p.govuk-body= @development.site_address
 
+- case @development.state
+- when 'draft'
+  %p Draft
+  = link_to 'Mark as agreed', agree_confirmation_development_path(@development)
 
   .govuk-grid-row
     .govuk-grid-column-full

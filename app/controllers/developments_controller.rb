@@ -28,6 +28,17 @@ class DevelopmentsController < ApplicationController
     redirect_to action: :index
   end
 
+  def agree_confirmation
+    @development = Development.find(params[:id])
+  end
+
+  def agree
+    @development = Development.find(params[:id])
+    @development.agree!
+    flash[:notice] = 'Development marked as agreed'
+    redirect_to development_path(@development)
+  end
+
   private
 
   def development_params
