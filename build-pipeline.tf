@@ -165,5 +165,20 @@ resource "aws_codepipeline" "app_pipeline" {
         FileName    = "imagedefinitions.json"
       }
     }
+
+    action {
+      name            = "Deploy-Daemon"
+      category        = "Deploy"
+      owner           = "AWS"
+      provider        = "ECS"
+      input_artifacts = ["imagedefinitions"]
+      version         = "1"
+
+      configuration = {
+        ClusterName = "${var.cluster_name}"
+        ServiceName = "${var.environment}-${local.app_name}-daemon"
+        FileName    = "imagedefinitions.json"
+      }
+    }
   }
 }
