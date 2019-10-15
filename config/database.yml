@@ -17,3 +17,7 @@ test:
 prod:
   <<: *default
   url: <%= ENV.fetch("DATABASE_URL") { '' } %>
+
+staging:
+  <<: *default
+  url: <%= ENV.fetch("DATABASE_URL") { '' } %>
