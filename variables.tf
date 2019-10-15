@@ -5,7 +5,7 @@ variable "app_github_token" {
 variable "container_command" {
   description = "command to run in container"
   type        = "list"
-  default     = ["bundle", "exec", "puma"]
+  default     = ["/docker-entrypoint.sh", "bundle", "exec", "puma"]
 }
 
 variable "additional_domains" {
