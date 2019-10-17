@@ -1,19 +1,39 @@
 require 'rails_helper'
 
 RSpec.feature 'Editing a development core details', type: :feature do
-  scenario 'successfully' do
+  scenario 'successfully - application number' do
     login
     create(:development)
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Edit development'
+    find('a', text: 'Edit proposal', visible: false).click
     fill_in 'Application number', with: 'AP/2019/1235'
-    fill_in 'Site address', with: 'new 1 Site Address, London, SE1 1AA'
-    fill_in 'Proposal', with: 'Build a building edited'
     click_button 'Save and continue'
     expect(page).to have_text('Development successfully saved')
     expect(page).to have_text('AP/2019/1235')
+  end
+
+  scenario 'successfully - site address' do
+    login
+    create(:development)
+    visit developments_path
+    click_link 'AP/2019/1234'
+    find('a', text: 'Edit address', visible: false).click
+    fill_in 'Site address', with: 'new 1 Site Address, London, SE1 1AA'
+    click_button 'Save and continue'
+    expect(page).to have_text('Development successfully saved')
     expect(page).to have_text('new 1 Site Address, London, SE1 1AA')
+  end
+
+  scenario 'successfully - proposal' do
+    login
+    create(:development)
+    visit developments_path
+    click_link 'AP/2019/1234'
+    find('a', text: 'Edit proposal', visible: false).click
+    fill_in 'Proposal', with: 'Build a building edited'
+    click_button 'Save and continue'
+    expect(page).to have_text('Development successfully saved')
     expect(page).to have_text('Build a building edited')
   end
 
