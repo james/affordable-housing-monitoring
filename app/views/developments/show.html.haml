@@ -14,9 +14,16 @@
             - case @development.state
             - when 'draft'
               %p.govuk-tag Draft
+            - when 'agreed'
+              %p.govuk-tag Agreed
           %dd.govuk-summary-list__actions
-            = link_to agree_confirmation_development_path(@development), class: "govuk-link" do
-              Mark as agreed
+            - case @development.state
+            - when 'draft'
+              = link_to agree_confirmation_development_path(@development), class: "govuk-link" do
+                Mark as agreed
+            - when 'agreed'
+              = link_to start_confirmation_development_path(@development), class: "govuk-link" do
+                Mark as started
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     member do
       get :agree_confirmation
       patch :agree
+      get :start_confirmation
+      patch :start
     end
   end
 

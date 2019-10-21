@@ -39,6 +39,17 @@ class DevelopmentsController < ApplicationController
     redirect_to development_path(@development)
   end
 
+  def start_confirmation
+    @development = Development.find(params[:id])
+  end
+
+  def start
+    @development = Development.find(params[:id])
+    @development.start!
+    flash[:notice] = 'Development marked as started'
+    redirect_to development_path(@development)
+  end
+
   private
 
   def development_params
