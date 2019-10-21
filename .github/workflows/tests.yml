@@ -1,0 +1,49 @@
+name: Test Suite
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:11
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    container:
+      image: ruby:2.6.5
+    steps:
+    - uses: actions/checkout@v1
+    - name: Bundle
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3 --without development
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install
+    - name: Webpacker
+      env:
+        RAILS_ENV: test
+      run: |
+        bundle exec rails webpacker:compile
+    - name: Setup DB
+      env:
+        RAILS_ENV: test
+        DB_PASSWORD: postgres
+        DB_HOST_NAME: db
+      run: |
+        bundle exec rails db:create
+        bundle exec rails db:migrate
+    - name: Build and test with Rake
+      env:
+        RAILS_ENV: test
+        DB_PASSWORD: postgres
+        DB_HOST_NAME: db
+      run: |
+        bundle exec rake
