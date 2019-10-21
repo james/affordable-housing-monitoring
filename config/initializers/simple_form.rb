@@ -14,13 +14,6 @@ SimpleForm.setup do |config|
     b.use :input, class: 'govuk-input', error_class: 'govuk-input--error'
   end
 
-  config.wrappers :select, tag: 'div', class: 'govuk-form-group', error_class: 'govuk-form-group--error' do |field|
-    field.use :label, wrap_with: { tag: 'span', class: 'govuk-label govuk-label' }
-    field.use :hint, wrap_with: { tag: 'div', class: 'govuk-hint' }
-    field.use :full_error, wrap_with: { tag: 'span', class: 'govuk-error-message' }
-    field.use :input, as: :select, class: 'govuk-select'
-  end
-
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
 
@@ -59,4 +52,28 @@ SimpleForm.setup do |config|
 
   # Append 'optional' label instead of prepending
   config.label_text = ->(label, optional, _explicit_label) { "#{label}<span class=\"govuk-hint\">#{optional}</span>" }
+end
+
+# Bespoke wrappers
+
+SimpleForm.setup do |config|
+  config.wrappers :select, tag: 'div', class: 'govuk-form-group', error_class: 'govuk-form-group--error' do |field|
+    field.use :label, wrap_with: { tag: 'span', class: 'govuk-label govuk-label' }
+    field.use :hint, wrap_with: { tag: 'div', class: 'govuk-hint' }
+    field.use :full_error, wrap_with: { tag: 'span', class: 'govuk-error-message' }
+    field.use :input, as: :select, class: 'govuk-select'
+  end
+
+  config.wrappers :inline_checkbox, tag: 'div',
+                                    class: 'govuk-form-group',
+                                    error_class: 'govuk-form-group--error' do |checkbox|
+    checkbox.use :html5
+    checkbox.wrapper class: 'govuk-checkboxes__item' do |field|
+      field.use :input, class: 'govuk-checkboxes__input'
+      field.use :label_text, wrap_with: { tag: 'label', class: 'govuk-label govuk-label govuk-checkboxes__label' }
+      field.optional :hint, wrap_with: { tag: 'div', class: 'govuk-hint' }
+    end
+
+    checkbox.use :error, wrap_with: { tag: 'div', class: 'help-inline' }
+  end
 end
