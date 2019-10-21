@@ -50,6 +50,17 @@ class DevelopmentsController < ApplicationController
     redirect_to development_path(@development)
   end
 
+  def complete_confirmation
+    @development = Development.find(params[:id])
+  end
+
+  def complete
+    @development = Development.find(params[:id])
+    @development.complete!
+    flash[:notice] = 'Development marked as completed'
+    redirect_to development_path(@development)
+  end
+
   private
 
   def development_params

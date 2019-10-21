@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       patch :agree
       get :start_confirmation
       patch :start
+      get :complete_confirmation
+      patch :complete
     end
   end
 
