@@ -42,7 +42,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     create(:development)
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Edit development'
+    find('a', text: 'Edit proposal', visible: false).click
     fill_in 'Application number', with: ''
     fill_in 'Site address', with: ''
     fill_in 'Proposal', with: ''
