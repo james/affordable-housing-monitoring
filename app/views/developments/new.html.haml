@@ -8,8 +8,10 @@
         %legend.govuk-fieldset__legend.govuk-fieldset__legend--xl
           %h1.govuk-fieldset__heading= t('developments.new_heading')
 
-        = simple_form_for @development do |f|
-          = render partial: 'form', locals: {f: f}
-          .govuk-form-group
-            = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
-            = link_to t('buttons.cancel'), developments_path, class: "govuk-button govuk-button--secondary", "data-module": "govuk-button"
+        .govuk-grid-row{class: 'govuk-!-margin-top-7'}
+          .govuk-grid-column-two-thirds-from-desktop
+            = simple_form_for @development do |f|
+              = render partial: 'form', locals: {f: f}
+              .govuk-form-group
+                = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
+                = link_to t('buttons.cancel'), developments_path, class: "govuk-button govuk-button--secondary", "data-module": "govuk-button"
