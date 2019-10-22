@@ -14,6 +14,16 @@ RSpec.feature 'Creating developments', type: :feature do
     expect(page).to have_text('Build a building')
   end
 
+  scenario 'with validation error' do
+    login
+    click_link 'Add a new development'
+    fill_in 'Application number', with: ''
+    fill_in 'Site address', with: ''
+    fill_in 'Proposal', with: ''
+    click_button 'Save and continue'
+    expect(page).to have_content("Application number can't be blank")
+  end
+
   scenario 'unable to view if not logged in' do
     visit new_development_path
     expect(current_path).to eq(new_user_session_path)
