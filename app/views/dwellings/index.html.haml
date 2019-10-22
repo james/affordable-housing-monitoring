@@ -1,4 +1,4 @@
-- content_for(:page_title) { t("page_title_prefix") + "Dwellings for development " + @development.application_number }
+- content_for(:page_title) { page_title("Dwellings for " + @development.application_number) }
 
 .govuk-width-container
   = link_to "Back", development_path(@development), class: "govuk-back-link"
