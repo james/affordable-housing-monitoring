@@ -1,4 +1,4 @@
-%header.govuk-header{"data-module" => "govuk-header", :role => "banner"}
+%header.govuk-header{"data-module": "govuk-header", role: "banner"}
   .govuk-header__container.govuk-width-container
     .govuk-header__logo
       = link_to root_path, class: 'govuk-header__link govuk-header__link--homepage' do
@@ -6,9 +6,9 @@
           = image_tag 'logo-white.png', alt: "Southwark Council logo"
     .govuk-header__content
       = link_to t('service_name'), root_path, class: 'govuk-header__link govuk-header__link--service-name'
-      %button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls" => "navigation", "aria-label" => "Show or hide Top Level Navigation", :role => "button", :type => "button"} Menu
+      %button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls": "navigation", "aria-label": "Show or hide Top Level Navigation", role: "button", type: "button"} Menu
       %nav
-        %ul#navigation.govuk-header__navigation{"aria-label" => "Top Level Navigation"}
+        %ul#navigation.govuk-header__navigation{"aria-label": "Top Level Navigation"}
           - if current_user
             %li.govuk-header__navigation-item
               Logged in as
