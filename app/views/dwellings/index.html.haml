@@ -1,5 +1,16 @@
+- content_for(:page_title) { t("page_title_prefix") + "Dwellings for development " + @development.application_number }
+
 .govuk-width-container
   = link_to "Back", development_path(@development), class: "govuk-back-link"
+
+  - if @dwelling.errors.any?
+    .govuk-error-summary{"aria-labelledby" => "error-summary-title", "data-module" => "govuk-error-summary", :role => "alert", :tabindex => "-1"}
+      %h2#error-summary-title.govuk-error-summary__title
+        There is a problem
+      .govuk-error-summary__body
+        %ul.govuk-list.govuk-error-summary__list
+          - @dwelling.errors.each do |attribute, error|
+            %li= link_to @dwelling.errors.full_message(attribute, error), "#dwelling_#{attribute}"
 
   .govuk-grid-row
     .govuk-grid-column-full
@@ -31,6 +42,6 @@
 
       %h2.govuk-heading-l{class: "govuk-!-margin-top-5"} Add a dwelling
 
-      = form_for([@development, @dwelling]) do |form|
+      = simple_form_for([@development, @dwelling]) do |form|
         = render partial: 'fields', locals: { form: form }
         = form.submit 'Add dwelling', class: "govuk-button"
