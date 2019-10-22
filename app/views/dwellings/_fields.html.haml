@@ -1,11 +1,6 @@
-- @dwelling.errors.full_messages.each do |msg|
-  = msg
 .govuk-form-group
-  = form.label :tenure, class: "govuk-label"
-  = form.select :tenure, Dwelling::TENURES, {}, { class: "govuk-select" }
+  = form.input :tenure, collection: Dwelling::TENURES, wrapper: :select
 .govuk-form-group
-  = form.label :habitable_rooms, 'Number of habitable rooms', class: "govuk-label"
-  = form.number_field :habitable_rooms, class: "govuk-input govuk-input--width-2"
+  = form.input :habitable_rooms, input_html: { class: "govuk-input govuk-input--width-2" }, label: 'Number of habitable rooms'
 .govuk-form-group
-  = form.label :bedrooms, 'Number of bedrooms', class: "govuk-label"
-  = form.number_field :bedrooms, class: "govuk-input govuk-input--width-2"
+  = form.input :bedrooms, input_html: { class: "govuk-input govuk-input--width-2" }, label: 'Number of bedrooms'

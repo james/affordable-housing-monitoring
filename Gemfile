@@ -30,6 +30,7 @@ gem 'rubocop'
 gem 'rubocop-rails'
 
 gem 'haml-rails', '~> 2.0'
+gem 'simple_form', '4.1.0'
 
 gem 'devise'
 

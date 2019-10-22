@@ -1,11 +1,8 @@
 .govuk-form-group
-  = f.label :application_number, class: "govuk-label"
-  = f.text_field :application_number, class: "govuk-input govuk-input--width-20"
+  = f.input :application_number, input_html: { class: "govuk-input govuk-input--width-10" }
 
 .govuk-form-group
-  = f.label :site_address, class: "govuk-label"
-  = f.text_field :site_address, class: "govuk-input govuk-input--width-20"
+  = f.input :site_address
 
 .govuk-form-group
-  = f.label :proposal, class: "govuk-label"
-  = f.text_field :proposal, class: "govuk-input govuk-input--width-20"
+  = f.input :proposal

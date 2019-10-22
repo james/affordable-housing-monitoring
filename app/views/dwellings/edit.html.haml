@@ -7,7 +7,7 @@
     .govuk-grid-column-full
       %h1.govuk-heading-xl Edit dwelling
 
-      = form_for([@development, @dwelling]) do |form|
+      = simple_form_for([@development, @dwelling]) do |form|
         = render partial: 'fields', locals: { form: form }
         = form.submit 'Save dwelling', class: "govuk-button"
 

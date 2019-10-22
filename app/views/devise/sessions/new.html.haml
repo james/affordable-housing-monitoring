@@ -7,22 +7,21 @@
   .govuk-grid-row
     .govuk-grid-column-full
 
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+        = f.error :email
+
+        = f.error_notification
+
         .govuk-form-group
-          = f.label :email, class: "govuk-label"
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: "govuk-input govuk-input--width-20"
+          = f.input :email, required: true, input_html: { class: "govuk-input govuk-input--width-20" }
         .govuk-form-group
-          = f.label :password, class: "govuk-label"
-          = f.password_field :password, autocomplete: "current-password", class: "govuk-input govuk-input--width-20"
+          = f.input :password, label: 'Password', required: true, input_html: { class: "govuk-input govuk-input--width-20" }
 
         - if devise_mapping.rememberable?
           .govuk-form-group
             .govuk-checkboxes
-              .govuk-checkboxes__item
-                = f.check_box :remember_me, class: "govuk-checkboxes__input", name: "remember_me", type: "checkbox", value: "remember_me"
-                = f.label :remember_me, for: "remember_me", class: "govuk-label govuk-checkboxes__label"
+              = f.input :remember_me, wrapper: :inline_checkbox
 
         .actions
           = f.submit "Log in", class: "govuk-button", "data-module": "govuk-button"
-
-      -# = render "devise/shared/links"
