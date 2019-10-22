@@ -9,7 +9,9 @@
         %legend.govuk-fieldset__legend.govuk-fieldset__legend--xl
           %h1.govuk-fieldset__heading Edit details of development
 
-        = simple_form_for @development do |f|
-          = render partial: 'form', locals: {f: f}
-          .govuk-form-group
-            = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
+        .govuk-grid-row{class: 'govuk-!-margin-top-7'}
+          .govuk-grid-column-two-thirds-from-desktop
+            = simple_form_for @development do |f|
+              = render partial: 'form', locals: {f: f}
+              .govuk-form-group
+                = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"

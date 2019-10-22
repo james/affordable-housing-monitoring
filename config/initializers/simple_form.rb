@@ -76,4 +76,13 @@ SimpleForm.setup do |config|
 
     checkbox.use :error, wrap_with: { tag: 'div', class: 'help-inline' }
   end
+
+  config.wrappers :textarea, tag: 'div',
+                             class: 'govuk-form-group',
+                             error_class: 'govuk-form-group--error' do |field|
+    field.use :label, wrap_with: { tag: 'span', class: 'govuk-label govuk-label' }
+    field.use :hint, wrap_with: { tag: 'div', class: 'govuk-hint' }
+    field.use :error, wrap_with: { tag: 'div', class: 'govuk-error-message' }
+    field.use :input, as: :text, class: 'govuk-textarea'
+  end
 end
