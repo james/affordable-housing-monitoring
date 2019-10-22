@@ -3,6 +3,7 @@
 .govuk-width-container
   = link_to "Back", development_dwellings_path(@development), class: "govuk-back-link"
 
+  = render partial: 'partials/error_block', locals: { record: @dwelling }
   .govuk-grid-row
     .govuk-grid-column-full
       %h1.govuk-heading-xl Edit dwelling

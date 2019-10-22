@@ -1,6 +1,7 @@
 class Development < ApplicationRecord
   has_many :dwellings, dependent: :destroy
 
+  validates :application_number, presence: true
   validates :state, presence: true
 
   include AASM

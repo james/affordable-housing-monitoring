@@ -8,9 +8,13 @@ class DevelopmentsController < ApplicationController
   end
 
   def create
-    @development = Development.create!(development_params)
-    flash[:notice] = 'Development successfully created'
-    redirect_to action: :index
+    @development = Development.new(development_params)
+    if @development.save
+      flash[:notice] = 'Development successfully created'
+      redirect_to action: :index
+    else
+      render action: :new
+    end
   end
 
   def show
@@ -23,9 +27,12 @@ class DevelopmentsController < ApplicationController
 
   def update
     @development = Development.find(params[:id])
-    @development.update(development_params)
-    flash[:notice] = 'Development successfully saved'
-    redirect_to action: :index
+    if @development.update(development_params)
+      flash[:notice] = 'Development successfully saved'
+      redirect_to action: :index
+    else
+      render action: :edit
+    end
   end
 
   def agree_confirmation
