@@ -16,5 +16,6 @@ FactoryBot.define do
     application_number { 'AP/2019/1234' }
     site_address { '1 Site Address, London, SE1 1AA' }
     proposal { 'Build a building' }
+    state { 'draft' }
   end
 end

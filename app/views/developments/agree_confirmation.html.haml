@@ -1,0 +1,16 @@
+- content_for(:page_title) { "Mark development #{@development.application_number} as agreed – " + t("page_title_prefix") }
+
+.govuk-width-container
+  = link_to "Back", developments_path, class: "govuk-back-link"
+  .govuk-grid-row
+    .govuk-grid-column-full-from-desktop
+      %h1.govuk-heading-l Mark development #{@development.application_number} as agreed
+
+      .govuk-warning-text
+        %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
+        %strong.govuk-warning-text__text
+          %span.govuk-warning-text__assistive Warning
+          Once you agree, any changes will require an audit log.
+
+      = form_for @development, url: agree_development_path(@development) do |form|
+        = form.submit 'Mark as agreed', class: "govuk-button"

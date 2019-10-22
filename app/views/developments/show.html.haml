@@ -2,25 +2,54 @@
 
 .govuk-width-container
   = link_to "Back", developments_path, class: "govuk-back-link"
-
   .govuk-grid-row
-    .govuk-grid-column-full{class: "govuk-!-margin-bottom-8"}
-      %h1.govuk-heading-xl{class: "govuk-!-margin-bottom-3"} Development #{@development.application_number}
-      = link_to 'Edit development', edit_development_path(@development), class: "govuk-body govuk-link", "aria-label": "edit development #{@development.application_number}"
+    .govuk-grid-column-full-from-desktop
+      %h1.govuk-heading-l Development #{@development.application_number}
+      %dl.govuk-summary-list{:class => "govuk-!-margin-bottom-9"}
 
-  .govuk-grid-row
-    .govuk-grid-column-two-thirds
-      %h2.govuk-heading-m Proposal
-      %p.govuk-body= @development.proposal
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
+            Status
+          %dd.govuk-summary-list__value
+            %p.govuk-tag= @development.state.titleize
+          %dd.govuk-summary-list__actions
+            - case @development.state
+            - when 'draft'
+              = link_to agree_confirmation_development_path(@development), class: "govuk-link" do
+                Mark as agreed
+            - when 'agreed'
+              = link_to start_confirmation_development_path(@development), class: "govuk-link" do
+                Mark as started
+            - when 'started'
+              = link_to complete_confirmation_development_path(@development), class: "govuk-link" do
+                Mark as completed
 
-    .govuk-grid-column-one-third
-      %h2.govuk-heading-m Address
-      %p.govuk-body= @development.site_address
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
+            Proposal
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @development.proposal
+          %dd.govuk-summary-list__actions
+            = link_to edit_development_path(@development), class: "govuk-link" do
+              Edit
+              %span.govuk-visually-hidden proposal
 
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
+            Address
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @development.site_address
+          %dd.govuk-summary-list__actions
+            = link_to edit_development_path(@development), class: "govuk-link" do
+              Edit
+              %span.govuk-visually-hidden address
 
-  .govuk-grid-row
-    .govuk-grid-column-full
-      %h2.govuk-heading-l{class: "govuk-!-margin-top-3"} Dwellings
-      %p.govuk-body
-        There are #{@development.dwellings.count} dwellings on this development.
-        = link_to 'Manage dwellings', development_dwellings_path(@development), class: "govuk-body govuk-link", "aria-label": "manage dwellings for development #{@development.application_number}"
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
+            Dwellings
+          %dd.govuk-summary-list__value
+            %p.govuk-body There are #{@development.dwellings.count} dwellings on this development.
+          %dd.govuk-summary-list__actions
+            = link_to development_dwellings_path(@development) do
+              Manage
+              %span.govuk-visually-hidden dwellings
