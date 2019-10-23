@@ -28,7 +28,7 @@
           %dt.govuk-summary-list__key
             Proposal
           %dd.govuk-summary-list__value
-            %p.govuk-body= @development.proposal
+            = simple_format(@development.proposal, class: 'govuk-body')
           %dd.govuk-summary-list__actions
             = link_to edit_development_path(@development), class: "govuk-link" do
               Edit

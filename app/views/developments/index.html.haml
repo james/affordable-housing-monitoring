@@ -17,4 +17,4 @@
         %tr.govuk-table__row
           %th.govuk-table__header{scope: "row"}= link_to development.application_number, development_path(development), class: "govuk-link", "aria-label": "view development #{development.application_number}"
           %td.govuk-table__cell= development.site_address
-          %td.govuk-table__cell= development.proposal
+          %td.govuk-table__cell= simple_format(development.proposal, class: 'govuk-body')
