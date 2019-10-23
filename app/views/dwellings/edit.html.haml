@@ -1,4 +1,4 @@
-- content_for(:page_title) { page_title('Edit dwelling') }
+- content_for(:page_title) { @dwelling.errors.any? ? page_title('Errors on page - Edit dwelling') : page_title('Edit dwelling') }
 
 .govuk-width-container
   = link_to "Back", development_dwellings_path(@development), class: "govuk-back-link"
