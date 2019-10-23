@@ -48,7 +48,7 @@
           %dt.govuk-summary-list__key
             Dwellings
           %dd.govuk-summary-list__value
-            %p.govuk-body There are #{@development.dwellings.count} dwellings on this development.
+            %p.govuk-body=t('dwellings_count', count: @development.dwellings.count)
           %dd.govuk-summary-list__actions
             = link_to development_dwellings_path(@development) do
               Manage

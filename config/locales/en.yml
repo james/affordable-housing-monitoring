@@ -44,6 +44,9 @@ en:
     application_number: "Application number"
     site_address: "Site address"
     proposal: "Proposal"
+  dwellings_count:
+    one: 'There is 1 dwelling on this development.'
+    other: 'There are %{count} dwellings on this development.'
   buttons:
     submit: "Save and continue"
     cancel: "Cancel and go back"
