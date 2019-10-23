@@ -1,0 +1,13 @@
+.govuk-width-container
+  = link_to "Back to dwellings", development_dwellings_path(@development), class: "govuk-back-link"
+
+  = render partial: 'partials/error_block', locals: { record: @dwelling }
+
+  .govuk-grid-row
+    .govuk-grid-column-full
+
+      %h1.govuk-heading-xl Add a dwelling
+
+      = simple_form_for([@development, @dwelling]) do |form|
+        = render partial: 'fields', locals: { form: form }
+        = form.submit 'Add dwelling', class: "govuk-button"

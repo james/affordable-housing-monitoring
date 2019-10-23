@@ -7,6 +7,7 @@ RSpec.feature 'Managing dwellings of a new development', type: :feature do
     visit developments_path
     click_link 'AP/2019/1234'
     click_link 'Manage dwellings'
+    click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
@@ -24,6 +25,7 @@ RSpec.feature 'Managing dwellings of a new development', type: :feature do
     visit developments_path
     click_link 'AP/2019/1234'
     click_link 'Manage dwellings'
+    click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
     fill_in 'Number of habitable rooms', with: ''
     fill_in 'Number of bedrooms', with: ''

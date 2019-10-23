@@ -3,11 +3,11 @@
 .govuk-width-container
   = link_to "Back to development", development_path(@development), class: "govuk-back-link"
 
-  = render partial: 'partials/error_block', locals: { record: @dwelling }
-
   .govuk-grid-row
     .govuk-grid-column-full
       %h1.govuk-heading-xl Dwellings for #{@development.application_number}
+
+      = link_to 'Add a new dwelling', new_development_dwelling_path, class: 'govuk-button'
 
       %table.govuk-table
         %caption.govuk-table__caption.govuk-visually-hidden Dwellings
@@ -29,12 +29,3 @@
               %td.govuk-table__cell.govuk-table__cell--numeric=dwelling.bedrooms
               %td.govuk-table__cell= distance_of_time_in_words(dwelling.updated_at, Time.now) + " ago"
               %td.govuk-table__cell= link_to 'Edit', edit_development_dwelling_path(@development, dwelling), class: "govuk-link", "aria-label": "Edit dwelling #{dwelling.id}"
-
-  .govuk-grid-row
-    .govuk-grid-column-full
-
-      %h2.govuk-heading-l{class: "govuk-!-margin-top-5"} Add a dwelling
-
-      = simple_form_for([@development, @dwelling]) do |form|
-        = render partial: 'fields', locals: { form: form }
-        = form.submit 'Add dwelling', class: "govuk-button"
