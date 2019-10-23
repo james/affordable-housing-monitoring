@@ -1,7 +1,7 @@
 - content_for(:page_title) { @development.errors.any? ? page_title("Errors on page - Edit development #{@development.application_number}") : page_title("Edit development #{@development.application_number}") }
 
 .govuk-width-container
-  = link_to "Back", development_path(@development), class: "govuk-back-link"
+  = link_to "Back to development", development_path(@development), class: "govuk-back-link"
 
   = render partial: 'partials/error_block', locals: { record: @development }
   .govuk-grid-row
