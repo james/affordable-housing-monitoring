@@ -44,6 +44,7 @@ en:
     application_number: "Application number"
     site_address: "Site address"
     proposal: "Proposal"
+    state: "Status"
   dwellings_count:
     one: 'There is 1 dwelling on this development.'
     other: 'There are %{count} dwellings on this development.'
