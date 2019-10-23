@@ -1,6 +1,8 @@
-- content_for(:page_title) { page_title('Add a new development') }
+- content_for(:page_title) { @development.errors.any? ? page_title('Errors on page - Add a new development') : page_title('Add a new development') }
 
 .govuk-width-container
+  = link_to "Back to all developments", developments_path, class: "govuk-back-link"
+
   = render partial: 'partials/error_block', locals: { record: @development }
   .govuk-grid-row
     .govuk-grid-column-full
@@ -14,4 +16,3 @@
               = render partial: 'form', locals: {f: f}
               .govuk-form-group
                 = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
-                = link_to t('buttons.cancel'), developments_path, class: "govuk-button govuk-button--secondary", "data-module": "govuk-button"
