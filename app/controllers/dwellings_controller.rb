@@ -6,14 +6,17 @@ class DwellingsController < ApplicationController
     @dwelling = Dwelling.new
   end
 
+  def new
+    @dwelling = Dwelling.new
+  end
+
   def create
     @dwelling = Dwelling.new(dwelling_params.merge(development: @development))
     if @dwelling.save
       flash[:notice] = 'Dwelling successfully added'
       redirect_to development_dwellings_path(@development)
     else
-      @dwellings = @development.dwellings
-      render action: :index
+      render action: :new
     end
   end
 
