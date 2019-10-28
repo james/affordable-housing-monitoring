@@ -71,6 +71,6 @@ class DevelopmentsController < ApplicationController
   private
 
   def development_params
-    params.require(:development).permit(:application_number, :site_address, :proposal)
+    params.require(:development).permit(:application_number, :site_address, :proposal, :audit_comment)
   end
 end

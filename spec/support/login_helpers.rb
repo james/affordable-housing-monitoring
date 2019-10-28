@@ -4,4 +4,5 @@ def login(user = nil)
   fill_in 'Email', with: user.email
   fill_in 'Password', with: 'password'
   click_button 'Log in'
+  user
 end

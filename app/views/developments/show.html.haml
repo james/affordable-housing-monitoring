@@ -53,3 +53,12 @@
             = link_to development_dwellings_path(@development) do
               Manage
               %span.govuk-visually-hidden dwellings
+%table
+  - @development.own_and_associated_audits.order(created_at: :asc).each do |audit|
+    %tr.changelog_row
+      %td= audit.created_at.to_s(:short)
+      %td= audit.user&.email
+      %td= audit.auditable_type
+      %td= audit.action
+      %td= audit.audited_changes.collect {|key,change| "#{key.humanize(capitalize: false)} changed from \"#{change[0]}\" to \"#{change[1]}\""}.to_sentence
+      %td= audit.comment
