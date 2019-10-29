@@ -4,7 +4,7 @@ class Dwelling < ApplicationRecord
   audited(
     associated_with: :development,
     if: :audit_changes?,
-    on: [:create],
+    on: %i[create update],
     comment_required: true
   )
 
