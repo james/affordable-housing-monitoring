@@ -11,7 +11,7 @@ class DevelopmentsController < ApplicationController
     @development = Development.new(development_params)
     if @development.save
       flash[:notice] = 'Development successfully created'
-      redirect_to action: :index
+      redirect_to development_path(@development)
     else
       render action: :new
     end
@@ -29,7 +29,7 @@ class DevelopmentsController < ApplicationController
     @development = Development.find(params[:id])
     if @development.update(development_params)
       flash[:notice] = 'Development successfully saved'
-      redirect_to action: :index
+      redirect_to development_path(@development)
     else
       render action: :edit
     end
@@ -71,6 +71,6 @@ class DevelopmentsController < ApplicationController
   private
 
   def development_params
-    params.require(:development).permit(:application_number, :site_address, :proposal)
+    params.require(:development).permit(:application_number, :site_address, :proposal, :audit_comment)
   end
 end

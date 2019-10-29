@@ -6,3 +6,7 @@
 
 .govuk-form-group
   = f.input :proposal, input_html: { 'rows': 5 }, wrapper: :textarea
+
+- if @development.audit_changes?
+  .govuk-form-group
+    = f.input :audit_comment, label: 'Changelog'

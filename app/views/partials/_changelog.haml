@@ -1,0 +1,21 @@
+.bg-light-grey{class: 'govuk-!-padding-top-9 govuk-!-padding-bottom-9'}
+  .govuk-width-container
+    %table.govuk-table
+      %caption.govuk-table__caption.govuk-heading-m Changelog
+      %thead.govuk-table__head
+        %tr.govuk-table__row
+          %th.govuk-table__header{scope: 'col'} Changed at
+          %th.govuk-table__header{scope: 'col'} Changes made by
+          %th.govuk-table__header{scope: 'col'} Changes made
+      %tbody.govuk-table__body
+        - @development.own_and_associated_audits.order(created_at: :asc).each do |audit|
+          %tr.govuk-table__row.changelog_row
+            %th.govuk-table__header{class: 'govuk-!-width-one-quarter', scope: 'row'}= audit.created_at.to_s(:short)
+            %td.govuk-table__cell{class: 'govuk-!-width-one-quarter'}= audit.user&.email
+            %td.govuk-table__cell{class: 'govuk-!-width-one-half'}
+              - audit.audited_changes.each do |key,change|
+                %p{class: 'govuk-!-margin-top-0'}
+                  #{key.humanize} changed from "#{change[0]}" to "#{change[1]}"
+              %footer{class: 'govuk-!-font-weight-bold govuk-!-font-size-16'}
+                Comments:
+                = audit.comment if audit.comment?
