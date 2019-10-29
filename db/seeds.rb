@@ -8,16 +8,32 @@
 
 User.create!(email: 'email@example.com', password: 'password', password_confirmation: 'password')
 
-Development.create!(
-  [
-    { application_number: 'AP/19/4173',
-      site_address: 'Victor Road, Bermondsey, London, SE1 1TG',
-      proposal: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cum sociis
-      natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet,
-      consectetur adipiscing elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.' },
-    { application_number: 'AP/19/9275',
-      site_address: 'Artillery Street, Camberwell, London, SE15 6TY',
-      proposal: 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel
-      scelerisque nisl consectetur et. Donec ullamcorper nulla non metus auctor fringilla. Donec sed odio dui.' }
+100.times do
+  app_year = Random.rand(2017...2019)
+  number = Random.rand(5001...9999)
+  app_number = "AP/#{app_year}/#{number}"
+  proposal = Faker::Lorem.sentence(word_count: 7, supplemental: true, random_words_to_add: 7)
+  streets = Faker::Address.street_name
+  districts = [
+    'Abbey Wood, SE2', 'Blackheath, SE3', 'Brockley, SE4', 'Camberwell, SE5', 'Catford, SE6',
+    'Charlton, SE7', 'Deptford, SE8', 'Eltham, SE9', 'Greenwich, SE10', 'Kennington, SE11', 'Grove Park, SE12',
+    'Lewisham, SE13', 'New Cross, SE14', 'Peckham, SE15', 'Rotherhithe, SE16', 'Walworth, SE17', 'Woolwich, SE18',
+    'Norwood, SE19', 'Dulwich, SE21', 'East Dulwich, SE22', 'Forest Hill, SE23', 'Herne Hill, SE24',
+    'South Norwood, SE25', 'Sydenham, SE26', 'West Norwood, SE27', 'Thamesmead, SE28'
   ]
-)
+  address = "#{streets}, #{districts.sample}"
+  state = %w[draft agreed started completed].sample
+
+  development = Development.create!(
+    application_number: app_number, site_address: address, proposal: proposal, state: state
+  )
+
+  Random.rand(3...12).times do
+    Dwelling.create!(
+      development_id: development.id,
+      tenure: %w[open social intermediate].sample,
+      habitable_rooms: Random.rand(2...4),
+      bedrooms: Random.rand(1...2)
+    )
+  end
+end
