@@ -11,7 +11,7 @@
           %dt.govuk-summary-list__key
             Status
           %dd.govuk-summary-list__value
-            %p.govuk-tag= @development.state.titleize
+            %p.govuk-tag{class: "govuk-tag-#{@development.state}"}= @development.state.titleize
           %dd.govuk-summary-list__actions
             - case @development.state
             - when 'draft'

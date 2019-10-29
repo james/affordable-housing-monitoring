@@ -1,0 +1,19 @@
+.govuk-tag-draft {
+  background-color: govuk-colour('dark-grey');
+  color: govuk-colour('white');
+}
+
+.govuk-tag-agreed {
+  background-color: govuk-colour('purple');
+  color: govuk-colour('white');
+}
+
+.govuk-tag-started {
+  background-color: govuk-colour('green');
+  color: govuk-colour('white');
+}
+
+.govuk-tag-completed {
+  background-color: govuk-colour('pink');
+  color: govuk-colour('white');
+}
