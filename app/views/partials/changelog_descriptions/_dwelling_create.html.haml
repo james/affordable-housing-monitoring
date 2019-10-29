@@ -1,0 +1,6 @@
+%p{class: 'govuk-!-margin-top-0'} New dwelling added:
+%dl{class: 'govuk-summary-list govuk-summary-list--no-border'}
+  - audit.audited_changes.except('development_id').each do |key,change|
+    .govuk-summary-list__row{class: 'govuk-!-margin-bottom-0'}
+      %dt.govuk-summary-list__key{class: 'govuk-!-padding-bottom-0'}= key.humanize
+      %dd.govuk-summary-list__value{class: 'govuk-!-padding-bottom-0'}= change
