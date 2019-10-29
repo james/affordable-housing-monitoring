@@ -20,4 +20,4 @@
           %td.govuk-table__cell= development.site_address
           %td.govuk-table__cell= development.proposal
           %td.govuk-table__cell
-            %p.govuk-tag= development.state
+            %p.govuk-tag{class: "govuk-tag-#{development.state}"}= development.state.titleize
