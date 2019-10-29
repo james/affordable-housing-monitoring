@@ -8,3 +8,9 @@
 	outline: inherit;
   text-decoration: underline;
 }
+
+// colour tools
+
+.bg-light-grey {
+  background-color: govuk-colour("light-grey");
+}

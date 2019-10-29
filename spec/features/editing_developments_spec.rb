@@ -61,7 +61,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     fill_in 'Changelog', with: 'Testing changelog'
     click_button 'Save and continue'
     within '.changelog_row' do
-      expect(page).to have_content('proposal changed from "Build a building" to "Build a building edited"')
+      expect(page).to have_content('Proposal changed from "Build a building" to "Build a building edited"')
       expect(page).to have_content('Testing changelog')
       expect(page).to have_content(user.email)
     end
