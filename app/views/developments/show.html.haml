@@ -50,7 +50,7 @@
           %dd.govuk-summary-list__value
             %p.govuk-body=t('dwellings_count', count: @development.dwellings.count)
           %dd.govuk-summary-list__actions
-            = link_to development_dwellings_path(@development) do
+            = link_to development_dwellings_path(@development), class: "govuk-link" do
               Manage
               %span.govuk-visually-hidden dwellings
 
