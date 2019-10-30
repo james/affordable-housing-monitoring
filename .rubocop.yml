@@ -3,6 +3,7 @@ AllCops:
     Exclude:
       - 'db/migrate/**/*'
       - 'db/schema.rb'
+      - 'db/seeds.rb'
       - 'bin/**/*'
       - 'node_modules/**/*'
 
