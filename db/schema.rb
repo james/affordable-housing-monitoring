@@ -53,7 +53,11 @@ ActiveRecord::Schema.define(version: 2019_10_31_132036) do
     t.bigint "development_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "address"
+    t.bigint "registered_provider_id"
     t.index ["development_id"], name: "index_dwellings_on_development_id"
+    t.index ["registered_provider_id"], name: "index_dwellings_on_registered_provider_id"
+  end
 
   create_table "registered_providers", force: :cascade do |t|
     t.string "name"
@@ -71,4 +75,5 @@ ActiveRecord::Schema.define(version: 2019_10_31_132036) do
   end
 
   add_foreign_key "dwellings", "developments"
+  add_foreign_key "dwellings", "registered_providers"
 end
