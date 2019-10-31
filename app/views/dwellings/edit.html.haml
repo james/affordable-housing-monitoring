@@ -12,5 +12,4 @@
         = render partial: 'fields', locals: { form: form }
         = form.submit 'Save dwelling', class: "govuk-button"
 
-      = form_for([@development, @dwelling], method: :delete) do |form|
-        = form.submit 'Delete dwelling', data: {confirm: 'Are you sure?'}, class: "govuk-button govuk-button--warning"
+      = link_to 'Delete dwelling', delete_development_dwelling_path(@development, @dwelling), class: "govuk-link", "aria-label": "Delete dwelling #{@dwelling.id}"

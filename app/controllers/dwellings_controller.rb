@@ -34,11 +34,19 @@ class DwellingsController < ApplicationController
     end
   end
 
+  def delete
+    @dwelling = @development.dwellings.find(params[:id])
+  end
+
   def destroy
     @dwelling = @development.dwellings.find(params[:id])
-    @dwelling.destroy
-    flash[:notice] = 'Dwelling deleted'
-    redirect_to development_dwellings_path(@development)
+    @dwelling.audit_comment = params[:dwelling][:audit_comment] if params[:dwelling]
+    if @dwelling.destroy
+      flash[:notice] = 'Dwelling deleted'
+      redirect_to development_dwellings_path(@development)
+    else
+      render action: :delete
+    end
   end
 
   private
