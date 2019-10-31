@@ -1,0 +1,14 @@
+- content_for(:page_title) { @dwelling.errors.any? ? page_title('Errors on page - Delete dwelling') : page_title('Delete dwelling') }
+
+.govuk-width-container
+  = link_to "Back to dwelling edit", edit_development_dwelling_path(@development, @dwelling), class: "govuk-back-link"
+
+  = render partial: 'partials/error_block', locals: { record: @dwelling }
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %h1.govuk-heading-xl Delete dwelling
+      = simple_form_for([@development, @dwelling], method: :delete) do |form|
+        - if @development.audit_changes?
+          .govuk-form-group
+            = form.input :audit_comment, label: 'Deletion reason', required: true
+        %p= form.submit 'Delete dwelling', data: {confirm: 'Are you sure?'}, class: "govuk-button govuk-button--warning"

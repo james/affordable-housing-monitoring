@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root 'developments#index'
 
   resources :developments do
-    resources :dwellings
+    resources :dwellings do
+      member do
+        get :delete
+      end
+    end
     member do
       get :agree_confirmation
       patch :agree

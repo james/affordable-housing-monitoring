@@ -1,0 +1,4 @@
+%p{class: 'govuk-!-margin-top-0'} Dwelling removed:
+%ul{class: 'govuk-list govuk-list-no-bullet'}
+  - audit.audited_changes.except('development_id').each do |key,change|
+    %li #{key.humanize}: #{change}
