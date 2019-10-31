@@ -8,6 +8,11 @@
 
 User.create!(email: 'email@example.com', password: 'password', password_confirmation: 'password')
 
+require 'csv'
+CSV.read('data/registered_providers.csv').flatten.each do |registered_provider_name|
+  RegisteredProvider.create!(name: registered_provider_name)
+end
+
 Development.without_auditing do
   Dwelling.without_auditing do
     100.times do
