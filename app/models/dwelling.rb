@@ -1,5 +1,6 @@
 class Dwelling < ApplicationRecord
   belongs_to :development
+  belongs_to :registered_provider, optional: true
 
   audited(
     associated_with: :development,
