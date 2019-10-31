@@ -12,6 +12,8 @@ class Dwelling < ApplicationRecord
 
   TENURES = %w[open social intermediate].freeze
 
+  scope :within_s106, -> { where(tenure: %w[social intermediate]) }
+
   validates :tenure, presence: true
   validates :habitable_rooms, presence: true
   validates :bedrooms, presence: true
