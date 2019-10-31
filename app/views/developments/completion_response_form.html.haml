@@ -1,0 +1,9 @@
+= simple_form_for(@development, url: completion_response_development_path(@development)) do |form|
+  = form.fields_for :dwellings, @development.dwellings.within_s106 do |dwelling_form|
+    %div{class: "dwelling_#{dwelling_form.object.id}"}
+      = dwelling_form.object.tenure.humanize
+      = dwelling_form.object.bedrooms
+      = dwelling_form.object.habitable_rooms
+      = dwelling_form.input :address
+      = dwelling_form.input :registered_provider_id, collection: RegisteredProvider.all
+  = form.submit 'Submit response'

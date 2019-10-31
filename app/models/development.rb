@@ -1,5 +1,6 @@
 class Development < ApplicationRecord
   has_many :dwellings, dependent: :destroy
+  accepts_nested_attributes_for :dwellings, update_only: true
 
   validates :application_number, presence: true
   validates :state, presence: true

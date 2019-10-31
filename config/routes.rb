@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       patch :complete
 
       get :completion_response_form
+      patch :completion_response
     end
   end
 
