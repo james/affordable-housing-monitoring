@@ -6,6 +6,11 @@
     .govuk-grid-column-full-from-desktop
       %h1.govuk-heading-xl Development #{@development.application_number}
       %dl.govuk-summary-list{:class => "govuk-!-margin-bottom-9"}
+        - if @development.completion_response_needed?
+          %p Developer completion response needed
+          %input{type: 'text', id: 'developer_response_url', value: completion_response_form_development_url(@development)}
+        - if @development.completion_response_filled?
+          %p Developer has responded
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key

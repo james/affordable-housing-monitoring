@@ -33,6 +33,18 @@ class Development < ApplicationRecord
     state != 'draft'
   end
 
+  def completion_response_needed?
+    return false if state != 'completed'
+
+    !completion_response_filled?
+  end
+
+  def completion_response_filled?
+    return false if state != 'completed'
+
+    dwellings.within_s106.find { |dwelling| dwelling.address.blank? || dwelling.registered_provider.blank? }.blank?
+  end
+
   private
 
   def comment_required_state?
