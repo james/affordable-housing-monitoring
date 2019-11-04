@@ -1,0 +1,5 @@
+.highlight{class: 'govuk-!-margin-bottom-6'}
+  %h2.govuk-heading-s Developer completion response needed
+  %p.govuk-body Copy and paste the URL below and send it to the developer. When they've filled out the form, you'll see the responses here.
+  %label.govuk-label{for: 'developer_response_url'} Developer response URL
+  %input{type: 'text', id: 'developer_response_url', class: 'govuk-input govuk-!-width-full', value: completion_response_form_development_url(@development)}
