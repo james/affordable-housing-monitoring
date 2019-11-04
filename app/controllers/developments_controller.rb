@@ -1,4 +1,5 @@
 class DevelopmentsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[completion_response_form completion_response]
   def index
     @developments = Development.all
   end
@@ -68,9 +69,29 @@ class DevelopmentsController < ApplicationController
     redirect_to development_path(@development)
   end
 
+  def completion_response_form
+    @development = Development.find(params[:id])
+  end
+
+  def completion_response
+    @development = Development.find(params[:id])
+    @development.update!(completion_response_params)
+    @development.reload
+    if @development.completion_response_filled?
+      render
+    else
+      flash[:notice] = 'Your changes have been saved. We still need more information from you'
+      render action: :completion_response_form
+    end
+  end
+
   private
 
   def development_params
     params.require(:development).permit(:application_number, :site_address, :proposal, :audit_comment)
+  end
+
+  def completion_response_params
+    params.require(:development).permit(dwellings_attributes: %i[id address registered_provider_id])
   end
 end

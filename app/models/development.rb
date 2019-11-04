@@ -1,5 +1,6 @@
 class Development < ApplicationRecord
   has_many :dwellings, dependent: :destroy
+  accepts_nested_attributes_for :dwellings, update_only: true
 
   validates :application_number, presence: true
   validates :state, presence: true
@@ -31,6 +32,18 @@ class Development < ApplicationRecord
 
   def audit_changes?
     state != 'draft'
+  end
+
+  def completion_response_needed?
+    return false if state != 'completed'
+
+    !completion_response_filled?
+  end
+
+  def completion_response_filled?
+    return false if state != 'completed'
+
+    dwellings.within_s106.find { |dwelling| dwelling.address.blank? || dwelling.registered_provider.blank? }.blank?
   end
 
   private

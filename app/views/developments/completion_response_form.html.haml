@@ -1,0 +1,24 @@
+.govuk-width-container
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %h1.govuk-heading-xl Complete your development information
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      %p.govuk-body-l When you were given planning permission to build, you agreed to build the following Affordable Housing. Please provide the requested details for this housing now it is completed.
+
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      = simple_form_for(@development, url: completion_response_development_path(@development)) do |form|
+        = form.fields_for :dwellings, @development.dwellings.within_s106 do |dwelling_form|
+          .govuk-fieldset{class: 'govuk-!-margin-top-9 govuk-!-margin-bottom-9'}
+            %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
+              %h2.govuk-fieldset__heading= "Dwelling #{dwelling_form.object.id}"
+            %div{class: "dwelling_#{dwelling_form.object.id}"}
+              %p.govuk-body
+                Tenure: #{dwelling_form.object.tenure.humanize},
+                Bedrooms: #{dwelling_form.object.bedrooms},
+                Habitable rooms: #{dwelling_form.object.habitable_rooms}
+              .govuk-form-group
+                = dwelling_form.input :address, required: 'true'
+                = dwelling_form.input :registered_provider_id, collection: RegisteredProvider.all, required: 'true', wrapper: :select
+        = form.submit 'Submit response', class: 'govuk-button'

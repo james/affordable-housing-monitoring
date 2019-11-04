@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :registered_provider do
+    name { 'RPName' }
+  end
+
   factory :dwelling do
     tenure { 'open' }
     habitable_rooms { 1 }

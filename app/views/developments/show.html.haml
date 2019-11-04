@@ -5,6 +5,12 @@
   .govuk-grid-row
     .govuk-grid-column-full-from-desktop
       %h1.govuk-heading-xl Development #{@development.application_number}
+
+      - if @development.completion_response_needed?
+        = render 'developer_response_required'
+      - if @development.completion_response_filled?
+        = render 'developer_response_given'
+
       %dl.govuk-summary-list{:class => "govuk-!-margin-bottom-9"}
 
         .govuk-summary-list__row
