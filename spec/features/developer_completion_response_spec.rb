@@ -28,7 +28,7 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
 
     click_button 'Submit response'
 
-    expect(page).to have_content('Thank you for submitting your information')
+    expect(page).to have_content('Your development information has been submitted')
 
     @intermediate_dwelling.reload
     @social_dwelling.reload
