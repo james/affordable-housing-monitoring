@@ -19,7 +19,7 @@ RSpec.feature 'Requesting a developer completion response', type: :feature do
     end
     login
     click_link 'AP/2019/1234'
-    expect(page).to have_content 'Developer has responded'
+    expect(page).to have_content 'The developer has responded with the full details for this development.'
   end
 
   scenario 'when development is not completed' do
