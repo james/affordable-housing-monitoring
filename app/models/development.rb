@@ -4,6 +4,9 @@ class Development < ApplicationRecord
 
   validates :application_number, presence: true
   validates :state, presence: true
+  validates :developer_access_key, presence: true
+
+  before_validation :set_developer_access_key, on: :create
 
   audited(
     if: :audit_changes?,
@@ -47,6 +50,10 @@ class Development < ApplicationRecord
   end
 
   private
+
+  def set_developer_access_key
+    self.developer_access_key = SecureRandom.urlsafe_base64(20)
+  end
 
   def comment_required_state?
     # Monkey patch explanation:
