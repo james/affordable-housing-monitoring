@@ -50,6 +50,6 @@ RSpec.feature 'Deleting dwellings', type: :feature do
     click_link 'Delete dwelling'
     fill_in 'Deletion reason', with: ''
     click_button 'Delete dwelling'
-    expect(page).to have_content("Audit comment Comment can't be blank")
+    expect(page).to have_content("Audit comment can't be blank")
   end
 end

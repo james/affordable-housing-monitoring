@@ -80,6 +80,6 @@ RSpec.feature 'Editing dwellings', type: :feature do
     select 'social', from: 'Tenure'
     fill_in 'Changelog', with: ''
     click_button 'Save dwelling'
-    expect(page).to have_content("Audit comment Comment can't be blank")
+    expect(page).to have_content("Audit comment can't be blank")
   end
 end

@@ -54,13 +54,4 @@ class Development < ApplicationRecord
   def set_developer_access_key
     self.developer_access_key = SecureRandom.urlsafe_base64(20)
   end
-
-  def comment_required_state?
-    # Monkey patch explanation:
-    # The Audited gem doesn't create a changelog if there are no audited_changes
-    # eg in the situation where we're only changing `state`, and state is ignored by
-    # audited. So in this situation, we shouldn't require a comment either.
-    # TODO: Make this a PR on the audited gem itself
-    super && audited_changes.present?
-  end
 end

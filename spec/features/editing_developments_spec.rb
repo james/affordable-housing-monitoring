@@ -89,7 +89,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     fill_in 'Proposal', with: 'Build a building edited'
     fill_in 'Changelog', with: ''
     click_button 'Save and continue'
-    expect(page).to have_content("Audit comment Comment can't be blank")
+    expect(page).to have_content("Audit comment can't be blank")
   end
 
   scenario 'unable to view if not logged in' do
