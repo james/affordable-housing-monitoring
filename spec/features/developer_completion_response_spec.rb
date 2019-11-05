@@ -13,7 +13,7 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
   end
 
   scenario 'successfully and completely' do
-    visit completion_response_form_development_path(@development)
+    visit completion_response_form_development_path(@development, dak: @development.developer_access_key)
     expect(page).to_not have_content('Open')
 
     within ".dwelling_#{@intermediate_dwelling.id}" do
@@ -39,7 +39,7 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
   end
 
   scenario 'successfully but incomplete' do
-    visit completion_response_form_development_path(@development)
+    visit completion_response_form_development_path(@development, dak: @development.developer_access_key)
 
     within ".dwelling_#{@intermediate_dwelling.id}" do
       fill_in 'Address', with: '1 Newbuild House'
@@ -59,5 +59,11 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
     @intermediate_dwelling.reload
     expect(@intermediate_dwelling.address).to eq('1 Newbuild House')
     expect(@intermediate_dwelling.registered_provider).to eq(@registered_provider1)
+  end
+
+  scenario 'with wrong access key' do
+    expect do
+      visit completion_response_form_development_path(@development, dak: 'wild-guess')
+    end.to raise_error(ActiveRecord::RecordNotFound)
   end
 end
