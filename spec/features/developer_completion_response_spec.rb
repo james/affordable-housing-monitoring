@@ -66,4 +66,20 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
       visit completion_response_form_development_path(@development, dak: 'wild-guess')
     end.to raise_error(ActiveRecord::RecordNotFound)
   end
+
+  scenario 'development is not in a completed state' do
+    @development.update!(state: 'started')
+    expect do
+      visit completion_response_form_development_path(@development, dak: @development.developer_access_key)
+    end.to raise_error(ActiveRecord::RecordNotFound)
+  end
+
+  scenario 'response form has already been completed' do
+    Dwelling.without_auditing do
+      @intermediate_dwelling.update!(address: '1 address', registered_provider: @registered_provider1)
+      @social_dwelling.update!(address: '2 address', registered_provider: @registered_provider1)
+    end
+    visit completion_response_form_development_path(@development, dak: @development.developer_access_key)
+    expect(page).to have_content('Your development information has been submitted')
+  end
 end
