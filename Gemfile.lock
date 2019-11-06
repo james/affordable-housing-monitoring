@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:james/audited.git
+  revision: dc144779bff52561f18968f1ca2a9d3eff20d6c0
+  branch: southwark
+  specs:
+    audited (4.9.0)
+      activerecord (>= 4.2, < 6.1)
+
+GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: 4ba30fb28072e942420ebf2d58da73969ae6159b
   branch: master
@@ -69,8 +77,6 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
-    audited (4.9.0)
-      activerecord (>= 4.2, < 6.1)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
@@ -291,7 +297,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  audited
+  audited!
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)

@@ -70,6 +70,6 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'Add a new dwelling'
     fill_in 'Changelog', with: ''
     click_button 'Add dwelling'
-    expect(page).to have_content("Audit comment Comment can't be blank")
+    expect(page).to have_content("Audit comment can't be blank")
   end
 end
