@@ -70,11 +70,13 @@ class DevelopmentsController < ApplicationController
   end
 
   def completion_response_form
-    @development = Development.find_by!(id: params[:id], developer_access_key: params[:dak])
+    @development = Development.find_by!(id: params[:id], developer_access_key: params[:dak], state: 'completed')
+
+    render action: :completion_response if @development.completion_response_filled?
   end
 
   def completion_response
-    @development = Development.find_by!(id: params[:id], developer_access_key: params[:dak])
+    @development = Development.find_by!(id: params[:id], developer_access_key: params[:dak], state: 'completed')
     @development.update!(completion_response_params)
     @development.reload
     if @development.completion_response_filled?
