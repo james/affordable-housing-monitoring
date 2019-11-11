@@ -35,8 +35,9 @@ Development.without_auditing do
         application_number: app_number, site_address: address, proposal: proposal, state: state
       )
 
-      Random.rand(3...12).times do
+      Random.rand(3...12).times do |i|
         Dwelling.create!(
+          reference_id: "A#{i+1}",
           development_id: development.id,
           tenure: %w[open social intermediate].sample,
           habitable_rooms: Random.rand(2...4),

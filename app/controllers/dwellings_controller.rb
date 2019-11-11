@@ -56,6 +56,6 @@ class DwellingsController < ApplicationController
   end
 
   def dwelling_params
-    params.require(:dwelling).permit(:tenure, :habitable_rooms, :bedrooms, :audit_comment)
+    params.require(:dwelling).permit(:reference_id, :tenure, :habitable_rooms, :bedrooms, :audit_comment)
   end
 end
