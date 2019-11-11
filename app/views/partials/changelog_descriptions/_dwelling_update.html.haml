@@ -1,4 +1,4 @@
 %p{class: 'govuk-!-margin-top-0'} Dwelling updated
 - audit.audited_changes.each do |key,change|
   %p{class: 'govuk-!-margin-top-0'}
-    #{key.humanize} changed from "#{change[0]}" to "#{change[1]}"
+    #{Dwelling.human_attribute_name(key)} changed from "#{change[0]}" to "#{change[1]}"
