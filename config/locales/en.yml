@@ -51,3 +51,7 @@ en:
   buttons:
     submit: "Save and continue"
     cancel: "Cancel and go back"
+  activerecord:
+    attributes:
+      dwelling:
+        reference_id: Reference ID

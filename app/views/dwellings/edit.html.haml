@@ -12,4 +12,4 @@
         = render partial: 'fields', locals: { form: form }
         = form.submit 'Save dwelling', class: "govuk-button govuk-!-margin-right-1"
 
-        = link_to 'Delete dwelling', delete_development_dwelling_path(@development, @dwelling), class: "govuk-button govuk-button--secondary", "aria-label": "Delete dwelling #{@dwelling.id}"
+        = link_to 'Delete dwelling', delete_development_dwelling_path(@development, @dwelling), class: "govuk-button govuk-button--secondary", "aria-label": "Delete dwelling #{@dwelling.reference_id}"

@@ -10,6 +10,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'Add a new dwelling'
     expect(page).to_not have_content('Changelog')
     select 'open', from: 'Tenure'
+    fill_in 'Reference ID', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
     click_button 'Add dwelling'
@@ -18,6 +19,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     expect(dwelling.tenure).to eq('open')
     expect(dwelling.habitable_rooms).to eq(2)
     expect(dwelling.bedrooms).to eq(1)
+    expect(dwelling.reference_id).to eq('A10001')
     expect(development.audits.count).to eq(0)
   end
 
@@ -29,11 +31,13 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
+    fill_in 'Reference ID', with: ''
     fill_in 'Number of habitable rooms', with: ''
     fill_in 'Number of bedrooms', with: ''
     click_button 'Add dwelling'
     expect(page).to have_content("Habitable rooms can't be blank")
     expect(page).to have_content("Bedrooms can't be blank")
+    expect(page).to have_content("Reference ID can't be blank")
   end
 
   scenario 'successfully adding a dwelling to an agreed development' do
@@ -44,6 +48,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
+    fill_in 'Reference ID', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
     fill_in 'Changelog', with: 'Testing changelog'
@@ -53,6 +58,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     expect(dwelling.tenure).to eq('open')
     expect(dwelling.habitable_rooms).to eq(2)
     expect(dwelling.bedrooms).to eq(1)
+    expect(dwelling.reference_id).to eq('A10001')
     visit development_path(development)
     within '.changelog_row' do
       expect(page).to have_content('New dwelling added')
