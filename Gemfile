@@ -36,7 +36,7 @@ gem 'devise'
 
 gem 'aasm'
 
-gem 'audited', git: 'git@github.com:james/audited.git', branch: 'southwark'
+gem 'audited', git: 'https://github.com/james/audited.git', branch: 'southwark'
 
 # Used by seeds.rb
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
