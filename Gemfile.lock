@@ -1,18 +1,18 @@
 GIT
-  remote: git@github.com:james/audited.git
-  revision: dc144779bff52561f18968f1ca2a9d3eff20d6c0
-  branch: southwark
-  specs:
-    audited (4.9.0)
-      activerecord (>= 4.2, < 6.1)
-
-GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: 4ba30fb28072e942420ebf2d58da73969ae6159b
   branch: master
   specs:
     faker (2.6.0)
       i18n (>= 1.6, < 1.8)
+
+GIT
+  remote: https://github.com/james/audited.git
+  revision: dc144779bff52561f18968f1ca2a9d3eff20d6c0
+  branch: southwark
+  specs:
+    audited (4.9.0)
+      activerecord (>= 4.2, < 6.1)
 
 GEM
   remote: https://rubygems.org/
