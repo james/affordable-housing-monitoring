@@ -18,6 +18,7 @@ FactoryBot.define do
   end
 
   factory :development do
+    name { 'Development name' }
     application_number { 'AP/2019/1234' }
     site_address { '1 Site Address, London, SE1 1AA' }
     proposal { 'Build a building' }
