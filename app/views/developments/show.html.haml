@@ -15,9 +15,19 @@
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key
+            Name
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @development.name || 'Not yet added'
+          %dd.govuk-summary-list__actions
+            = link_to edit_development_path(@development), class: "govuk-link" do
+              Edit
+              %span.govuk-visually-hidden name
+
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
             Status
           %dd.govuk-summary-list__value
-            %p.govuk-tag{class: "govuk-tag-#{@development.state}"}= @development.state.titleize
+            %span.govuk-tag{class: "govuk-tag-#{@development.state}"}= @development.state.titleize
           %dd.govuk-summary-list__actions
             - case @development.state
             - when 'draft'

@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.feature 'Editing a development core details', type: :feature do
+  scenario 'successfully - name' do
+    login
+    create(:development)
+    visit developments_path
+    click_link 'AP/2019/1234'
+    find('a', text: 'Edit proposal', visible: false).click
+    fill_in 'Name', with: 'New development name'
+    click_button 'Save and continue'
+    expect(page).to have_text('Development successfully saved')
+    expect(page).to have_text('New development name')
+  end
+
   scenario 'successfully - application number' do
     login
     create(:development)

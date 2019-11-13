@@ -4,11 +4,13 @@ RSpec.feature 'Creating developments', type: :feature do
   scenario 'successfully' do
     login
     click_link 'Add a new development'
+    fill_in 'Name', with: 'Dev name'
     fill_in 'Application number', with: 'AP/2019/1234'
     fill_in 'Site address', with: '1 Site Address, London, SE1 1AA'
     fill_in 'Proposal', with: 'Build a building'
     click_button 'Save and continue'
     expect(page).to have_text('Development successfully created')
+    expect(page).to have_text('Dev name')
     expect(page).to have_text('AP/2019/1234')
     expect(page).to have_text('1 Site Address, London, SE1 1AA')
     expect(page).to have_text('Build a building')
