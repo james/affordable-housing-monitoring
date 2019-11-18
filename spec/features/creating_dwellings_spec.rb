@@ -8,7 +8,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'AP/2019/1234'
     click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
-    expect(page).to_not have_content('Changelog')
+    expect(page).to_not have_content('Reason for changes to legal agreement')
     select 'open', from: 'Tenure'
     fill_in 'Reference ID', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 2
@@ -51,7 +51,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     fill_in 'Reference ID', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
-    fill_in 'Changelog', with: 'Testing changelog'
+    fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
     click_button 'Add dwelling'
     expect(page).to have_content('Dwelling successfully added')
     dwelling = development.dwellings.first
@@ -74,7 +74,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'AP/2019/1234'
     click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
-    fill_in 'Changelog', with: ''
+    fill_in 'Reason for changes to legal agreement', with: ''
     click_button 'Add dwelling'
     expect(page).to have_content("Audit comment can't be blank")
   end
