@@ -1,7 +1,11 @@
 class DevelopmentsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[completion_response_form completion_response]
   def index
-    @developments = Development.all
+    @developments = if params.dig(:search, :q).present?
+                      Development.search(params[:search][:q])
+                    else
+                      Development.all
+                    end
   end
 
   def new
