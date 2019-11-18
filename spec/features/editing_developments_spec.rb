@@ -70,7 +70,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     click_link 'AP/2019/1234'
     find('a', text: 'Edit proposal', visible: false).click
     fill_in 'Proposal', with: 'Build a building edited'
-    fill_in 'Changelog', with: 'Testing changelog'
+    fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
     click_button 'Save and continue'
     within '.changelog_row' do
       expect(page).to have_content('Proposal changed from "Build a building" to "Build a building edited"')
@@ -99,7 +99,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     click_link 'AP/2019/1234'
     find('a', text: 'Edit proposal', visible: false).click
     fill_in 'Proposal', with: 'Build a building edited'
-    fill_in 'Changelog', with: ''
+    fill_in 'Reason for changes to legal agreement', with: ''
     click_button 'Save and continue'
     expect(page).to have_content("Audit comment can't be blank")
   end

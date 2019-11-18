@@ -3,7 +3,7 @@
 
     -if @development.own_and_associated_audits.any?
       %table.govuk-table
-        %caption.govuk-table__caption.govuk-heading-m Changelog
+        %caption.govuk-table__caption.govuk-heading-m Changes to legal agreement
         %thead.govuk-table__head
           %tr.govuk-table__row
             %th.govuk-table__header{scope: 'col'} Changed at
@@ -21,5 +21,5 @@
                   = audit.comment if audit.comment?
 
     - else
-      %h2.govuk-heading-m Changelog
+      %h2.govuk-heading-m Changes to legal agreement
       %p.govuk-body There are no changes recorded on this development.
