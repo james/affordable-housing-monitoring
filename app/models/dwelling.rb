@@ -17,7 +17,7 @@ class Dwelling < ApplicationRecord
   validates :tenure, presence: true
   validates :habitable_rooms, presence: true
   validates :bedrooms, presence: true
-  validates :reference_id, presence: true
+  validates :reference_id, presence: true, uniqueness: { scope: :development }
 
   delegate :audit_changes?, to: :development
 end

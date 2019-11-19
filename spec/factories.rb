@@ -7,7 +7,7 @@ FactoryBot.define do
     tenure { 'open' }
     habitable_rooms { 1 }
     bedrooms { 1 }
-    reference_id { 'A1' }
+    sequence(:reference_id) { |n| "A#{n}" }
     development
   end
 

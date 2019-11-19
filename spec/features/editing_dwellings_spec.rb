@@ -24,7 +24,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
     expect(development.audits.count).to eq(0)
   end
 
-  scenario 'validation error editing a dwelling' do
+  scenario 'validation presence error editing a dwelling' do
     login
     development = create(:development)
     create(:dwelling, development: development)
@@ -42,10 +42,29 @@ RSpec.feature 'Editing dwellings', type: :feature do
     expect(page).to have_content("Reference ID can't be blank")
   end
 
+  scenario 'validation uniqueness error editing a dwelling' do
+    login
+    development = create(:development)
+    create(:dwelling, development: development, reference_id: 'A10001')
+    create(:dwelling, development: development, reference_id: 'B10001')
+    visit developments_path
+    click_link 'AP/2019/1234'
+    click_link 'Manage dwellings'
+    within(:xpath, "//th[text() = 'B10001']/parent::tr") do
+      click_link 'Edit'
+    end
+    select 'social', from: 'Tenure'
+    fill_in 'Reference ID', with: 'A10001'
+    fill_in 'Number of habitable rooms', with: 3
+    fill_in 'Number of bedrooms', with: 2
+    click_button 'Save dwelling'
+    expect(page).to have_content('Reference ID has already been taken')
+  end
+
   scenario 'successfully editing a dwelling on an agreed development' do
     user = login
     development = create(:development)
-    dwelling = create(:dwelling, development: development)
+    dwelling = create(:dwelling, development: development, reference_id: 'B1')
     development.agree!
     visit developments_path
     click_link 'AP/2019/1234'
@@ -69,7 +88,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
       expect(page).to have_content('Tenure changed from "open" to "social"')
       expect(page).to have_content('Habitable rooms changed from "1" to "3"')
       expect(page).to have_content('Bedrooms changed from "1" to "2"')
-      expect(page).to have_content('Reference ID changed from "A1" to "A10001"')
+      expect(page).to have_content('Reference ID changed from "B1" to "A10001"')
       expect(page).to have_content('Testing changelog')
       expect(page).to have_content(user.email)
     end
