@@ -1,0 +1,4 @@
+.development-search
+  = simple_form_for :search, method: :get, defaults: {wrapper: false} do |form|
+    = form.input :q, label: 'Search', required: true, input_html: { value: params.dig(:search, :q) }
+    = form.button :submit, 'Search'
