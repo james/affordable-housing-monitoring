@@ -23,7 +23,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     expect(development.audits.count).to eq(0)
   end
 
-  scenario 'validation error adding a dwelling' do
+  scenario 'validation presence error adding a dwelling' do
     login
     create(:development)
     visit developments_path
@@ -38,6 +38,22 @@ RSpec.feature 'Creating dwellings', type: :feature do
     expect(page).to have_content("Habitable rooms can't be blank")
     expect(page).to have_content("Bedrooms can't be blank")
     expect(page).to have_content("Reference ID can't be blank")
+  end
+
+  scenario 'validation uniqueness error adding a dwelling' do
+    login
+    development = create(:development)
+    create(:dwelling, development: development, reference_id: 'A10001')
+    visit developments_path
+    click_link 'AP/2019/1234'
+    click_link 'Manage dwellings'
+    click_link 'Add a new dwelling'
+    select 'open', from: 'Tenure'
+    fill_in 'Reference ID', with: 'A10001'
+    fill_in 'Number of habitable rooms', with: 2
+    fill_in 'Number of bedrooms', with: 1
+    click_button 'Add dwelling'
+    expect(page).to have_content('Reference ID has already been taken')
   end
 
   scenario 'successfully adding a dwelling to an agreed development' do
