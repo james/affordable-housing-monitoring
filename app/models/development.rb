@@ -33,6 +33,13 @@ class Development < ApplicationRecord
     end
   end
 
+  include PgSearch::Model
+  pg_search_scope :search,
+                  against: %i[application_number proposal site_address],
+                  associated_against: {
+                    dwellings: [:address],
+                  }
+
   def audit_changes?
     state != 'draft'
   end
