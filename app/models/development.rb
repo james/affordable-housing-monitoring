@@ -58,6 +58,10 @@ class Development < ApplicationRecord
     dwellings.within_s106.find { |dwelling| dwelling.address.blank? || dwelling.registered_provider.blank? }.blank?
   end
 
+  def primary_application_number
+    planning_applications.first.application_number
+  end
+
   private
 
   def set_developer_access_key

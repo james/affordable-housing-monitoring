@@ -1,10 +1,10 @@
-- content_for(:page_title) { page_title("Mark development #{@development.application_number} as agreed") }
+- content_for(:page_title) { page_title("Mark development #{@development.primary_application_number} as agreed") }
 
 .govuk-width-container
   = link_to "Back", developments_path, class: "govuk-back-link"
   .govuk-grid-row
     .govuk-grid-column-full-from-desktop
-      %h1.govuk-heading-l Mark development #{@development.application_number} as started
+      %h1.govuk-heading-l Mark development #{@development.primary_application_number} as started
 
       = form_for @development, url: start_development_path(@development) do |form|
         = form.submit 'Mark as started', class: "govuk-button"
