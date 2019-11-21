@@ -19,6 +19,20 @@ class PlanningApplicationsController < ApplicationController
     end
   end
 
+  def edit
+    @planning_application = @development.planning_applications.find(params[:id])
+  end
+
+  def update
+    @planning_application = @development.planning_applications.find(params[:id])
+    if @planning_application.update(planning_application_params)
+      flash[:notice] = 'Planning application successfully saved'
+      redirect_to development_planning_applications_path(@development)
+    else
+      render action: :edit
+    end
+  end
+
   private
 
   def find_development
