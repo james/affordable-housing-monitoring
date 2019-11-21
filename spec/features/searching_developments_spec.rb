@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'Searching developments', type: :feature do
   before do
-    development1 = create(:development, application_number: 'APP1', proposal: 'Build development', site_address: '1 Old Street')
-    create(:development, application_number: 'APP2', proposal: 'Build houses', site_address: '1 New Street')
+    development1 = create(:development_with_number, application_number: 'APP1', proposal: 'Build development', site_address: '1 Old Street')
+    create(:development_with_number, application_number: 'APP2', proposal: 'Build houses', site_address: '1 New Street')
     create(:dwelling, development: development1, address: 'Flat 1, Flower House, SE1 1AA')
   end
 

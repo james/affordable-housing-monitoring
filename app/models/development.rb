@@ -37,9 +37,10 @@ class Development < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search,
-                  against: %i[application_number proposal site_address],
+                  against: %i[proposal site_address],
                   associated_against: {
                     dwellings: [:address],
+                    planning_applications: [:application_number],
                   }
 
   def audit_changes?

@@ -37,5 +37,15 @@ FactoryBot.define do
         dwelling.planning_applications << build(:planning_application, development: nil)
       end
     end
+
+    factory :development_with_number do
+      transient do
+        application_number { 'AP/2019/1234' }
+        planning_applications_count { 0 }
+      end
+      after(:build) do |dwelling, evaluator|
+        dwelling.planning_applications << build(:planning_application, development: nil, application_number: evaluator.application_number)
+      end
+    end
   end
 end
