@@ -1,0 +1,13 @@
+.govuk-width-container
+  = link_to "Back to planning applications", development_planning_applications_path(@development), class: "govuk-back-link"
+
+  = render partial: 'partials/error_block', locals: { record: @planning_application }
+
+  .govuk-grid-row
+    .govuk-grid-column-full
+
+      %h1.govuk-heading-xl Add a dwelling
+
+      = simple_form_for([@development, @planning_application]) do |form|
+        = render partial: 'fields', locals: { form: form }
+        = form.submit 'Add planning application', class: "govuk-button"

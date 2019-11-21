@@ -52,6 +52,16 @@
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key
+            Planning Applications
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @development.planning_applications.collect(&:application_number).join(', ')
+          %dd.govuk-summary-list__actions
+            = link_to development_planning_applications_path(@development), class: "govuk-link" do
+              Manage
+              %span.govuk-visually-hidden planning applications
+
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
             Proposal
           %dd.govuk-summary-list__value
             %p.govuk-body= @development.proposal

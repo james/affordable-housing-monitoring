@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get :delete
       end
     end
+    resources :planning_applications
     member do
       get :agree_confirmation
       patch :agree
