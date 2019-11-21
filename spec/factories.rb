@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :planning_application do
+    application_number { "MyString" }
+    development { nil }
+  end
+
   factory :registered_provider do
     name { 'RPName' }
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_094657) do
+ActiveRecord::Schema.define(version: 2019_11_20_170227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2019_11_13_094657) do
     t.index ["registered_provider_id"], name: "index_dwellings_on_registered_provider_id"
   end
 
+  create_table "planning_applications", force: :cascade do |t|
+    t.string "application_number"
+    t.bigint "development_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["development_id"], name: "index_planning_applications_on_development_id"
+  end
+
   create_table "registered_providers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -79,4 +87,5 @@ ActiveRecord::Schema.define(version: 2019_11_13_094657) do
 
   add_foreign_key "dwellings", "developments"
   add_foreign_key "dwellings", "registered_providers"
+  add_foreign_key "planning_applications", "developments"
 end
