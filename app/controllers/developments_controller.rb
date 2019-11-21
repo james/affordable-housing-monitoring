@@ -10,6 +10,7 @@ class DevelopmentsController < ApplicationController
 
   def new
     @development = Development.new
+    @development.planning_applications.build
   end
 
   def create
@@ -94,7 +95,14 @@ class DevelopmentsController < ApplicationController
   private
 
   def development_params
-    params.require(:development).permit(:name, :application_number, :site_address, :proposal, :audit_comment)
+    params.require(:development).permit(
+      :name,
+      :application_number,
+      :site_address,
+      :proposal,
+      :audit_comment,
+      planning_applications_attributes: [:application_number]
+    )
   end
 
   def completion_response_params

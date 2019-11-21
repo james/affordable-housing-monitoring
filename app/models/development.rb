@@ -1,5 +1,6 @@
 class Development < ApplicationRecord
   has_many :planning_applications, dependent: :destroy
+  accepts_nested_attributes_for :planning_applications
   has_many :dwellings, dependent: :destroy
   accepts_nested_attributes_for :dwellings, update_only: true
 
