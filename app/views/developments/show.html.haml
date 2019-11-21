@@ -42,6 +42,16 @@
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key
+            Site address
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @development.site_address
+          %dd.govuk-summary-list__actions
+            = link_to edit_development_path(@development), class: "govuk-link" do
+              Edit
+              %span.govuk-visually-hidden address
+
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
             Proposal
           %dd.govuk-summary-list__value
             %p.govuk-body= @development.proposal
@@ -49,16 +59,6 @@
             = link_to edit_development_path(@development), class: "govuk-link" do
               Edit
               %span.govuk-visually-hidden proposal
-
-        .govuk-summary-list__row
-          %dt.govuk-summary-list__key
-            Address
-          %dd.govuk-summary-list__value
-            %p.govuk-body= @development.site_address
-          %dd.govuk-summary-list__actions
-            = link_to edit_development_path(@development), class: "govuk-link" do
-              Edit
-              %span.govuk-visually-hidden address
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key
