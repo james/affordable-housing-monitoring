@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 User.create!(email: 'email@example.com', password: 'password', password_confirmation: 'password')
 
 require 'csv'
@@ -13,40 +5,39 @@ CSV.read('data/registered_providers.csv').flatten.each do |registered_provider_n
   RegisteredProvider.create!(name: registered_provider_name)
 end
 
-Development.without_auditing do
-  Dwelling.without_auditing do
-    100.times do
-      app_year = Random.rand(2017...2019)
-      number = Random.rand(5001...9999)
-      app_number = "AP/#{app_year}/#{number}"
-      proposal = Faker::Lorem.sentence(word_count: 7, supplemental: true, random_words_to_add: 7)
-      streets = Faker::Address.street_name
-      districts = [
-        'Abbey Wood, SE2', 'Blackheath, SE3', 'Brockley, SE4', 'Camberwell, SE5', 'Catford, SE6',
-        'Charlton, SE7', 'Deptford, SE8', 'Eltham, SE9', 'Greenwich, SE10', 'Kennington, SE11', 'Grove Park, SE12',
-        'Lewisham, SE13', 'New Cross, SE14', 'Peckham, SE15', 'Rotherhithe, SE16', 'Walworth, SE17', 'Woolwich, SE18',
-        'Norwood, SE19', 'Dulwich, SE21', 'East Dulwich, SE22', 'Forest Hill, SE23', 'Herne Hill, SE24',
-        'South Norwood, SE25', 'Sydenham, SE26', 'West Norwood, SE27', 'Thamesmead, SE28'
-      ]
-      address = "#{streets}, #{districts.sample}"
-      state = %w[draft agreed started completed].sample
-
-      development = Development.create!(
-        planning_applications: [PlanningApplication.new(application_number: app_number)],
-        site_address: address,
-        proposal: proposal,
-        state: state
-      )
-
-      Random.rand(3...12).times do |i|
-        Dwelling.create!(
-          reference_id: "A#{i+1}",
-          development_id: development.id,
-          tenure: %w[open social intermediate].sample,
-          habitable_rooms: Random.rand(2...4),
-          bedrooms: Random.rand(1...2)
-        )
-      end
-    end
+[
+  {
+    name: 'Elephant Park MP2 "West Grove" Plot H2',
+    application_number: '14/AP/3438',
+    site_address: 'PLOT H2 WEST GROVE WITHIN LAND BOUNDED BY PLOT H1 OF THE ELEPHANT PARK MASTERPLAN TO THE NORTH, PLOT H7 OF THE ELEPHANT PARK MASTER TO THE EAST, HEYGATE STREET TO THE SOUTH AND WALWORTH ROAD TO THE WEST',
+    proposal: 'Application for approval of reserved matters (access, scale, appearance, layout and landscaping) for Plot H2 within Elephant Park (previously referred to as the Heygate Masterplan), submitted pursuant to the Outline Planning Permission ref: 12/AP/1092. The proposals comprise the construction of a development plot ranging between 10 and 31 storeys in height (max height 104.8m AOD) comprising 365 residential units, 2,033sqm (GEA) flexible retail (A1-A5) uses, car parking, cycle storage, servicing, plant areas, landscaping, new public realm and other associated works.',
+  },
+  {
+    name: 'Elephant Park MP3 "Park Central" Plot H4',
+    application_number: '17/AP/1489',
+    site_address: 'The Heygate Estate And Surrounding Land Bound By New Kent Road (A201) To The North Rodney Place And Rodney Road To The East Wansey Street To The South And Walworth Road (A215) And Elephant Road To The West. London SE17',
+    proposal: 'Details of the number of wheelchair accessible dwellings in plot H4 pursuant to paragraph 29.2 of Schedule 3 of the Section 106 agreement attached to planning permission ref 12/AP/1092 (Outline application for: Redevelopment to provide a mixed use development comprising a number of buildings ranging between 13.13m (AOD) and 104.8m (AOD) in height with capacity for between 2,300 (min) and 2,469 (max) residential units together with retail (Class A1-A5), business (Class B1), leisure and community (Class D2 and D1), energy centre (sui generis) uses. New landscaping, park and public realm, car parking, means of access and other associated works).',
+  },
+  {
+    name: '19AP1612',
+    application_number: '19/AP/1612',
+    site_address: 'St Olaves Nursing Home, Ann Moss Way, London',
+    proposal: 'Demolition of the existing buildings on site (a derelict single storey nursing home and porta-cabins) and construction of two buildings (Building A - Part 4/Part 5/Part 6 storey building fronting onto Lower Road, Building B ¿ Part 3 /Part 4 storey building fronting on to Ann Moss Way) providing 61 residential units (19 x 1-bedroom, 26 x 2-bedroom and 16 x 3-bedroom) together with 2 wheelchair parking spaces and associated landscaping.',
+  }
+].each do |development_hash|
+  development = Development.create!(
+    name: development_hash[:name],
+    site_address: development_hash[:site_address],
+    proposal: development_hash[:proposal],
+    planning_applications: [PlanningApplication.new(application_number: development_hash[:application_number])]
+  )
+  CSV.read("data/#{development_hash[:name]}.csv", headers: true).each do |dwelling_csv|
+    Dwelling.create!(
+      development: development,
+      reference_id: dwelling_csv['Reference ID'],
+      habitable_rooms: dwelling_csv['Habitable Rooms'],
+      bedrooms: dwelling_csv['Bedrooms'],
+      tenure: dwelling_csv['Tenure'],
+    )
   end
 end
