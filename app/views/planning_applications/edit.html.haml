@@ -16,4 +16,8 @@
         = simple_form_for([@development, @planning_application], method: :delete) do |form|
           %p= form.submit 'Delete planning application', data: {confirm: 'Are you sure?'}, class: "govuk-button govuk-button--warning"
       - else
-        %p You cannot delete the only planning application.
+        .govuk-warning-text
+          %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
+          %strong.govuk-warning-text__text
+            %span.govuk-warning-text__assistive Warning
+            You cannot delete the only planning application.

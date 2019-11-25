@@ -15,8 +15,12 @@
             = simple_form_for @development do |f|
               = render partial: 'form', locals: {f: f}
               = f.fields_for :planning_applications do |planning_application_form|
+                .govuk-warning-text
+                  %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
+                  %strong.govuk-warning-text__text
+                    %span.govuk-warning-text__assistive Warning
+                    Developments must have at least one planning application. You can add more later.
                 .govuk-form-group
-                  %p Developments must have at least one planning application. You can add more later.
                   = planning_application_form.input :application_number, input_html: { class: "govuk-input govuk-input--width-10" }
               .govuk-form-group
                 = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
