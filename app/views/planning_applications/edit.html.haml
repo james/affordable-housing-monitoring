@@ -11,3 +11,9 @@
       = simple_form_for([@development, @planning_application]) do |form|
         = render partial: 'fields', locals: { form: form }
         = form.submit 'Save planning application', class: "govuk-button govuk-!-margin-right-1"
+
+      - if @development.planning_applications.count > 1
+        = simple_form_for([@development, @planning_application], method: :delete) do |form|
+          %p= form.submit 'Delete planning application', data: {confirm: 'Are you sure?'}, class: "govuk-button govuk-button--warning"
+      - else
+        %p You cannot delete the only planning application.

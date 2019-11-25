@@ -33,6 +33,13 @@ class PlanningApplicationsController < ApplicationController
     end
   end
 
+  def destroy
+    @planning_application = @development.planning_applications.find(params[:id])
+    @planning_application.destroy!
+    flash[:notice] = 'Planning application deleted'
+    redirect_to development_planning_applications_path(@development)
+  end
+
   private
 
   def find_development
