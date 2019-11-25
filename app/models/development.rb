@@ -1,8 +1,10 @@
 class Development < ApplicationRecord
+  has_many :planning_applications, dependent: :destroy
+  accepts_nested_attributes_for :planning_applications
   has_many :dwellings, dependent: :destroy
   accepts_nested_attributes_for :dwellings, update_only: true
 
-  validates :application_number, presence: true
+  validates :planning_applications, presence: true
   validates :state, presence: true
   validates :developer_access_key, presence: true
 
@@ -35,9 +37,10 @@ class Development < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search,
-                  against: %i[application_number proposal site_address],
+                  against: %i[proposal site_address],
                   associated_against: {
                     dwellings: [:address],
+                    planning_applications: [:application_number],
                   }
 
   def audit_changes?
@@ -54,6 +57,10 @@ class Development < ApplicationRecord
     return false if state != 'completed'
 
     dwellings.within_s106.find { |dwelling| dwelling.address.blank? || dwelling.registered_provider.blank? }.blank?
+  end
+
+  def primary_application_number
+    planning_applications.first.application_number
   end
 
   private

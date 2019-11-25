@@ -1,0 +1,23 @@
+- content_for(:page_title) { @planning_application.errors.any? ? page_title('Errors on page - Edit planning application') : page_title('Edit planning application') }
+
+.govuk-width-container
+  = link_to "Back to planning applications", development_planning_applications_path(@development), class: "govuk-back-link"
+
+  = render partial: 'partials/error_block', locals: { record: @planning_application }
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %h1.govuk-heading-xl Edit planning application
+
+      = simple_form_for([@development, @planning_application]) do |form|
+        = render partial: 'fields', locals: { form: form }
+        = form.submit 'Save planning application', class: "govuk-button govuk-!-margin-right-1"
+
+      - if @development.planning_applications.count > 1
+        = simple_form_for([@development, @planning_application], method: :delete) do |form|
+          %p= form.submit 'Delete planning application', data: {confirm: 'Are you sure?'}, class: "govuk-button govuk-button--warning"
+      - else
+        .govuk-warning-text
+          %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
+          %strong.govuk-warning-text__text
+            %span.govuk-warning-text__assistive Warning
+            You cannot delete the only planning application.

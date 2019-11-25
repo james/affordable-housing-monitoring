@@ -1,0 +1,24 @@
+- content_for(:page_title) { page_title("Planning applications for " + @development.primary_application_number) }
+
+.govuk-width-container
+  = link_to "Back to development", development_path(@development), class: "govuk-back-link"
+
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %h1.govuk-heading-xl Planning Applications for #{@development.primary_application_number}
+
+      = link_to 'Add a new planning application', new_development_planning_application_path, class: 'govuk-button'
+
+      .table-scrollable
+        %table.govuk-table
+          %caption.govuk-table__caption.govuk-visually-hidden Planning Applications
+          %thead.govuk-table__head
+            %tr.govuk-table__row
+              %th{class: "govuk-table__header", scope: "col"} Application Number
+              %th{class: "govuk-table__header", scope: "col"} Actions
+
+          %tbody.govuk-table__body
+            -@development.planning_applications.each do |planning_application|
+              %tr.govuk-table__row
+                %th.govuk-table__header{scope: "row"}= planning_application.application_number
+                %td.govuk-table__cell= link_to 'Edit', edit_development_planning_application_path(@development, planning_application), class: "govuk-link", "aria-label": "Edit dwelling #{planning_application.application_number}"

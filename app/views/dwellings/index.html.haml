@@ -1,11 +1,11 @@
-- content_for(:page_title) { @dwelling.errors.any? ? page_title("Errors on page - Dwellings for " + @development.application_number) : page_title("Dwellings for " + @development.application_number) }
+- content_for(:page_title) { @dwelling.errors.any? ? page_title("Errors on page - Dwellings for " + @development.primary_application_number) : page_title("Dwellings for " + @development.primary_application_number) }
 
 .govuk-width-container
   = link_to "Back to development", development_path(@development), class: "govuk-back-link"
 
   .govuk-grid-row
     .govuk-grid-column-full
-      %h1.govuk-heading-xl Dwellings for #{@development.application_number}
+      %h1.govuk-heading-xl Dwellings for #{@development.primary_application_number}
 
       = link_to 'Add a new dwelling', new_development_dwelling_path, class: 'govuk-button' unless @development.completed?
 
