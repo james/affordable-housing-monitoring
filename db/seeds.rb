@@ -32,7 +32,7 @@ Development.without_auditing do
       state = %w[draft agreed started completed].sample
 
       development = Development.create!(
-        planning_applications: [PlanningApplication.create!(application_number: app_number)],
+        planning_applications: [PlanningApplication.new(application_number: app_number)],
         site_address: address,
         proposal: proposal,
         state: state
