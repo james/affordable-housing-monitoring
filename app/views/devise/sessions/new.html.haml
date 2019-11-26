@@ -21,7 +21,7 @@
         - if devise_mapping.rememberable?
           .govuk-form-group
             .govuk-checkboxes
-              = f.input :remember_me, wrapper: :inline_checkbox
+              = f.input :remember_me, as: :boolean, wrapper: :inline_checkbox
 
         .actions
           = f.submit "Log in", class: "govuk-button", "data-module": "govuk-button"
