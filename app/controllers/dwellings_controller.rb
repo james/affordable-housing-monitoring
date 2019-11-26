@@ -3,7 +3,6 @@ class DwellingsController < ApplicationController
 
   def index
     @dwellings = @development.dwellings
-    @dwelling = Dwelling.new
   end
 
   def new
