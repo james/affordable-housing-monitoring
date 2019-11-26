@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2019_11_26_113024) do
     t.string "address"
     t.bigint "registered_provider_id"
     t.string "reference_id"
-    t.boolean "studio", default: false, null: false
     t.index ["development_id"], name: "index_dwellings_on_development_id"
     t.index ["registered_provider_id"], name: "index_dwellings_on_registered_provider_id"
   end

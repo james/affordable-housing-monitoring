@@ -69,7 +69,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
     fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
-    select 'AP/VARIATION', from: 'Planning application change was agreed'
+    select 'AP/VARIATION', from: 'Planning application this change was agreed in'
     click_button 'Add dwelling'
     expect(page).to have_content('Dwelling successfully added')
     dwelling = development.dwellings.first
