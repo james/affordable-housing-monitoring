@@ -39,7 +39,9 @@ class DwellingsController < ApplicationController
 
   def destroy
     @dwelling = @development.dwellings.find(params[:id])
-    @dwelling.audit_comment = params[:dwelling][:audit_comment] if params[:dwelling]
+
+    set_audit_params_for_deletion
+
     if @dwelling.destroy
       flash[:notice] = 'Dwelling deleted'
       redirect_to development_dwellings_path(@development)
@@ -64,5 +66,11 @@ class DwellingsController < ApplicationController
       :audit_planning_application_id
     )
   end
+
+  def set_audit_params_for_deletion
+    return unless params[:dwelling]
+
+    @dwelling.audit_comment = params[:dwelling][:audit_comment]
+    @dwelling.audit_planning_application_id = params[:dwelling][:audit_planning_application_id]
   end
 end
