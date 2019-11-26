@@ -6,11 +6,11 @@ class DwellingsController < ApplicationController
   end
 
   def new
-    @dwelling = Dwelling.new
+    @dwelling = @development.dwellings.build
   end
 
   def create
-    @dwelling = Dwelling.new(dwelling_params.merge(development: @development))
+    @dwelling = @development.dwellings.build(dwelling_params)
     if @dwelling.save
       flash[:notice] = 'Dwelling successfully added'
       redirect_to development_dwellings_path(@development)
@@ -55,6 +55,14 @@ class DwellingsController < ApplicationController
   end
 
   def dwelling_params
-    params.require(:dwelling).permit(:reference_id, :tenure, :habitable_rooms, :bedrooms, :audit_comment)
+    params.require(:dwelling).permit(
+      :reference_id,
+      :tenure,
+      :habitable_rooms,
+      :bedrooms,
+      :audit_comment,
+      :audit_planning_application_id
+    )
+  end
   end
 end
