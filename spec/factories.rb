@@ -13,6 +13,7 @@ FactoryBot.define do
     habitable_rooms { 1 }
     bedrooms { 1 }
     sequence(:reference_id) { |n| "A#{n}" }
+    studio { false }
     development
   end
 

@@ -13,12 +13,14 @@ RSpec.feature 'Creating dwellings', type: :feature do
     fill_in 'Reference ID', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
+    check 'Studio'
     click_button 'Add dwelling'
     expect(page).to have_content('Dwelling successfully added')
     dwelling = development.dwellings.first
     expect(dwelling.tenure).to eq('open')
     expect(dwelling.habitable_rooms).to eq(2)
     expect(dwelling.bedrooms).to eq(1)
+    expect(dwelling.studio).to eq(true)
     expect(dwelling.reference_id).to eq('A10001')
     expect(development.audits.count).to eq(0)
   end

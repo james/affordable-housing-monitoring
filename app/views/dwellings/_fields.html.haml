@@ -6,6 +6,9 @@
   = form.input :habitable_rooms, input_html: { class: "govuk-input govuk-input--width-2" }, label: 'Number of habitable rooms'
 .govuk-form-group
   = form.input :bedrooms, input_html: { class: "govuk-input govuk-input--width-2" }, label: 'Number of bedrooms'
+.govuk-form-group
+  .govuk-checkboxes
+    = form.input :studio, wrapper: :inline_checkbox
 - if @development.audit_changes?
   .govuk-form-group
     = form.input :audit_comment, label: 'Reason for changes to legal agreement', required: true

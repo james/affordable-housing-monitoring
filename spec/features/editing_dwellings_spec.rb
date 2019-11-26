@@ -14,6 +14,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
     fill_in 'Reference ID', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 3
     fill_in 'Number of bedrooms', with: 2
+    check 'Studio'
     click_button 'Save dwelling'
     expect(page).to have_content('Dwelling successfully saved')
     dwelling.reload
@@ -21,6 +22,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
     expect(dwelling.tenure).to eq('social')
     expect(dwelling.habitable_rooms).to eq(3)
     expect(dwelling.bedrooms).to eq(2)
+    expect(dwelling.studio).to eq(true)
     expect(development.audits.count).to eq(0)
   end
 
