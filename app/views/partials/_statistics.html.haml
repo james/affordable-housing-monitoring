@@ -8,14 +8,22 @@
           %th{class: "govuk-table__header", scope: "col"} Social Rented Units
           %th{class: "govuk-table__header", scope: "col"} Intermediate Units
           %th{class: "govuk-table__header", scope: "col"} Total Units
+      - if @dwellings_statistics.any_studios?
+        %tbody.govuk-table__body
+          %tr.govuk-table__row
+            %th.govuk-table__header{scope: "row"} Studio
+            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'open', studio: true)
+            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'social', studio: true)
+            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'intermediate', studio: true)
+            %td.govuk-table__cell= @dwellings_statistics.unit_count(studio: true)
       - (1..@dwellings_statistics.max_bedrooms).each do |bedroom_count|
         %tbody.govuk-table__body
           %tr.govuk-table__row
             %th.govuk-table__header{scope: "row"}= pluralize(bedroom_count, 'Bedroom')
-            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'open', bedrooms: bedroom_count)
-            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'social', bedrooms: bedroom_count)
-            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'intermediate', bedrooms: bedroom_count)
-            %td.govuk-table__cell= @dwellings_statistics.unit_count(bedrooms: bedroom_count)
+            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'open', bedrooms: bedroom_count, studio: false)
+            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'social', bedrooms: bedroom_count, studio: false)
+            %td.govuk-table__cell= @dwellings_statistics.unit_count(tenure: 'intermediate', bedrooms: bedroom_count, studio: false)
+            %td.govuk-table__cell= @dwellings_statistics.unit_count(bedrooms: bedroom_count, studio: false)
       %tbody.govuk-table__body
         %tr.govuk-table__row
           %th.govuk-table__header{scope: "row"} Total
