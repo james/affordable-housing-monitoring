@@ -53,17 +53,20 @@ RSpec.feature 'Editing a development core details', type: :feature do
 
   scenario 'agreed development should create changelog' do
     user = login
-    create(:development, state: 'agreed', proposal: 'Build a building')
+    development = create(:development, state: 'agreed', proposal: 'Build a building')
+    create(:planning_application, development: development, application_number: 'AP/VARIATION')
     visit developments_path
     click_link 'AP/2019/1234'
     find('a', text: 'Edit proposal', visible: false).click
     fill_in 'Proposal', with: 'Build a building edited'
     fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
+    select 'AP/VARIATION', from: 'Planning application change was agreed'
     click_button 'Save and continue'
     within '.changelog_row' do
       expect(page).to have_content('Proposal changed from "Build a building" to "Build a building edited"')
       expect(page).to have_content('Testing changelog')
       expect(page).to have_content(user.email)
+      expect(page).to have_content('AP/VARIATION')
     end
   end
 

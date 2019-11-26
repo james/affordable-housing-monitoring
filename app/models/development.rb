@@ -16,6 +16,7 @@ class Development < ApplicationRecord
     comment_required: true,
     except: [:state]
   )
+  attr_accessor :audit_planning_application_id
 
   include AASM
   aasm column: 'state' do
@@ -67,5 +68,10 @@ class Development < ApplicationRecord
 
   def set_developer_access_key
     self.developer_access_key = SecureRandom.urlsafe_base64(20)
+  end
+
+  def write_audit(attrs)
+    attrs[:planning_application_id] = audit_planning_application_id if audit_planning_application_id.present?
+    super
   end
 end

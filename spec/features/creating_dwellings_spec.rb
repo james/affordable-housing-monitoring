@@ -59,6 +59,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
   scenario 'successfully adding a dwelling to an agreed development' do
     user = login
     development = create(:development, state: :agreed)
+    create(:planning_application, development: development, application_number: 'AP/VARIATION')
     visit developments_path
     click_link 'AP/2019/1234'
     click_link 'Manage dwellings'
@@ -68,6 +69,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
     fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
+    select 'AP/VARIATION', from: 'Planning application this change was agreed in'
     click_button 'Add dwelling'
     expect(page).to have_content('Dwelling successfully added')
     dwelling = development.dwellings.first
@@ -80,6 +82,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
       expect(page).to have_content('New dwelling added')
       expect(page).to have_content('Testing changelog')
       expect(page).to have_content(user.email)
+      expect(page).to have_content('AP/VARIATION')
     end
   end
 

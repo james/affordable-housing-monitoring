@@ -8,12 +8,14 @@
           %tr.govuk-table__row
             %th.govuk-table__header{scope: 'col'} Changed at
             %th.govuk-table__header{scope: 'col'} Changes made by
+            %th.govuk-table__header{scope: 'col'} Legal agreement
             %th.govuk-table__header{scope: 'col'} Changes made
         %tbody.govuk-table__body
           - @development.own_and_associated_audits.order(created_at: :asc).each do |audit|
             %tr.govuk-table__row.changelog_row
               %th.govuk-table__header{class: 'govuk-!-width-one-quarter', scope: 'row'}= audit.created_at.to_s(:short)
               %td.govuk-table__cell{class: 'govuk-!-width-one-quarter'}= audit.user&.email
+              %td.govuk-table__cell{class: 'govuk-!-width-one-quarter'}= audit.planning_application&.application_number
               %td.govuk-table__cell{class: 'govuk-!-width-one-half'}
                 = render partial: "partials/changelog_descriptions/#{audit.auditable_type.underscore}_#{audit.action}", locals: {audit: audit}
                 %footer{class: 'govuk-!-font-weight-bold govuk-!-font-size-16'}

@@ -20,6 +20,7 @@ RSpec.feature 'Deleting dwellings', type: :feature do
   scenario 'on an agreed development' do
     user = login
     development = create(:development)
+    create(:planning_application, development: development, application_number: 'AP/VARIATION')
     create(:dwelling, development: development)
     development.agree!
     visit developments_path
@@ -28,6 +29,7 @@ RSpec.feature 'Deleting dwellings', type: :feature do
     click_link 'Edit'
     click_link 'Delete dwelling'
     fill_in 'Deletion reason', with: 'Deleted dwelling comment'
+    select 'AP/VARIATION', from: 'Planning application change was agreed'
     click_button 'Delete dwelling'
     expect(page).to have_content('Dwelling deleted')
     visit development_path(development)
@@ -35,6 +37,7 @@ RSpec.feature 'Deleting dwellings', type: :feature do
       expect(page).to have_content('Dwelling removed:')
       expect(page).to have_content('Deleted dwelling comment')
       expect(page).to have_content(user.email)
+      expect(page).to have_content('AP/VARIATION')
     end
   end
 

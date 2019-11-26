@@ -64,6 +64,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
   scenario 'successfully editing a dwelling on an agreed development' do
     user = login
     development = create(:development)
+    create(:planning_application, development: development, application_number: 'AP/VARIATION')
     dwelling = create(:dwelling, development: development, reference_id: 'B1')
     development.agree!
     visit developments_path
@@ -75,6 +76,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
     fill_in 'Number of habitable rooms', with: 3
     fill_in 'Number of bedrooms', with: 2
     fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
+    select 'AP/VARIATION', from: 'Planning application this change was agreed in'
     click_button 'Save dwelling'
     expect(page).to have_content('Dwelling successfully saved')
     dwelling.reload
@@ -91,6 +93,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
       expect(page).to have_content('Reference ID changed from "B1" to "A10001"')
       expect(page).to have_content('Testing changelog')
       expect(page).to have_content(user.email)
+      expect(page).to have_content('AP/VARIATION')
     end
   end
 

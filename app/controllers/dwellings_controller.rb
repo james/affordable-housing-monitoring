@@ -3,15 +3,14 @@ class DwellingsController < ApplicationController
 
   def index
     @dwellings = @development.dwellings
-    @dwelling = Dwelling.new
   end
 
   def new
-    @dwelling = Dwelling.new
+    @dwelling = @development.dwellings.build
   end
 
   def create
-    @dwelling = Dwelling.new(dwelling_params.merge(development: @development))
+    @dwelling = @development.dwellings.build(dwelling_params)
     if @dwelling.save
       flash[:notice] = 'Dwelling successfully added'
       redirect_to development_dwellings_path(@development)
@@ -40,7 +39,9 @@ class DwellingsController < ApplicationController
 
   def destroy
     @dwelling = @development.dwellings.find(params[:id])
-    @dwelling.audit_comment = params[:dwelling][:audit_comment] if params[:dwelling]
+
+    set_audit_params_for_deletion
+
     if @dwelling.destroy
       flash[:notice] = 'Dwelling deleted'
       redirect_to development_dwellings_path(@development)
@@ -56,6 +57,20 @@ class DwellingsController < ApplicationController
   end
 
   def dwelling_params
-    params.require(:dwelling).permit(:reference_id, :tenure, :habitable_rooms, :bedrooms, :audit_comment)
+    params.require(:dwelling).permit(
+      :reference_id,
+      :tenure,
+      :habitable_rooms,
+      :bedrooms,
+      :audit_comment,
+      :audit_planning_application_id
+    )
+  end
+
+  def set_audit_params_for_deletion
+    return unless params[:dwelling]
+
+    @dwelling.audit_comment = params[:dwelling][:audit_comment]
+    @dwelling.audit_planning_application_id = params[:dwelling][:audit_planning_application_id]
   end
 end

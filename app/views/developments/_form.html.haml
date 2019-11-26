@@ -10,3 +10,5 @@
 - if @development.audit_changes?
   .govuk-form-group
     = f.input :audit_comment, label: 'Reason for changes to legal agreement'
+  .govuk-form-group
+    = f.input :audit_planning_application_id, label: 'Planning application change was agreed', collection: f.object.planning_applications.collect {|pa| [pa.application_number, pa.id]}

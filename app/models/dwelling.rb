@@ -10,6 +10,8 @@ class Dwelling < ApplicationRecord
     except: %i[address registered_provider_id]
   )
 
+  attr_accessor :audit_planning_application_id
+
   TENURES = %w[open social intermediate].freeze
 
   scope :within_s106, -> { where(tenure: %w[social intermediate]) }
@@ -20,4 +22,11 @@ class Dwelling < ApplicationRecord
   validates :reference_id, presence: true, uniqueness: { scope: :development }
 
   delegate :audit_changes?, to: :development
+
+  private
+
+  def write_audit(attrs)
+    attrs[:planning_application_id] = audit_planning_application_id if audit_planning_application_id.present?
+    super
+  end
 end
