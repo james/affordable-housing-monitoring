@@ -25,6 +25,7 @@ class DevelopmentsController < ApplicationController
 
   def show
     @development = Development.find(params[:id])
+    @dwellings_statistics = DwellingsStatistics.new(@development.dwellings)
   end
 
   def edit
