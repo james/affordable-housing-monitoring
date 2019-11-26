@@ -23,6 +23,12 @@ end
     application_number: '19/AP/1612',
     site_address: 'St Olaves Nursing Home, Ann Moss Way, London',
     proposal: 'Demolition of the existing buildings on site (a derelict single storey nursing home and porta-cabins) and construction of two buildings (Building A - Part 4/Part 5/Part 6 storey building fronting onto Lower Road, Building B ¿ Part 3 /Part 4 storey building fronting on to Ann Moss Way) providing 61 residential units (19 x 1-bedroom, 26 x 2-bedroom and 16 x 3-bedroom) together with 2 wheelchair parking spaces and associated landscaping.',
+  },
+  {
+    name: '17AP3757',
+    application_number: '17/AP/3757',
+    site_address: '60a-62 Hatcham Road ; 134-140 Ilderton Road',
+    proposal: 'Demolition of existing buildings and construction of a building ranging in height from four to nine storeys to provide 1,185sqm (GIA) of commercial space (Use Class B1) at ground floor, 86 residential dwellings (30 x 1 bed, 39 x 2 bed and 17 x 3 bed) above with associated amenity areas, cycle and disabled car parking and refuse/recycling stores.',
   }
 ].each do |development_hash|
   development = Development.create!(
