@@ -63,6 +63,7 @@ class DwellingsController < ApplicationController
       :habitable_rooms,
       :bedrooms,
       :audit_comment,
+      :studio,
       :audit_planning_application_id
     )
   end

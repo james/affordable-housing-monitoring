@@ -38,6 +38,7 @@ end
       habitable_rooms: dwelling_csv['Habitable Rooms'],
       bedrooms: dwelling_csv['Bedrooms'],
       tenure: dwelling_csv['Tenure'],
+      studio: dwelling_csv['Studio?'].present?,
     )
   end
 end

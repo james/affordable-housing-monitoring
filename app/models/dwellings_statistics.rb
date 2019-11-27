@@ -20,6 +20,10 @@ class DwellingsStatistics
     developments.maximum(:bedrooms) || 1
   end
 
+  def any_studios?
+    developments.where(studio: true).any?
+  end
+
   def affordable_habitable_rooms_percentage
     @affordable_habitable_rooms_percentage ||=
       ((habitable_room_count(tenure: %w[intermediate social]).to_f / habitable_room_count) * 100).to_i
