@@ -13,4 +13,4 @@
   .govuk-form-group
     = form.input :audit_comment, label: 'Reason for changes to legal agreement', required: true
   .govuk-form-group
-    = form.input :audit_planning_application_id, label: 'Planning application this change was agreed in', collection: form.object.development.planning_applications.collect {|pa| [pa.application_number, pa.id]}, selected: form.object.development.planning_applications.first, wrapper: :select
+    = form.input :audit_planning_application_id, label: 'Planning application this change was agreed in', collection: form.object.development.planning_applications.collect {|pa| [pa.application_number, pa.id]}, wrapper: :select, include_blank: 'None'
