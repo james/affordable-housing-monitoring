@@ -7,6 +7,9 @@
 .govuk-form-group
   = f.input :proposal, input_html: { 'rows': 5 }, wrapper: :textarea
 
+.govuk-form-group
+  = f.input :developer, input_html: { class: "govuk-input" }
+
 - if @development.audit_changes?
   .govuk-form-group
     = f.input :audit_comment, label: 'Reason for changes to legal agreement'

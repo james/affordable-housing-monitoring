@@ -37,6 +37,18 @@ RSpec.feature 'Editing a development core details', type: :feature do
     expect(page).to have_text('Build a building edited')
   end
 
+  scenario 'successfully - developer' do
+    login
+    create(:development)
+    visit developments_path
+    click_link 'AP/2019/1234'
+    find('a', text: 'Edit proposal', visible: false).click
+    fill_in 'Developer', with: 'New developer name'
+    click_button 'Save and continue'
+    expect(page).to have_text('Development successfully saved')
+    expect(page).to have_text('New developer name')
+  end
+
   scenario 'new development should not create changelog' do
     login
     development = create(:development, state: 'draft')
