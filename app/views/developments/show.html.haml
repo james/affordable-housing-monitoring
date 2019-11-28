@@ -19,6 +19,9 @@
         %li.govuk-tabs__list-item
           %a.govuk-tabs__tab{:href => "#statistics"}
             Statistics
+        %li.govuk-tabs__list-item
+          %a.govuk-tabs__tab{:href => "#dwellings"}
+            Dwellings
       %li.govuk-tabs__list-item
         %a.govuk-tabs__tab{:href => "#changes-to-legal-agreement"}
           Changes to legal agreement
@@ -106,5 +109,38 @@
 
     %section#changes-to-legal-agreement.govuk-tabs__panel.govuk-tabs__panel--hidden
       %h2.govuk-heading-l Changes to legal agreement
+
+    %section#dwellings.govuk-tabs__panel.govuk-tabs__panel--hidden
+      %h2.govuk-heading-l Dwellings
+
+      = link_to 'Add a new dwelling', new_development_dwelling_path(@development), class: 'govuk-button' unless @development.completed?
+
+      = render 'developments/developer_response_given' if @development.completion_response_filled?
+
+      .table-scrollable
+        %table.govuk-table
+          %caption.govuk-table__caption.govuk-visually-hidden Dwellings
+          %thead.govuk-table__head
+            %tr.govuk-table__row
+              %th{class: "govuk-table__header", scope: "col"} Reference ID
+              %th{class: "govuk-table__header", scope: "col"} Address
+              %th{class: "govuk-table__header", scope: "col"} Registered provider
+              %th{class: "govuk-table__header", scope: "col"} Tenure
+              %th{class: "govuk-table__header govuk-table__header--numeric", scope: "col"} Habitable rooms
+              %th{class: "govuk-table__header govuk-table__header--numeric", scope: "col"} Bedrooms
+              %th{class: "govuk-table__header", scope: "col"} Last updated
+              %th{class: "govuk-table__header", scope: "col"} Actions
+
+          %tbody.govuk-table__body
+            -@development.dwellings.each do |dwelling|
+              %tr.govuk-table__row
+                %th.govuk-table__header{scope: "row"}= dwelling.reference_id
+                %td.govuk-table__cell= dwelling.address.present? ? dwelling.address : 'Not yet supplied'
+                %td.govuk-table__cell= dwelling.registered_provider.present? ? dwelling.registered_provider.name : 'Not yet supplied'
+                %td.govuk-table__cell= dwelling.tenure
+                %td.govuk-table__cell.govuk-table__cell--numeric=dwelling.habitable_rooms
+                %td.govuk-table__cell.govuk-table__cell--numeric=dwelling.bedrooms
+                %td.govuk-table__cell= distance_of_time_in_words(dwelling.updated_at, Time.now) + " ago"
+                %td.govuk-table__cell= link_to 'Edit', edit_development_dwelling_path(@development, dwelling), class: "govuk-link", "aria-label": "Edit dwelling #{dwelling.reference_id}"
 
       = render 'partials/changelog'
