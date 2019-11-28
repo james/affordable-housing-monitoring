@@ -3,7 +3,7 @@
 .govuk-form-group
   = form.input :tenure, collection: Dwelling::TENURES, wrapper: :select
 .govuk-form-group
-  = form.input :habitable_rooms, input_html: { class: "govuk-input govuk-input--width-2" }, label: 'Number of habitable rooms'
+  = form.input :habitable_rooms, input_html: { class: "govuk-input govuk-input--width-2" }, label: 'Number of habitable rooms', hint: raw("<span class='govuk-hint'>A room within a dwelling, the main purpose of which is for sleeping, living or dining. It is any room with a window that could be used to sleep in, regardless of what it is actually used for. This excludes toilets, bathrooms, landings, halls and lobbies, and also excludes kitchens with an overall floor area of less than 11 square metres.</span><span class='govuk-hint'>Any room exceeding 27.5m2 should be counted as 2 rooms for the purposes of monitoring affordable housing.</span>")
 .govuk-form-group
   = form.input :bedrooms, input_html: { class: "govuk-input govuk-input--width-2" }, label: 'Number of bedrooms'
 .govuk-form-group
