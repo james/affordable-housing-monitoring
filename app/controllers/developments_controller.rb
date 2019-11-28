@@ -1,5 +1,5 @@
 class DevelopmentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[completion_response_form completion_response]
+  skip_before_action :authenticate_user!, only: %i[completion_response_form completion_response rp_response_form rp_response]
   def index
     @developments = if params.dig(:search, :q).present?
                       Development.search(params[:search][:q])
@@ -103,6 +103,15 @@ class DevelopmentsController < ApplicationController
     end
   end
 
+  def rp_response_form
+    @development = Development.find_by!(id: params[:id], state: 'completed')
+  end
+
+  def rp_response
+    @development = Development.find_by!(id: params[:id], state: 'completed')
+    @development.update!(rp_response_params)
+  end
+
   private
 
   def find_development_for_completion_response
@@ -128,5 +137,9 @@ class DevelopmentsController < ApplicationController
 
   def completion_response_params
     params.require(:development).permit(dwellings_attributes: %i[id address registered_provider_id])
+  end
+
+  def rp_response_params
+    params.require(:development).permit(dwellings_attributes: %i[id rp_internal_id])
   end
 end

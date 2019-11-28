@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
       get :completion_response_form
       patch :completion_response
+
+      get :rp_response_form
+      patch :rp_response
     end
   end
 

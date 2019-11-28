@@ -7,7 +7,7 @@ class Dwelling < ApplicationRecord
     if: :audit_changes?,
     on: %i[create update destroy],
     comment_required: true,
-    except: %i[address registered_provider_id]
+    except: %i[address registered_provider_id rp_internal_id]
   )
 
   attr_accessor :audit_planning_application_id
