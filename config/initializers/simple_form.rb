@@ -51,7 +51,7 @@ SimpleForm.setup do |config|
   config.boolean_label_class = 'checkbox'
 
   # Append 'optional' label instead of prepending
-  config.label_text = ->(label, optional, _explicit_label) { "#{label}<span class=\"govuk-hint\">#{optional}</span>" }
+  config.label_text = ->(label, optional, _explicit_label) { "#{label}#{optional}" }
 end
 
 # Bespoke wrappers
