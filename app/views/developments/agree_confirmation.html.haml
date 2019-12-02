@@ -14,5 +14,6 @@
           %span.govuk-warning-text__assistive Warning
           Once you agree, any changes will require an audit log.
 
-      = form_for @development, url: agree_development_path(@development) do |form|
+      = simple_form_for @development, url: agree_development_path(@development) do |form|
+        = form.gov_uk_date_field :agreed_on
         = form.submit 'Mark as agreed', class: "govuk-button"

@@ -55,6 +55,7 @@ class DevelopmentsController < ApplicationController
 
   def agree
     @development = Development.find(params[:id])
+    @development.update(params.require(:development).permit(:agreed_on_dd, :agreed_on_mm, :agreed_on_yyyy))
     @development.agree!
     flash[:notice] = 'Development marked as agreed'
     redirect_to development_path(@development)

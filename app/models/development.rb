@@ -10,6 +10,8 @@ class Development < ApplicationRecord
 
   before_validation :set_developer_access_key, on: :create
 
+  acts_as_gov_uk_date :agreed_on
+
   audited(
     if: :audit_changes?,
     on: [:update],
