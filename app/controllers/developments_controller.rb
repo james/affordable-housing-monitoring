@@ -42,6 +42,13 @@ class DevelopmentsController < ApplicationController
     end
   end
 
+  def destroy
+    @development = Development.find(params[:id])
+    @development.destroy
+    flash[:notice] = 'Development deleted'
+    redirect_to developments_path
+  end
+
   def agree_confirmation
     @development = Development.find(params[:id])
   end

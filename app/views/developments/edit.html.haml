@@ -16,3 +16,7 @@
               = render partial: 'form', locals: {f: f}
               .govuk-form-group
                 = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"
+
+            - if @development.draft?
+              = simple_form_for(@development, method: :delete) do |form|
+                %p= form.submit 'Delete development', data: {confirm: 'Are you sure?'}, class: "govuk-button govuk-button--warning"
