@@ -10,7 +10,7 @@
   .govuk-grid-row
     .govuk-grid-column-two-thirds
       = simple_form_for(@development, url: rp_response_development_path(@development)) do |form|
-        -# = hidden_field_tag :dak, @development.developer_access_key
+        = hidden_field_tag :rpak, @development.rp_access_key
         = form.fields_for :dwellings, @development.dwellings.within_s106 do |dwelling_form|
           .govuk-fieldset{class: 'govuk-!-margin-top-9 govuk-!-margin-bottom-9'}
             %legend.govuk-fieldset__legend.govuk-fieldset__legend--m

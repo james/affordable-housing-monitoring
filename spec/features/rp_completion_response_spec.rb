@@ -13,7 +13,7 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
   end
 
   scenario 'successfully and completely' do
-    visit rp_response_form_development_path(@development)
+    visit rp_response_form_development_path(@development, rpak: @development.rp_access_key)
     expect(page).to_not have_content('Open')
 
     within ".dwelling_#{@intermediate_dwelling.id}" do
@@ -32,5 +32,11 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
     @social_dwelling.reload
     expect(@intermediate_dwelling.rp_internal_id).to eq('RP1')
     expect(@social_dwelling.rp_internal_id).to eq('RP2')
+  end
+
+  scenario 'with wrong access key' do
+    expect do
+      visit completion_response_form_development_path(@development, rpak: 'wild-guess')
+    end.to raise_error(ActiveRecord::RecordNotFound)
   end
 end

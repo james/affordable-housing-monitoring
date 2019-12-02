@@ -104,11 +104,11 @@ class DevelopmentsController < ApplicationController
   end
 
   def rp_response_form
-    @development = Development.find_by!(id: params[:id], state: 'completed')
+    @development = Development.find_by!(id: params[:id], state: 'completed', rp_access_key: params[:rpak])
   end
 
   def rp_response
-    @development = Development.find_by!(id: params[:id], state: 'completed')
+    @development = Development.find_by!(id: params[:id], state: 'completed', rp_access_key: params[:rpak])
     @development.update!(rp_response_params)
   end
 

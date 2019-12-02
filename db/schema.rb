@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_173904) do
     t.string "developer_access_key"
     t.string "name"
     t.string "developer"
+    t.string "rp_access_key"
     t.date "agreed_on"
     t.date "started_on"
   end

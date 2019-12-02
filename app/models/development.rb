@@ -7,8 +7,10 @@ class Development < ApplicationRecord
   validates :planning_applications, presence: true
   validates :state, presence: true
   validates :developer_access_key, presence: true
+  validates :rp_access_key, presence: true
 
   before_validation :set_developer_access_key, on: :create
+  before_validation :set_rp_access_key, on: :create
 
   acts_as_gov_uk_date :agreed_on, :started_on
 
@@ -78,6 +80,10 @@ class Development < ApplicationRecord
 
   def set_developer_access_key
     self.developer_access_key = SecureRandom.urlsafe_base64(20)
+  end
+
+  def set_rp_access_key
+    self.rp_access_key = SecureRandom.urlsafe_base64(20)
   end
 
   def write_audit(attrs)
