@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Searching developments', type: :feature do
   before do
     development1 = create(:development_with_number, application_number: 'APP1', proposal: 'Build development', site_address: '1 Old Street')
-    create(:development_with_number, application_number: 'APP2', proposal: 'Build houses', site_address: '1 New Street')
+    create(:development_with_number, application_number: 'APP2', proposal: 'Build houses', site_address: '1 New Street', developer: 'Property Developer')
     create(:dwelling, development: development1, address: 'Flat 1, Flower House, SE1 1AA')
   end
 
@@ -29,6 +29,14 @@ RSpec.feature 'Searching developments', type: :feature do
     click_button 'Search'
     expect(page).to have_content('APP1')
     expect(page).to_not have_content('APP2')
+  end
+
+  scenario 'by developer' do
+    login
+    fill_in 'Search', with: 'Property Developer'
+    click_button 'Search'
+    expect(page).to have_content('APP2')
+    expect(page).to_not have_content('APP1')
   end
 
   scenario 'by dwelling address' do

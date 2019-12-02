@@ -38,7 +38,7 @@ class Development < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search,
-                  against: %i[proposal site_address],
+                  against: %i[proposal site_address developer],
                   associated_against: {
                     dwellings: [:address],
                     planning_applications: [:application_number],

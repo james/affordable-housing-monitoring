@@ -101,6 +101,7 @@ class DevelopmentsController < ApplicationController
       :application_number,
       :site_address,
       :proposal,
+      :developer,
       :audit_comment,
       :audit_planning_application_id,
       planning_applications_attributes: [:application_number]
