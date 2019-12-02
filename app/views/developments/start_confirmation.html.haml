@@ -9,4 +9,5 @@
       = render 'partials/statuses'
 
       = form_for @development, url: start_development_path(@development) do |form|
+        = form.gov_uk_date_field :started_on
         = form.submit 'Mark as started', class: "govuk-button"
