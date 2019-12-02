@@ -3,8 +3,10 @@
 .govuk-width-container
   = link_to "Back to development", developments_path, class: "govuk-back-link"
   .govuk-grid-row
-    .govuk-grid-column-full-from-desktop
+    .govuk-grid-column-two-thirds-from-desktop
       %h1.govuk-heading-l Mark development #{@development.primary_application_number} as agreed
+
+      = render 'partials/statuses'
 
       .govuk-warning-text
         %span.govuk-warning-text__icon{"aria-hidden" => "true"} !

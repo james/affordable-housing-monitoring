@@ -1,0 +1,34 @@
+%details.govuk-details{"data-module" => "govuk-details"}
+  %summary.govuk-details__summary
+    %span.govuk-details__summary-text
+      What do the statuses mean?
+  .govuk-details__text
+
+    .govuk-summary-list__row
+      %dt.govuk-summary-list__key
+        %span.govuk-tag{class: "govuk-tag-draft"} Draft
+      %dd.govuk-summary-list__value
+        %p This is a new record of a development on the system.
+        %p This record can be freely amended or deleted until the status is changed to Agreed, when the S106 and planning permission is granted and the schedule of accommodation is provided by the developer.
+    .govuk-summary-list__row
+      %dt.govuk-summary-list__key
+        %span.govuk-tag{class: "govuk-tag-agreed"} Agreed
+      %dd.govuk-summary-list__value
+        %p The S106 and planning permission has been granted and a schedule of accommodation has been provided by the developer.
+        %p The S106 has been signed and planning permission has been granted. A schedule of accommodation was submitted which outlines the affordable housing provision. Any changes made to the affordable housing provision from this point will be noted on the Change Log.
+    .govuk-summary-list__row
+      %dt.govuk-summary-list__key
+        %span.govuk-tag{class: "govuk-tag-started"} Started
+      %dd.govuk-summary-list__value
+        %p Building work has started on the development site. The first CIL payment has been received for this development and the development has commenced.
+    .govuk-summary-list__row
+      %dt.govuk-summary-list__key
+        %span.govuk-tag{class: "govuk-tag-completed"} Completed
+      %dd.govuk-summary-list__value
+        %p Building work has finished on the development site. The developer has requested Street Naming and Numbering for the development.
+    .govuk-summary-list__row
+      %dt.govuk-summary-list__key
+        %span.govuk-tag{class: "govuk-tag-expired"} Expired
+      %dd.govuk-summary-list__value
+        %p The planning permission has expired on this site.
+        %p The planning determination date shows that this development received planning approval more than 3 years ago and the development has not been started.

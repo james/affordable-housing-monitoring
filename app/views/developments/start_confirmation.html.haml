@@ -3,8 +3,10 @@
 .govuk-width-container
   = link_to "Back", developments_path, class: "govuk-back-link"
   .govuk-grid-row
-    .govuk-grid-column-full-from-desktop
+    .govuk-grid-column-two-thirds-from-desktop
       %h1.govuk-heading-l Mark development #{@development.primary_application_number} as started
+
+      = render 'partials/statuses'
 
       = form_for @development, url: start_development_path(@development) do |form|
         = form.submit 'Mark as started', class: "govuk-button"
