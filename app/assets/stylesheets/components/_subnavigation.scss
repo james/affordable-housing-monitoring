@@ -22,6 +22,12 @@
       &:focus {
         outline: 0;
       }
+      &:focus {
+        border-color: $govuk-focus-colour;
+        background-color: $govuk-focus-colour;
+        color: $govuk-text-colour;
+        box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+      }
     }
     &.active a,
     &.active a:hover {
