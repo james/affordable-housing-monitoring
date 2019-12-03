@@ -8,12 +8,13 @@
 
       = render 'partials/statuses'
 
-      .govuk-warning-text
-        %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
-        %strong.govuk-warning-text__text
-          %span.govuk-warning-text__assistive Warning
-          Once you agree, any changes will require an audit log.
-
       = simple_form_for @development, url: agree_development_path(@development) do |form|
-        = form.gov_uk_date_field :agreed_on
+        = form.gov_uk_date_field :agreed_on, legend_options: { page_heading: false, visually_hidden: false, class: 'govuk-fieldset__legend--m' }
+
+        .govuk-warning-text
+          %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
+          %strong.govuk-warning-text__text
+            %span.govuk-warning-text__assistive Warning
+            Once you agree, any changes will require an audit log.
+
         = form.submit 'Mark as agreed', class: "govuk-button"
