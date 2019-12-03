@@ -31,6 +31,7 @@ gem 'rubocop-rails'
 
 gem 'haml-rails', '~> 2.0'
 gem 'simple_form', '5.0.0'
+gem 'gov_uk_date_fields'
 
 gem 'devise'
 

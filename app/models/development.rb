@@ -10,11 +10,13 @@ class Development < ApplicationRecord
 
   before_validation :set_developer_access_key, on: :create
 
+  acts_as_gov_uk_date :agreed_on, :started_on
+
   audited(
     if: :audit_changes?,
     on: [:update],
     comment_required: true,
-    except: [:state]
+    except: %i[state agreed_on started_on]
   )
   attr_accessor :audit_planning_application_id
 
