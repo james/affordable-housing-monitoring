@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_173904) do
     t.string "developer_access_key"
     t.string "name"
     t.string "developer"
+    t.string "rp_access_key"
     t.date "agreed_on"
     t.date "started_on"
   end
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_173904) do
     t.bigint "registered_provider_id"
     t.string "reference_id"
     t.boolean "studio", default: false, null: false
+    t.string "rp_internal_id"
     t.index ["development_id"], name: "index_dwellings_on_development_id"
     t.index ["registered_provider_id"], name: "index_dwellings_on_registered_provider_id"
   end

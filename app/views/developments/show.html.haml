@@ -28,8 +28,10 @@
 
       - if @development.unconfirmed_completed?
         = render 'developer_response_required'
+      - if @development.partially_confirmed_completed?
+        = render 'rp_response_required'
       - if @development.confirmed_completed?
-        = render 'developer_response_given'
+        = render 'developer_and_rp_response_given'
 
       %dl.govuk-summary-list{:class => "govuk-!-margin-bottom-9"}
         .govuk-summary-list__row

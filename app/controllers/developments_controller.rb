@@ -1,5 +1,10 @@
 class DevelopmentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[completion_response_form completion_response]
+  skip_before_action :authenticate_user!, only: %i[
+    completion_response_form
+    completion_response
+    rp_response_form
+    rp_response
+  ]
   def index
     @developments = if params.dig(:search, :q).present?
                       Development.search(params[:search][:q])
@@ -95,12 +100,22 @@ class DevelopmentsController < ApplicationController
     @development.update!(completion_response_params)
     @development.reload
     if @development.completion_response_filled?
-      @development.confirmed_complete!
+      @development.partially_confirmed_complete!
       render
     else
       flash[:notice] = 'Your changes have been saved. We still need more information from you'
       render action: :completion_response_form
     end
+  end
+
+  def rp_response_form
+    find_development_for_rp_response
+  end
+
+  def rp_response
+    find_development_for_rp_response
+    @development.update!(rp_response_params)
+    @development.confirmed_complete!
   end
 
   private
@@ -110,6 +125,14 @@ class DevelopmentsController < ApplicationController
       id: params[:id],
       developer_access_key: params[:dak],
       state: 'unconfirmed_completed'
+    )
+  end
+
+  def find_development_for_rp_response
+    @development = Development.find_by!(
+      id: params[:id],
+      rp_access_key: params[:rpak],
+      state: 'partially_confirmed_completed'
     )
   end
 
@@ -128,5 +151,9 @@ class DevelopmentsController < ApplicationController
 
   def completion_response_params
     params.require(:development).permit(dwellings_attributes: %i[id address registered_provider_id])
+  end
+
+  def rp_response_params
+    params.require(:development).permit(dwellings_attributes: %i[id rp_internal_id])
   end
 end

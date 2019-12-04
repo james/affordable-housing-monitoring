@@ -1,0 +1,6 @@
+.highlight{class: 'govuk-!-margin-bottom-6'}
+  %h2.govuk-heading-s Registered Provider response needed
+  %p.govuk-body The developer has responded with the addresses and registered provider.
+  %p.govuk-body Copy and paste the URL below and send it to the registered provider. When they've filled out the form, you'll see the responses here.
+  %label.govuk-label{for: 'rp_response_url'} Regisered Provider response URL
+  %input{type: 'text', id: 'rp_response_url', class: 'govuk-input govuk-!-width-full', value: rp_response_form_development_url(@development, rpak: @development.rp_access_key)}

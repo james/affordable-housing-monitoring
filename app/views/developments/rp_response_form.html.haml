@@ -1,0 +1,26 @@
+.govuk-width-container
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %span.govuk-caption-xl Development #{@development.primary_application_number}
+      %h1.govuk-heading-xl Complete your development information
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      %p.govuk-body-l We have been told that you have recieved the following dwellings. Please could you confirm that you have recieved them, and let us know your internal ID for these dwellings so we can ask you about them in the future.
+
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      = simple_form_for(@development, url: rp_response_development_path(@development)) do |form|
+        = hidden_field_tag :rpak, @development.rp_access_key
+        = form.fields_for :dwellings, @development.dwellings.within_s106 do |dwelling_form|
+          .govuk-fieldset{class: 'govuk-!-margin-top-9 govuk-!-margin-bottom-9'}
+            %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
+              %h2.govuk-fieldset__heading= "Dwelling #{dwelling_form.object.id}"
+            %div{class: "dwelling_#{dwelling_form.object.id}"}
+              %p.govuk-body
+                Address: #{dwelling_form.object.address},
+                Tenure: #{dwelling_form.object.tenure.humanize},
+                Bedrooms: #{dwelling_form.object.bedrooms},
+                Habitable rooms: #{dwelling_form.object.habitable_rooms}
+              .govuk-form-group
+                = dwelling_form.input :rp_internal_id, required: 'true', label: 'Your ID'
+        = form.submit 'Submit response', class: 'govuk-button'
