@@ -38,7 +38,7 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
     expect(@social_dwelling.registered_provider).to eq(@registered_provider2)
 
     @development.reload
-    expect(@development.state).to eq('confirmed_completed')
+    expect(@development.state).to eq('partially_confirmed_completed')
   end
 
   scenario 'successfully but incomplete' do

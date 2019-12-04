@@ -25,7 +25,7 @@ class Development < ApplicationRecord
   include AASM
   aasm column: 'state' do
     state :draft, initial: true
-    state :agreed, :started, :unconfirmed_completed, :confirmed_completed
+    state :agreed, :started, :unconfirmed_completed, :partially_confirmed_completed, :confirmed_completed
 
     event :agree do
       transitions from: :draft, to: :agreed
@@ -39,8 +39,12 @@ class Development < ApplicationRecord
       transitions from: :started, to: :unconfirmed_completed
     end
 
+    event :partially_confirmed_complete do
+      transitions from: :unconfirmed_completed, to: :partially_confirmed_completed
+    end
+
     event :confirmed_complete do
-      transitions from: :unconfirmed_completed, to: :confirmed_completed
+      transitions from: :partially_confirmed_completed, to: :confirmed_completed
     end
   end
 
