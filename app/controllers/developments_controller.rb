@@ -79,22 +79,23 @@ class DevelopmentsController < ApplicationController
 
   def complete
     @development = Development.find(params[:id])
-    @development.complete!
+    @development.unconfirmed_complete!
     flash[:notice] = 'Development marked as completed'
     redirect_to development_path(@development)
   end
 
   def completion_response_form
-    @development = Development.find_by!(id: params[:id], developer_access_key: params[:dak], state: 'completed')
+    find_development_for_completion_response
 
     render action: :completion_response if @development.completion_response_filled?
   end
 
   def completion_response
-    @development = Development.find_by!(id: params[:id], developer_access_key: params[:dak], state: 'completed')
+    find_development_for_completion_response
     @development.update!(completion_response_params)
     @development.reload
     if @development.completion_response_filled?
+      @development.confirmed_complete!
       render
     else
       flash[:notice] = 'Your changes have been saved. We still need more information from you'
@@ -103,6 +104,14 @@ class DevelopmentsController < ApplicationController
   end
 
   private
+
+  def find_development_for_completion_response
+    @development = Development.find_by!(
+      id: params[:id],
+      developer_access_key: params[:dak],
+      state: 'unconfirmed_completed'
+    )
+  end
 
   def development_params
     params.require(:development).permit(

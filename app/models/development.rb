@@ -23,7 +23,7 @@ class Development < ApplicationRecord
   include AASM
   aasm column: 'state' do
     state :draft, initial: true
-    state :agreed, :started, :completed
+    state :agreed, :started, :unconfirmed_completed, :confirmed_completed
 
     event :agree do
       transitions from: :draft, to: :agreed
@@ -33,8 +33,12 @@ class Development < ApplicationRecord
       transitions from: :agreed, to: :started
     end
 
-    event :complete do
-      transitions from: :started, to: :completed
+    event :unconfirmed_complete do
+      transitions from: :started, to: :unconfirmed_completed
+    end
+
+    event :confirmed_complete do
+      transitions from: :unconfirmed_completed, to: :confirmed_completed
     end
   end
 
@@ -51,13 +55,13 @@ class Development < ApplicationRecord
   end
 
   def completion_response_needed?
-    return false if state != 'completed'
+    return false if state != 'unconfirmed_completed'
 
     !completion_response_filled?
   end
 
   def completion_response_filled?
-    return false if state != 'completed'
+    return false if state != 'unconfirmed_completed'
 
     dwellings.within_s106.find { |dwelling| dwelling.address.blank? || dwelling.registered_provider.blank? }.blank?
   end

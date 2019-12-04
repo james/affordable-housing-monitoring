@@ -28,21 +28,21 @@ RSpec.describe Development, type: :model do
     let!(:dwelling) { create(:dwelling, development: development, tenure: 'intermediate') }
     let!(:open_dwelling) { create(:dwelling, development: development, tenure: 'open', address: '') }
 
-    it 'should be false if status is not completed' do
+    it 'should be false if status is not unconfirmed_completed' do
       development.update(state: 'draft')
       expect(development.completion_response_needed?).to eq(false)
     end
 
-    it 'should be true if status is completed and any dwellings do not have address or registered provider' do
-      development.update(state: 'completed')
+    it 'should be true if status is unconfirmed_completed and any dwellings do not have address or registered provider' do
+      development.update(state: 'unconfirmed_completed')
       dwelling.update(address: '', registered_provider: nil)
       development.reload
 
       expect(development.completion_response_needed?).to eq(true)
     end
 
-    it 'should be false if status is completed and all dwellings have address and registered provider' do
-      development.update(state: 'completed')
+    it 'should be false if status is unconfirmed_completed and all dwellings have address and registered provider' do
+      development.update(state: 'unconfirmed_completed')
       dwelling.update(address: 'present', registered_provider: create(:registered_provider))
       development.reload
 

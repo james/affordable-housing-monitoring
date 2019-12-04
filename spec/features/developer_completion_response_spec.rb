@@ -4,7 +4,7 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
   before do
     @registered_provider1 = create(:registered_provider, name: 'RPOne')
     @registered_provider2 = create(:registered_provider, name: 'RPTwo')
-    @development = create(:development, state: 'completed')
+    @development = create(:development, state: 'unconfirmed_completed')
     Dwelling.without_auditing do
       create(:dwelling, development: @development, tenure: 'open')
       @intermediate_dwelling = create(:dwelling, development: @development, tenure: 'intermediate')
@@ -36,6 +36,9 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
     expect(@intermediate_dwelling.registered_provider).to eq(@registered_provider1)
     expect(@social_dwelling.address).to eq('2 Newbuild House')
     expect(@social_dwelling.registered_provider).to eq(@registered_provider2)
+
+    @development.reload
+    expect(@development.state).to eq('confirmed_completed')
   end
 
   scenario 'successfully but incomplete' do
@@ -59,6 +62,9 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
     @intermediate_dwelling.reload
     expect(@intermediate_dwelling.address).to eq('1 Newbuild House')
     expect(@intermediate_dwelling.registered_provider).to eq(@registered_provider1)
+
+    @development.reload
+    expect(@development.state).to eq('unconfirmed_completed')
   end
 
   scenario 'with wrong access key' do
