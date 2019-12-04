@@ -40,7 +40,7 @@
           %dd.govuk-summary-list__actions
             = link_to edit_development_path(@development), class: "govuk-link" do
               Edit
-              %span.govuk-visually-hidden name
+              %span.govuk-visually-hidden development name
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key
@@ -50,13 +50,13 @@
           %dd.govuk-summary-list__actions
             - case @development.state
             - when 'draft'
-              = link_to agree_confirmation_development_path(@development), class: "govuk-link" do
+              = link_to agree_confirmation_development_path(@development), class: "govuk-link", 'aria-label': 'Mark development status as agreed' do
                 Mark as agreed
             - when 'agreed'
-              = link_to start_confirmation_development_path(@development), class: "govuk-link" do
+              = link_to start_confirmation_development_path(@development), class: "govuk-link", 'aria-label': 'Mark development status as started' do
                 Mark as started
             - when 'started'
-              = link_to complete_confirmation_development_path(@development), class: "govuk-link" do
+              = link_to complete_confirmation_development_path(@development), class: "govuk-link", 'aria-label': 'Mark development status as completed' do
                 Mark as completed
 
         .govuk-summary-list__row
@@ -67,7 +67,7 @@
           %dd.govuk-summary-list__actions
             = link_to edit_development_path(@development), class: "govuk-link" do
               Edit
-              %span.govuk-visually-hidden address
+              %span.govuk-visually-hidden site address
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key
@@ -87,7 +87,7 @@
           %dd.govuk-summary-list__actions
             = link_to edit_development_path(@development), class: "govuk-link" do
               Edit
-              %span.govuk-visually-hidden proposal
+              %span.govuk-visually-hidden development proposal
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key
@@ -97,7 +97,7 @@
           %dd.govuk-summary-list__actions
             = link_to edit_development_path(@development), class: "govuk-link" do
               Edit
-              %span.govuk-visually-hidden developer
+              %span.govuk-visually-hidden developer name
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key

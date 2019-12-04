@@ -7,7 +7,7 @@
     .govuk-grid-column-full
       %h1.govuk-heading-xl Dwellings for #{@development.primary_application_number}
 
-      = link_to 'Add a new dwelling', new_development_dwelling_path, class: 'govuk-button' unless @development.completed?
+      = link_to 'Add a new dwelling', new_development_dwelling_path, class: 'govuk-button', 'aria-label': "Add a new dwelling to #{@development.primary_application_number}" unless @development.completed?
 
       = render 'developments/developer_response_given' if @development.completion_response_filled?
 

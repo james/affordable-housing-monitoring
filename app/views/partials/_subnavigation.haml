@@ -3,6 +3,6 @@
     .navbar
       %ul.navbar__list-items
         %li
-          = link_to t('navigation.developments'), developments_path
+          = link_to t('navigation.developments'), developments_path, 'aria-label': 'View all developments'
         %li
-          = link_to t('navigation.new_development'), new_development_path
+          = link_to t('navigation.new_development'), new_development_path, 'aria-label': 'Add a new development'
