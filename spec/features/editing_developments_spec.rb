@@ -6,7 +6,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     create(:development)
     visit developments_path
     click_link 'AP/2019/1234'
-    find('a', text: 'Edit proposal', visible: false).click
+    find('a', text: 'Edit development proposal', visible: false).click
     fill_in 'Name', with: 'New development name'
     click_button 'Save and continue'
     expect(page).to have_text('Development successfully saved')
@@ -18,7 +18,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     create(:development)
     visit developments_path
     click_link 'AP/2019/1234'
-    find('a', text: 'Edit address', visible: false).click
+    find('a', text: 'Edit site address', visible: false).click
     fill_in 'Site address', with: 'new 1 Site Address, London, SE1 1AA'
     click_button 'Save and continue'
     expect(page).to have_text('Development successfully saved')
@@ -30,7 +30,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     create(:development)
     visit developments_path
     click_link 'AP/2019/1234'
-    find('a', text: 'Edit proposal', visible: false).click
+    find('a', text: 'Edit development proposal', visible: false).click
     fill_in 'Proposal', with: 'Build a building edited'
     click_button 'Save and continue'
     expect(page).to have_text('Development successfully saved')
@@ -42,7 +42,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     create(:development)
     visit developments_path
     click_link 'AP/2019/1234'
-    find('a', text: 'Edit proposal', visible: false).click
+    find('a', text: 'Edit development proposal', visible: false).click
     fill_in 'Developer', with: 'New developer name'
     click_button 'Save and continue'
     expect(page).to have_text('Development successfully saved')
@@ -54,7 +54,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     development = create(:development, state: 'draft')
     visit developments_path
     click_link 'AP/2019/1234'
-    find('a', text: 'Edit proposal', visible: false).click
+    find('a', text: 'Edit development proposal', visible: false).click
     expect(page).to_not have_content('Changelog')
     fill_in 'Proposal', with: 'Build a building edited'
     click_button 'Save and continue'
@@ -69,7 +69,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     create(:planning_application, development: development, application_number: 'AP/VARIATION')
     visit developments_path
     click_link 'AP/2019/1234'
-    find('a', text: 'Edit proposal', visible: false).click
+    find('a', text: 'Edit development proposal', visible: false).click
     fill_in 'Proposal', with: 'Build a building edited'
     fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
     select 'AP/VARIATION', from: 'Planning application change was agreed'
@@ -87,7 +87,7 @@ RSpec.feature 'Editing a development core details', type: :feature do
     create(:development, state: 'agreed')
     visit developments_path
     click_link 'AP/2019/1234'
-    find('a', text: 'Edit proposal', visible: false).click
+    find('a', text: 'Edit development proposal', visible: false).click
     fill_in 'Proposal', with: 'Build a building edited'
     fill_in 'Reason for changes to legal agreement', with: ''
     click_button 'Save and continue'
