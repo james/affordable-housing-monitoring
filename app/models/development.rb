@@ -70,6 +70,10 @@ class Development < ApplicationRecord
     planning_applications.first.application_number
   end
 
+  def completed?
+    unconfirmed_completed? || confirmed_completed?
+  end
+
   private
 
   def set_developer_access_key
