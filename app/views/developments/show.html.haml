@@ -26,9 +26,9 @@
     %section#development-details.govuk-tabs__panel
       %h2.govuk-heading-l Development details
 
-      - if @development.completion_response_needed?
+      - if @development.unconfirmed_completed?
         = render 'developer_response_required'
-      - if @development.completion_response_filled?
+      - if @development.confirmed_completed?
         = render 'developer_response_given'
 
       %dl.govuk-summary-list{:class => "govuk-!-margin-bottom-9"}
