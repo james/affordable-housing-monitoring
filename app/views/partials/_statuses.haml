@@ -23,9 +23,22 @@
         %p Building work has started on the development site. The first CIL payment has been received for this development and the development has commenced.
     .govuk-summary-list__row
       %dt.govuk-summary-list__key
-        %span.govuk-tag{class: "govuk-tag-completed"} Completed
+        %span.govuk-tag{class: "govuk-tag-unconfirmed_completed"} Unconfirmed completed
       %dd.govuk-summary-list__value
-        %p Building work has finished on the development site. The developer has requested Street Naming and Numbering for the development.
+        %p Building work has finished on the development site.
+        %p The developer has requested Street Naming and Numbering for the development.
+    .govuk-summary-list__row
+      %dt.govuk-summary-list__key
+        %span.govuk-tag{class: "govuk-tag-partially_confirmed_completed"} Partially confirmed completed
+      %dd.govuk-summary-list__value
+        %p Development is completed and the affordable units and their addresses have been confirmed by the Developer.
+        %p The developer has responded to the Developer Completion Form, confirming the tenure types and providing addresses for the confirmed affordable units.
+    .govuk-summary-list__row
+      %dt.govuk-summary-list__key
+        %span.govuk-tag{class: "govuk-tag-confirmed_completed"} Confirmed completed
+      %dd.govuk-summary-list__value
+        %p A registered provider has verified that they have received the affordable units and confirmed their tenures.
+        %p The registered provider has responded to the RP Completion Form, providing their own internal identification numbers for the affordable units. They have also confirmed the tenure type.
     .govuk-summary-list__row
       %dt.govuk-summary-list__key
         %span.govuk-tag{class: "govuk-tag-expired"} Expired

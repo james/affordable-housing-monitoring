@@ -10,6 +10,6 @@ RSpec.feature 'Marking a development as completed', type: :feature do
     click_button 'Mark as completed'
     expect(page).to have_content 'Development marked as completed'
     development.reload
-    expect(development.state).to eq('completed')
+    expect(development.state).to eq('unconfirmed_completed')
   end
 end

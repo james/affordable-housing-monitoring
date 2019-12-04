@@ -13,8 +13,18 @@
   color: govuk-colour('white');
 }
 
-.govuk-tag-completed {
+.govuk-tag-unconfirmed_completed {
   background-color: govuk-colour('pink');
+  color: govuk-colour('white');
+}
+
+.govuk-tag-partially_confirmed_completed {
+  background-color: govuk-colour("light-purple");
+  color: govuk-colour('white');
+}
+
+.govuk-tag-confirmed_completed {
+  background-color: govuk-colour("orange");
   color: govuk-colour('white');
 }
 
