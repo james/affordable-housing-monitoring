@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
     resources :planning_applications
     member do
+      get :add_to_scheme
+
       get :agree_confirmation
       patch :agree
       get :start_confirmation

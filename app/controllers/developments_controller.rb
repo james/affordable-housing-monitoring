@@ -47,6 +47,10 @@ class DevelopmentsController < ApplicationController
     end
   end
 
+  def add_to_scheme
+    @development = Development.find(params[:id])
+  end
+
   def destroy
     @development = Development.find(params[:id])
     @development.destroy
@@ -145,6 +149,7 @@ class DevelopmentsController < ApplicationController
       :developer,
       :audit_comment,
       :audit_planning_application_id,
+      :scheme_id,
       planning_applications_attributes: [:application_number]
     )
   end

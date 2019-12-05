@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_175623) do
+ActiveRecord::Schema.define(version: 2019_12_05_132808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_12_04_175623) do
     t.string "rp_access_key"
     t.date "agreed_on"
     t.date "started_on"
+    t.bigint "scheme_id"
+    t.index ["scheme_id"], name: "index_developments_on_scheme_id"
   end
 
   create_table "dwellings", force: :cascade do |t|
@@ -104,6 +106,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_175623) do
   end
 
   add_foreign_key "audits", "planning_applications"
+  add_foreign_key "developments", "schemes"
   add_foreign_key "dwellings", "developments"
   add_foreign_key "dwellings", "registered_providers"
   add_foreign_key "planning_applications", "developments"

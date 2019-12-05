@@ -1,0 +1,18 @@
+- content_for(:page_title) { page_title("Add development #{@development.primary_application_number} to a scheme") }
+
+.govuk-width-container
+  = link_to "Back to development", development_path(@development), class: "govuk-back-link"
+
+  = render partial: 'partials/error_block', locals: { record: @development }
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %fieldset.govuk-fieldset
+        %legend.govuk-fieldset__legend.govuk-fieldset__legend--xl
+          %h1.govuk-fieldset__heading Add #{@development.primary_application_number} to a scheme
+
+        .govuk-grid-row{class: 'govuk-!-margin-top-7'}
+          .govuk-grid-column-two-thirds-from-desktop
+            = simple_form_for @development do |f|
+              = f.input :scheme_id, collection: Scheme.all.collect {|s| [s.application_number, s.id]}, wrapper: :select, include_blank: 'None'
+              .govuk-form-group
+                = f.submit 'Add to scheme', class: "govuk-button govuk-!-margin-right-1"
