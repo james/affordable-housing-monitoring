@@ -21,6 +21,20 @@ class SchemesController < ApplicationController
     @scheme = Scheme.find(params[:id])
   end
 
+  def edit
+    @scheme = Scheme.find(params[:id])
+  end
+
+  def update
+    @scheme = Scheme.find(params[:id])
+    if @scheme.update(scheme_params)
+      flash[:notice] = 'Scheme successfully saved'
+      redirect_to scheme_path(@scheme)
+    else
+      render action: :edit
+    end
+  end
+
   private
 
   def scheme_params
