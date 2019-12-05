@@ -1,10 +1,6 @@
 class DwellingsController < ApplicationController
   before_action :find_development
 
-  def index
-    @dwellings = @development.dwellings
-  end
-
   def new
     @dwelling = @development.dwellings.build
   end
@@ -13,7 +9,7 @@ class DwellingsController < ApplicationController
     @dwelling = @development.dwellings.build(dwelling_params)
     if @dwelling.save
       flash[:notice] = 'Dwelling successfully added'
-      redirect_to development_dwellings_path(@development)
+      redirect_to development_path(@development, anchor: 'dwellings')
     else
       render action: :new
     end
@@ -27,7 +23,7 @@ class DwellingsController < ApplicationController
     @dwelling = @development.dwellings.find(params[:id])
     if @dwelling.update(dwelling_params)
       flash[:notice] = 'Dwelling successfully saved'
-      redirect_to development_dwellings_path(@development)
+      redirect_to development_path(@development, anchor: 'dwellings')
     else
       render action: :edit
     end
@@ -44,7 +40,7 @@ class DwellingsController < ApplicationController
 
     if @dwelling.destroy
       flash[:notice] = 'Dwelling deleted'
-      redirect_to development_dwellings_path(@development)
+      redirect_to development_path(@development, anchor: 'dwellings')
     else
       render action: :delete
     end

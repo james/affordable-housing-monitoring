@@ -7,7 +7,6 @@ RSpec.feature 'Deleting dwellings', type: :feature do
     create(:dwelling, development: development)
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Edit'
     click_link 'Delete dwelling'
     expect(page).to_not have_content('Changelog')
@@ -25,7 +24,6 @@ RSpec.feature 'Deleting dwellings', type: :feature do
     development.agree!
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Edit'
     click_link 'Delete dwelling'
     fill_in 'Deletion reason', with: 'Deleted dwelling comment'
@@ -48,7 +46,6 @@ RSpec.feature 'Deleting dwellings', type: :feature do
     development.agree!
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Edit'
     click_link 'Delete dwelling'
     fill_in 'Deletion reason', with: ''

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'developments#index'
 
   resources :developments do
-    resources :dwellings do
+    resources :dwellings, except: [:index] do
       member do
         get :delete
       end

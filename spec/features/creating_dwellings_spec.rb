@@ -6,7 +6,6 @@ RSpec.feature 'Creating dwellings', type: :feature do
     development = create(:development)
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
     expect(page).to_not have_content('Reason for changes to legal agreement')
     select 'open', from: 'Tenure'
@@ -30,7 +29,6 @@ RSpec.feature 'Creating dwellings', type: :feature do
     create(:development)
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
     fill_in 'Reference ID', with: ''
@@ -48,7 +46,6 @@ RSpec.feature 'Creating dwellings', type: :feature do
     create(:dwelling, development: development, reference_id: 'A10001')
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
     fill_in 'Reference ID', with: 'A10001'
@@ -64,7 +61,6 @@ RSpec.feature 'Creating dwellings', type: :feature do
     create(:planning_application, development: development, application_number: 'AP/VARIATION')
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
     fill_in 'Reference ID', with: 'A10001'
@@ -93,7 +89,6 @@ RSpec.feature 'Creating dwellings', type: :feature do
     create(:development, state: :agreed)
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Add a new dwelling'
     fill_in 'Reason for changes to legal agreement', with: ''
     click_button 'Add dwelling'

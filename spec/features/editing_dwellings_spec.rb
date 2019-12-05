@@ -7,7 +7,6 @@ RSpec.feature 'Editing dwellings', type: :feature do
     dwelling = create(:dwelling, development: development)
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Edit'
     expect(page).to_not have_content('Reason for changes to legal agreement')
     select 'social', from: 'Tenure'
@@ -32,7 +31,6 @@ RSpec.feature 'Editing dwellings', type: :feature do
     create(:dwelling, development: development)
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Edit'
     select 'social', from: 'Tenure'
     fill_in 'Reference ID', with: ''
@@ -51,7 +49,6 @@ RSpec.feature 'Editing dwellings', type: :feature do
     create(:dwelling, development: development, reference_id: 'B10001')
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     within(:xpath, "//th[text() = 'B10001']/parent::tr") do
       click_link 'Edit'
     end
@@ -71,7 +68,6 @@ RSpec.feature 'Editing dwellings', type: :feature do
     development.agree!
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Edit'
     select 'social', from: 'Tenure'
     fill_in 'Reference ID', with: 'A10001'
@@ -106,7 +102,6 @@ RSpec.feature 'Editing dwellings', type: :feature do
     development.agree!
     visit developments_path
     click_link 'AP/2019/1234'
-    click_link 'Manage dwellings'
     click_link 'Edit'
     select 'social', from: 'Tenure'
     fill_in 'Reason for changes to legal agreement', with: ''
