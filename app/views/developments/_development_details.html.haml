@@ -1,0 +1,94 @@
+- if @development.unconfirmed_completed?
+  = render 'developer_response_required'
+- if @development.partially_confirmed_completed?
+  = render 'rp_response_required'
+- if @development.confirmed_completed?
+  = render 'developer_and_rp_response_given'
+
+%dl.govuk-summary-list{:class => "govuk-!-margin-bottom-9"}
+  .govuk-summary-list__row
+    %dt.govuk-summary-list__key
+      Name
+    %dd.govuk-summary-list__value
+      %p.govuk-body= @development.name || 'Not yet added'
+    %dd.govuk-summary-list__actions
+      = link_to edit_development_path(@development), class: "govuk-link" do
+        Edit
+        %span.govuk-visually-hidden development name
+
+  .govuk-summary-list__row
+    %dt.govuk-summary-list__key
+      Scheme
+    - if @development.scheme.present?
+      %dd.govuk-summary-list__value
+        %p.govuk-body= link_to @development.scheme.application_number, scheme_path(@development.scheme)
+      %dd.govuk-summary-list__actions
+        = link_to add_to_scheme_development_path(@development), class: "govuk-link" do
+          Edit
+          %span.govuk-visually-hidden scheme
+    - else
+      %dd.govuk-summary-list__value
+        %p.govuk-body Not yet connected to a scheme
+      %dd.govuk-summary-list__actions
+        = link_to add_to_scheme_development_path(@development), class: "govuk-link" do
+          Add to a scheme
+        or
+        = link_to new_scheme_path(development_id: @development), class: "govuk-link" do
+          create a new scheme
+
+  .govuk-summary-list__row
+    %dt.govuk-summary-list__key
+      Status
+    %dd.govuk-summary-list__value
+      %span.govuk-tag{class: "govuk-tag-#{@development.state}"}= @development.state.titleize
+    %dd.govuk-summary-list__actions
+      - case @development.state
+      - when 'draft'
+        = link_to agree_confirmation_development_path(@development), class: "govuk-link", 'aria-label': 'Mark development status as agreed' do
+          Mark as agreed
+      - when 'agreed'
+        = link_to start_confirmation_development_path(@development), class: "govuk-link", 'aria-label': 'Mark development status as started' do
+          Mark as started
+      - when 'started'
+        = link_to complete_confirmation_development_path(@development), class: "govuk-link", 'aria-label': 'Mark development status as completed' do
+          Mark as completed
+
+  .govuk-summary-list__row
+    %dt.govuk-summary-list__key
+      Site address
+    %dd.govuk-summary-list__value
+      %p.govuk-body= @development.site_address
+    %dd.govuk-summary-list__actions
+      = link_to edit_development_path(@development), class: "govuk-link" do
+        Edit
+        %span.govuk-visually-hidden site address
+
+  .govuk-summary-list__row
+    %dt.govuk-summary-list__key
+      Planning Applications
+    %dd.govuk-summary-list__value
+      %p.govuk-body= @development.planning_applications.collect(&:application_number).join(', ')
+    %dd.govuk-summary-list__actions
+      = link_to development_planning_applications_path(@development), class: "govuk-link" do
+        Manage
+        %span.govuk-visually-hidden planning applications
+
+  .govuk-summary-list__row
+    %dt.govuk-summary-list__key
+      Proposal
+    %dd.govuk-summary-list__value
+      %p.govuk-body= @development.proposal
+    %dd.govuk-summary-list__actions
+      = link_to edit_development_path(@development), class: "govuk-link" do
+        Edit
+        %span.govuk-visually-hidden development proposal
+
+  .govuk-summary-list__row
+    %dt.govuk-summary-list__key
+      Developer
+    %dd.govuk-summary-list__value
+      %p.govuk-body= @development.developer
+    %dd.govuk-summary-list__actions
+      = link_to edit_development_path(@development), class: "govuk-link" do
+        Edit
+        %span.govuk-visually-hidden developer name
