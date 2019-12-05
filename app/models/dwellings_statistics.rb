@@ -32,4 +32,13 @@ class DwellingsStatistics
   def open_habitable_rooms_percentage
     100 - affordable_habitable_rooms_percentage
   end
+
+  def affordable_units_percentage
+    @affordable_units_percentage ||=
+      ((unit_count(tenure: %w[intermediate social]).to_f / unit_count) * 100).to_i
+  end
+
+  def open_units_percentage
+    100 - affordable_units_percentage
+  end
 end
