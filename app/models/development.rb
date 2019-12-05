@@ -1,4 +1,5 @@
 class Development < ApplicationRecord
+  belongs_to :scheme, optional: true
   has_many :planning_applications, dependent: :destroy
   accepts_nested_attributes_for :planning_applications
   has_many :dwellings, dependent: :destroy
@@ -18,7 +19,7 @@ class Development < ApplicationRecord
     if: :audit_changes?,
     on: [:update],
     comment_required: true,
-    except: %i[state agreed_on started_on]
+    except: %i[state agreed_on started_on scheme_id]
   )
   attr_accessor :audit_planning_application_id
 

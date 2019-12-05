@@ -1,0 +1,26 @@
+- content_for(:page_title) { page_title('All schemes') }
+
+.govuk-width-container
+
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds-from-desktop
+      %h1.govuk-heading-xl= t('schemes.index_heading')
+
+  = link_to 'Create a new scheme', new_scheme_path, class: 'govuk-button'
+
+  %table.govuk-table{class: 'govuk-!-margin-top-6'}
+    %caption.govuk-table__caption.govuk-visually-hidden= t('schemes.index_heading')
+    %thead.govuk-table__head
+      %tr.govuk-table__row
+        %th{class: "govuk-table__header", scope: "col"}= t('schemes.application_number')
+        %th{class: "govuk-table__header", scope: "col"} Developments
+        %th{class: "govuk-table__header", scope: "col"}= t('schemes.site_address')
+        %th{class: "govuk-table__header govuk-!-width-one-half", scope: "col"}= t('schemes.proposal')
+
+    %tbody.govuk-table__body
+      - @schemes.each do |scheme|
+        %tr.govuk-table__row
+          %th.govuk-table__header{scope: "row"}= link_to scheme.application_number, scheme_path(scheme), class: "govuk-link", "aria-label": "view scheme #{scheme.application_number}"
+          %td.govuk-table__cell= scheme.developments.count
+          %td.govuk-table__cell= scheme.site_address
+          %td.govuk-table__cell= scheme.proposal
