@@ -1,0 +1,61 @@
+- content_for(:page_title) { page_title("Scheme " + @scheme.application_number) }
+
+
+.govuk-width-container
+  = link_to "Back to all schemes", schemes_path, class: "govuk-back-link"
+
+  .govuk-grid-row
+    .govuk-grid-column-full-from-desktop
+      %h1.govuk-heading-xl Scheme #{@scheme.application_number}
+
+  .govuk-tabs{"data-module" => "govuk-tabs"}
+    %h2.govuk-tabs__title
+      Contents
+    %ul.govuk-tabs__list
+      %li.govuk-tabs__list-item.govuk-tabs__list-item--selected
+        %a.govuk-tabs__tab{:href => "#scheme-details"}
+          Scheme details
+
+    %section#scheme-details.govuk-tabs__panel
+      %h2.govuk-heading-l Scheme details
+
+      %dl.govuk-summary-list{:class => "govuk-!-margin-bottom-9"}
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
+            Name
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @scheme.name || 'Not yet added'
+          %dd.govuk-summary-list__actions
+            = link_to edit_scheme_path(@scheme), class: "govuk-link" do
+              Edit
+              %span.govuk-visually-hidden scheme name
+
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
+            Site address
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @scheme.site_address
+          %dd.govuk-summary-list__actions
+            = link_to edit_scheme_path(@scheme), class: "govuk-link" do
+              Edit
+              %span.govuk-visually-hidden site address
+
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
+            Proposal
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @scheme.proposal
+          %dd.govuk-summary-list__actions
+            = link_to edit_scheme_path(@scheme), class: "govuk-link" do
+              Edit
+              %span.govuk-visually-hidden scheme proposal
+
+        .govuk-summary-list__row
+          %dt.govuk-summary-list__key
+            Developer
+          %dd.govuk-summary-list__value
+            %p.govuk-body= @scheme.developer
+          %dd.govuk-summary-list__actions
+            = link_to edit_scheme_path(@scheme), class: "govuk-link" do
+              Edit
+              %span.govuk-visually-hidden developer name

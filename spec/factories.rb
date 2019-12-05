@@ -1,4 +1,12 @@
 FactoryBot.define do
+  factory :scheme do
+    name { 'Scheme name' }
+    application_number { 'AP/2019/6789' }
+    site_address { '2 Site Address, London, SE1 1AA' }
+    proposal { 'Build several buildines' }
+    developer { 'Developer Inc' }
+  end
+
   factory :planning_application do
     application_number { 'AP/2019/1234' }
     development

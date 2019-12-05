@@ -1,0 +1,14 @@
+.govuk-form-group
+  = f.input :application_number, input_html: { class: "govuk-input" }
+
+.govuk-form-group
+  = f.input :name, input_html: { class: "govuk-input" }
+
+.govuk-form-group
+  = f.input :site_address
+
+.govuk-form-group
+  = f.input :proposal, input_html: { 'rows': 5 }, wrapper: :textarea
+
+.govuk-form-group
+  = f.input :developer, input_html: { class: "govuk-input" }

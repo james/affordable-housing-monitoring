@@ -35,12 +35,20 @@ en:
   navigation:
     developments: "View all developments"
     new_development: "Add a new development"
+    view_all_schemes: "View all schemes"
   authentication:
     log_in: "Log in"
     log_out: "Log out"
   developments:
     index_heading: "All developments"
     new_heading: "Details of your new development"
+    application_number: "Application number"
+    site_address: "Site address"
+    proposal: "Proposal"
+    state: "Status"
+  schemes:
+    index_heading: "All schemes"
+    new_heading: "Details of your new scheme"
     application_number: "Application number"
     site_address: "Site address"
     proposal: "Proposal"

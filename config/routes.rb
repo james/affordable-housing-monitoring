@@ -25,5 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :schemes
+
   get '/check', to: proc { [200, {}, ['OK']] }
 end
