@@ -11,7 +11,11 @@ class SchemesController < ApplicationController
     @scheme = Scheme.new(scheme_params)
     if @scheme.save
       flash[:notice] = 'Scheme successfully created'
-      redirect_to scheme_path(@scheme)
+      if params[:development_id]
+        associate_development_and_redirect
+      else
+        redirect_to scheme_path(@scheme)
+      end
     else
       render action: :new
     end
@@ -45,5 +49,11 @@ class SchemesController < ApplicationController
       :proposal,
       :developer
     )
+  end
+
+  def associate_development_and_redirect
+    development = Development.find(params[:development_id])
+    @scheme.developments << development
+    redirect_to development_path(development)
   end
 end

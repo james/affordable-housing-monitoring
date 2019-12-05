@@ -13,6 +13,8 @@
         .govuk-grid-row{class: 'govuk-!-margin-top-7'}
           .govuk-grid-column-two-thirds-from-desktop
             = simple_form_for @scheme do |f|
+              - if params[:development_id]
+                = hidden_field_tag :development_id, params[:development_id]
               = render partial: 'form', locals: {f: f}
               .govuk-form-group
                 = f.submit t('buttons.submit'), class: "govuk-button govuk-!-margin-right-1"

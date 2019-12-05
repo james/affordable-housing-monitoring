@@ -60,6 +60,9 @@
             %dd.govuk-summary-list__actions
               = link_to add_to_scheme_development_path(@development), class: "govuk-link" do
                 Add to a scheme
+              or
+              = link_to new_scheme_path(development_id: @development), class: "govuk-link" do
+                create a new scheme
 
         .govuk-summary-list__row
           %dt.govuk-summary-list__key
