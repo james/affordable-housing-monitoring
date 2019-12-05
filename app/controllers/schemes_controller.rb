@@ -23,6 +23,7 @@ class SchemesController < ApplicationController
 
   def show
     @scheme = Scheme.find(params[:id])
+    @dwellings_statistics = DwellingsStatistics.new(@scheme.dwellings)
   end
 
   def edit
