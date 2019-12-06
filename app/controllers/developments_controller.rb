@@ -6,11 +6,13 @@ class DevelopmentsController < ApplicationController
     rp_response
   ]
   def index
-    @developments = if params.dig(:search, :q).present?
-                      Development.search(params[:search][:q])
-                    else
-                      Development.all
-                    end
+    if params.dig(:search, :q).present?
+      @developments = Development.search(params[:search][:q])
+      @dwellings_statistics = DwellingsStatistics.new(Dwelling.where(development_id: @developments))
+    else
+      @developments = Development.all
+      @dwellings_statistics = DwellingsStatistics.new(Dwelling.all)
+    end
   end
 
   def new
