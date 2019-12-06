@@ -90,5 +90,5 @@
 
     %section#statistics.govuk-tabs__panel.govuk-tabs__panel--hidden
       %h2.govuk-heading-l Statistics
-      - if @scheme.dwellings.any?
+      - if @dwellings_statistics.any?
         = render 'partials/statistics'

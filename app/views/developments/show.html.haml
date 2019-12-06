@@ -36,7 +36,7 @@
 
     %section#statistics.govuk-tabs__panel.govuk-tabs__panel--hidden
       %h2.govuk-heading-l Statistics
-      - if @development.dwellings.any?
+      - if @dwellings_statistics.any?
         = render 'partials/statistics'
 
     %section#changes-to-legal-agreement.govuk-tabs__panel.govuk-tabs__panel--hidden
