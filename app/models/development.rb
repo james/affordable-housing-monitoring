@@ -78,7 +78,7 @@ class Development < ApplicationRecord
   end
 
   def completed?
-    unconfirmed_completed? || confirmed_completed?
+    unconfirmed_completed? || partially_confirmed_completed? || confirmed_completed?
   end
 
   private
