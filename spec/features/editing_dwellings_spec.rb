@@ -10,7 +10,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
     click_link 'Edit'
     expect(page).to_not have_content('Reason for changes to legal agreement')
     select 'social', from: 'Tenure'
-    fill_in 'Reference ID', with: 'A10001'
+    fill_in 'Unit Number', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 3
     fill_in 'Number of bedrooms', with: 2
     check 'Studio'
@@ -33,7 +33,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
     click_link 'AP/2019/1234'
     click_link 'Edit'
     select 'social', from: 'Tenure'
-    fill_in 'Reference ID', with: ''
+    fill_in 'Unit Number', with: ''
     fill_in 'Number of habitable rooms', with: ''
     fill_in 'Number of bedrooms', with: ''
     click_button 'Save dwelling'
@@ -53,7 +53,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
       click_link 'Edit'
     end
     select 'social', from: 'Tenure'
-    fill_in 'Reference ID', with: 'A10001'
+    fill_in 'Unit Number', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 3
     fill_in 'Number of bedrooms', with: 2
     click_button 'Save dwelling'
@@ -70,7 +70,7 @@ RSpec.feature 'Editing dwellings', type: :feature do
     click_link 'AP/2019/1234'
     click_link 'Edit'
     select 'social', from: 'Tenure'
-    fill_in 'Reference ID', with: 'A10001'
+    fill_in 'Unit Number', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 3
     fill_in 'Number of bedrooms', with: 2
     fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
