@@ -13,6 +13,8 @@ RSpec.feature 'Creating dwellings', type: :feature do
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
     check 'Studio'
+    check 'Wheelchair accessible'
+    check 'Wheelchair adaptable'
     click_button 'Add dwelling'
     expect(page).to have_content('Dwelling successfully added')
     dwelling = development.dwellings.first
@@ -20,6 +22,8 @@ RSpec.feature 'Creating dwellings', type: :feature do
     expect(dwelling.habitable_rooms).to eq(2)
     expect(dwelling.bedrooms).to eq(1)
     expect(dwelling.studio).to eq(true)
+    expect(dwelling.wheelchair_accessible).to eq(true)
+    expect(dwelling.wheelchair_adaptable).to eq(true)
     expect(dwelling.reference_id).to eq('A10001')
     expect(development.audits.count).to eq(0)
   end
