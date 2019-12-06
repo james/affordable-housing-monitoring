@@ -17,7 +17,7 @@
         %th{class: "govuk-table__header", scope: "col"} Actions
 
     %tbody.govuk-table__body
-      -@development.dwellings.each do |dwelling|
+      -@development.dwellings.order(:created_at).each do |dwelling|
         %tr.govuk-table__row
           %th.govuk-table__header{scope: "row"}= dwelling.reference_id
           %td.govuk-table__cell= dwelling.address.present? ? dwelling.address : 'Not yet supplied'
