@@ -13,6 +13,9 @@
         %th{class: "govuk-table__header", scope: "col"} Tenure
         %th{class: "govuk-table__header govuk-table__header--numeric", scope: "col"} Habitable rooms
         %th{class: "govuk-table__header govuk-table__header--numeric", scope: "col"} Bedrooms
+        %th{class: "govuk-table__header", scope: "col"} Studio
+        %th{class: "govuk-table__header", scope: "col"} Wheelchair Accessible
+        %th{class: "govuk-table__header", scope: "col"} Wheelchair Adaptable
         %th{class: "govuk-table__header", scope: "col"} Last updated
         - if @development.completed?
           %th{class: "govuk-table__header", scope: "col"} Address
@@ -27,6 +30,9 @@
           %td.govuk-table__cell= dwelling.tenure
           %td.govuk-table__cell.govuk-table__cell--numeric=dwelling.habitable_rooms
           %td.govuk-table__cell.govuk-table__cell--numeric=dwelling.bedrooms
+          %td.govuk-table__cell= dwelling.studio
+          %td.govuk-table__cell= dwelling.wheelchair_accessible
+          %td.govuk-table__cell= dwelling.wheelchair_adaptable
           %td.govuk-table__cell= distance_of_time_in_words(dwelling.updated_at, Time.now) + " ago"
           - if @development.completed?
             %td.govuk-table__cell= dwelling.address.present? ? dwelling.address : 'Not yet supplied'
