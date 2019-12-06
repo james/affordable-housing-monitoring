@@ -2,6 +2,8 @@
 
 = render 'developments/developer_and_rp_response_given' if @development.completion_response_filled?
 
+%p.govuk-body-l= pluralize(@development.dwellings.count, 'dwelling')
+
 .table-scrollable
   %table.govuk-table
     %caption.govuk-table__caption.govuk-visually-hidden Dwellings
