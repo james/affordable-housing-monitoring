@@ -12,7 +12,7 @@ class DwellingsStatistics
     developments.where(filter).sum(:habitable_rooms)
   end
 
-  def unit_count(filter = {})
+  def dwelling_count(filter = {})
     developments.where(filter).count
   end
 
@@ -33,12 +33,12 @@ class DwellingsStatistics
     100 - affordable_habitable_rooms_percentage
   end
 
-  def affordable_units_percentage
-    @affordable_units_percentage ||=
-      ((unit_count(tenure: %w[intermediate social]).to_f / unit_count) * 100).to_i
+  def affordable_dwellings_percentage
+    @affordable_dwellings_percentage ||=
+      ((dwelling_count(tenure: %w[intermediate social]).to_f / dwelling_count) * 100).to_i
   end
 
-  def open_units_percentage
-    100 - affordable_units_percentage
+  def open_dwellings_percentage
+    100 - affordable_dwellings_percentage
   end
 end
