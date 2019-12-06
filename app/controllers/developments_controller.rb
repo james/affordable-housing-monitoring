@@ -24,7 +24,7 @@ class DevelopmentsController < ApplicationController
     @development = Development.new(development_params)
     if @development.save
       flash[:notice] = 'Development successfully created'
-      redirect_to development_path(@development)
+      redirect_to development_path(@development, anchor: 'dwellings')
     else
       render action: :new
     end
