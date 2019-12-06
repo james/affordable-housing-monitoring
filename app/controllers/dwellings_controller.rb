@@ -60,7 +60,9 @@ class DwellingsController < ApplicationController
       :bedrooms,
       :audit_comment,
       :studio,
-      :audit_planning_application_id
+      :audit_planning_application_id,
+      :wheelchair_accessible,
+      :wheelchair_adaptable
     )
   end
 
