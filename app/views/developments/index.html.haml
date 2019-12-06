@@ -9,9 +9,6 @@
     .govuk-grid-column-one-third-from-desktop
       = render 'search'
 
-  -  if params.dig(:search, :q).present?
-    =link_to 'Clear search results', developments_path, class: 'govuk-link'
-
   - if @dwellings_statistics.any?
     %details.govuk-details{"data-module" => "govuk-details"}
       %summary.govuk-details__summary

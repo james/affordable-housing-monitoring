@@ -2,3 +2,5 @@
   = simple_form_for :search, method: :get, defaults: {wrapper: false} do |form|
     = form.input :q, label: 'Search', required: true, input_html: { value: params.dig(:search, :q) }
     = form.button :submit, 'Search'
+  -  if params.dig(:search, :q).present?
+    =link_to 'Clear search results', developments_path, class: 'govuk-link'
