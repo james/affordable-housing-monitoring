@@ -4,6 +4,10 @@ class DwellingsStatistics
     @dwellings = dwellings
   end
 
+  def any?
+    @dwellings.any?
+  end
+
   def habitable_room_count(filter = {})
     dwellings.where(filter).sum(:habitable_rooms)
   end
