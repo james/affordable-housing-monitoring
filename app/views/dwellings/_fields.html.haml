@@ -1,5 +1,5 @@
 .govuk-form-group
-  = form.input :reference_id, input_html: { class: "govuk-input govuk-input--width-5" }
+  = form.input :reference_id, input_html: { class: "govuk-input govuk-input--width-5" }, label: 'Unit Number'
 .govuk-form-group
   = form.input :tenure, collection: Dwelling::TENURES, wrapper: :select
 .govuk-form-group

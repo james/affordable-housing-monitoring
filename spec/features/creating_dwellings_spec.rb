@@ -9,7 +9,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'Add a new dwelling'
     expect(page).to_not have_content('Reason for changes to legal agreement')
     select 'open', from: 'Tenure'
-    fill_in 'Reference ID', with: 'A10001'
+    fill_in 'Unit Number', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
     check 'Studio'
@@ -31,7 +31,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'AP/2019/1234'
     click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
-    fill_in 'Reference ID', with: ''
+    fill_in 'Unit Number', with: ''
     fill_in 'Number of habitable rooms', with: ''
     fill_in 'Number of bedrooms', with: ''
     click_button 'Add dwelling'
@@ -48,7 +48,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'AP/2019/1234'
     click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
-    fill_in 'Reference ID', with: 'A10001'
+    fill_in 'Unit Number', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
     click_button 'Add dwelling'
@@ -63,7 +63,7 @@ RSpec.feature 'Creating dwellings', type: :feature do
     click_link 'AP/2019/1234'
     click_link 'Add a new dwelling'
     select 'open', from: 'Tenure'
-    fill_in 'Reference ID', with: 'A10001'
+    fill_in 'Unit Number', with: 'A10001'
     fill_in 'Number of habitable rooms', with: 2
     fill_in 'Number of bedrooms', with: 1
     fill_in 'Reason for changes to legal agreement', with: 'Testing changelog'
