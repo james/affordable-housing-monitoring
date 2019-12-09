@@ -14,7 +14,7 @@
         = form.fields_for :dwellings, @development.dwellings.within_s106 do |dwelling_form|
           .govuk-fieldset{class: 'govuk-!-margin-top-9 govuk-!-margin-bottom-9'}
             %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
-              %h2.govuk-fieldset__heading= "Dwelling #{dwelling_form.object.id}"
+              %h2.govuk-fieldset__heading= "Dwelling #{dwelling_form.object.reference_id}"
             %div{class: "dwelling_#{dwelling_form.object.id}"}
               %p.govuk-body
                 Tenure: #{dwelling_form.object.tenure.humanize},
