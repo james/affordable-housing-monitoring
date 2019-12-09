@@ -1,5 +1,5 @@
 .govuk-width-container
-  = link_to "Back to dwellings", development_dwellings_path(@development), class: "govuk-back-link"
+  = link_to "Back to dwellings", development_path(@development, anchor: 'dwellings'), class: "govuk-back-link"
 
   = render partial: 'partials/error_block', locals: { record: @dwelling }
 
