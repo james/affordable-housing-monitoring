@@ -2,7 +2,7 @@ class Development < ApplicationRecord
   belongs_to :scheme, optional: true
   has_many :planning_applications, dependent: :destroy
   accepts_nested_attributes_for :planning_applications
-  has_many :dwellings, dependent: :destroy
+  has_many :dwellings, dependent: :delete_all
   accepts_nested_attributes_for :dwellings, update_only: true
 
   validates :planning_applications, presence: true
