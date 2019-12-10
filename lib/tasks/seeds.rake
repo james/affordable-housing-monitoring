@@ -8,6 +8,15 @@ task reseed: :environment do
   Rake::Task['db:seed'].invoke
 end
 
+task reset_quebec_demo: :environment do
+  Development.where(name: 'Quebec Way').all.each {|d| d.destroy!}
+  Rake::Task['setup_quebec'].invoke
+  Rake::Task['setup_quebec'].reenable
+  Rake::Task['setup_quebec'].invoke
+  ENV['DEVELOPMENT_ID'] = Development.where(name: 'Quebec Way').last.id.to_s
+  Rake::Task['update_quebec'].invoke
+end
+
 task setup_quebec: :environment do
   require 'csv'
   development = Development.create!(
