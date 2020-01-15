@@ -3,7 +3,7 @@
     .govuk-header__logo
       = link_to root_path, class: 'govuk-header__link govuk-header__link--homepage', 'aria-label': "#{current_user ? 'View your dashboard' : 'Go to log in page' }" do
         %span.govuk-header__logotype
-          = image_tag 'logo-white.png', alt: "Southwark Council logo"
+          -# = image_tag 'logo-white.png', alt: "Southwark Council logo"
     .govuk-header__content
       = link_to t('service_name'), root_path, class: 'govuk-header__link govuk-header__link--service-name', 'aria-label': "#{current_user ? 'View your dashboard' : 'Go to log in page' }"
       %button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls": "navigation", "aria-label": "Show or hide Top Level Navigation", role: "button", type: "button"} Menu

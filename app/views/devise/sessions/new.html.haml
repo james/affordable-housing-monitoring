@@ -7,6 +7,13 @@
   .govuk-grid-row
     .govuk-grid-column-full
 
+      .govuk-hint
+        %h2 Demo of this software
+
+        %p Welcome to the demo of this project. It is being hosted personally by James Darling.
+        %p It has no support contract, and anyone is allowed to log in and enter and edit data.
+        %p To log in, use `demo@example.com` with the password `demodata`.
+
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
         = f.error :email
