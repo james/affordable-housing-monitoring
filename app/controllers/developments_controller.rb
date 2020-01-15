@@ -33,6 +33,15 @@ class DevelopmentsController < ApplicationController
   def show
     @development = Development.find(params[:id])
     @dwellings_statistics = DwellingsStatistics.new(@development.dwellings)
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @development.to_json(:include => :dwellings)
+      }
+      format.xml {
+        render json: @development.to_xml(:include => :dwellings)
+      }
+    end
   end
 
   def edit
