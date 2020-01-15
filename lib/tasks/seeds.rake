@@ -43,7 +43,7 @@ end
 task update_quebec: :environment do
   development = Development.find(ENV['DEVELOPMENT_ID'])
   development.agreed_on = '04 March 2016'.to_date
-  development.state = 'agreed'
+  development.state = 'started'
   development.save!
   pa = PlanningApplication.create!(development: development, application_number: '17/AP/2986')
   Audited.audit_class.as_user(User.first) do
