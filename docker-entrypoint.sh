@@ -14,7 +14,7 @@ setup_database()
   else
     echo "ENTRYPOINT: No database found…"
 
-    if [ "$RAILS_ENV" == "production" ]; then
+    if [[ "$RAILS_ENV" == "production" || "$RAILS_ENV" == "prod"  ]]; then
       echo "ENTRYPOINT: Environment is production, doing nothing."
     else
       echo "ENTRYPOINT: Environment is in non-production, attempting to automatically create the database…"
