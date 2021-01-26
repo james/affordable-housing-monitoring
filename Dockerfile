@@ -33,15 +33,12 @@ RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
 # bundle ruby gems to create a static dependency tree
-USER root
 ENV GEM_PATH /usr/local/bundle
 RUN gem install --quiet bundler
 
 COPY Gemfile $APP_PATH/Gemfile
 COPY Gemfile.lock $APP_PATH/Gemfile.lock
-RUN chown -R app:app $APP_PATH
 
-USER app
 # bundle ruby gems based on the current environment, default to production
 RUN \
   if [ "$RAILS_ENV" = "production" ]; then \
@@ -49,8 +46,6 @@ RUN \
   else \
     bundle install --jobs 25 --retry 3; \
   fi
-
-USER root
 
 # add project files
 COPY . $APP_PATH
