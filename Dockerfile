@@ -56,8 +56,9 @@ RUN yarn install
 # compile assets for production
 RUN SECRET_KEY_BASE=dummy bundle exec rake assets:precompile
 
-# make app own the project files
+# make app own the project files and GEM_PATH
 RUN chown -R app:app $APP_PATH
+RUN chown -R app:app $GEM_PATH
 
 # copy docker-entrypoint
 COPY ./docker-entrypoint.sh /
