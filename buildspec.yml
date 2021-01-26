@@ -8,7 +8,7 @@ phases:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       - echo Building the Docker image...
-      - docker build -t --build-arg RAILS_ENV=$INFRA_ENV $CONTAINER_NAME:test .
+      - docker build --build-arg RAILS_ENV=$INFRA_ENV -t $CONTAINER_NAME:test .
   build:
     commands:
       - IMAGE_TAG=commit-$CODEBUILD_RESOLVED_SOURCE_VERSION
