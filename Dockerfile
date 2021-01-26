@@ -1,4 +1,4 @@
-FROM public.ecr.aws/bitnami/ruby:2.6.6
+FROM ruby:2.6.6
 MAINTAINER dxw <rails@dxw.com>
 
 # install base packages
@@ -33,11 +33,10 @@ RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
 # bundle ruby gems to create a static dependency tree
-USER app
+USER root
 ENV GEM_PATH /usr/local/bundle
 RUN gem install --quiet bundler
 
-USER root
 COPY Gemfile $APP_PATH/Gemfile
 COPY Gemfile.lock $APP_PATH/Gemfile.lock
 RUN chown -R app:app $APP_PATH
