@@ -1,4 +1,4 @@
-FROM ruby:2.6.5
+FROM public.ecr.aws/bitnami/ruby:2.6.5
 MAINTAINER dxw <rails@dxw.com>
 
 # install base packages
