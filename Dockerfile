@@ -1,4 +1,4 @@
-FROM ruby:2.6.6
+FROM public.ecr.aws/q8n3y8x7/ruby:2.6.6
 MAINTAINER dxw <rails@dxw.com>
 
 # install base packages
@@ -33,12 +33,16 @@ RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
 # bundle ruby gems to create a static dependency tree
+USER app
 ENV GEM_PATH /usr/local/bundle
 RUN gem install --quiet bundler
 
+USER root
 COPY Gemfile $APP_PATH/Gemfile
 COPY Gemfile.lock $APP_PATH/Gemfile.lock
+RUN chown -R app:app $APP_PATH
 
+USER app
 # bundle ruby gems based on the current environment, default to production
 RUN \
   if [ "$RAILS_ENV" = "production" ]; then \
@@ -46,6 +50,8 @@ RUN \
   else \
     bundle install --jobs 25 --retry 3; \
   fi
+
+USER root
 
 # add project files
 COPY . $APP_PATH
@@ -56,9 +62,8 @@ RUN yarn install
 # compile assets for production
 RUN SECRET_KEY_BASE=dummy bundle exec rake assets:precompile
 
-# make app own the project files and GEM_PATH
+# make app own the project files
 RUN chown -R app:app $APP_PATH
-RUN chown -R app:app $GEM_PATH
 
 # copy docker-entrypoint
 COPY ./docker-entrypoint.sh /
