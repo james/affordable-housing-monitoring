@@ -7,12 +7,25 @@ class Dwelling < ApplicationRecord
     if: :audit_changes?,
     on: %i[create update destroy],
     comment_required: true,
-    except: %i[address uprn registered_provider_id rp_internal_id]
+    except: %i[address uprn registered_provider_id rp_internal_id tenure_product]
   )
 
   attr_accessor :audit_planning_application_id
 
   TENURES = %w[open social intermediate].freeze
+  TENURE_PRODUCTS = [
+    'Social rent',
+    'Shared ownership',
+    'Shared equity',
+    'London Living Rent',
+    'Community Land Trust',
+    'Discounted market sale',
+    'Starter Home',
+    'Affordable rent',
+    'Discount market rent',
+    'London Affordable Rent',
+    'Build to rent'
+  ].freeze
 
   scope :within_s106, -> { where(tenure: %w[social intermediate]) }
 
