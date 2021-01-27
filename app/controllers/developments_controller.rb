@@ -157,7 +157,7 @@ class DevelopmentsController < ApplicationController
   end
 
   def completion_response_params
-    params.require(:development).permit(dwellings_attributes: %i[id address registered_provider_id])
+    params.require(:development).permit(dwellings_attributes: %i[id address uprn registered_provider_id])
   end
 
   def rp_response_params

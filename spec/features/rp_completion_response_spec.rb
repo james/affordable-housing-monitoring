@@ -7,8 +7,8 @@ RSpec.feature 'Developer filling out a completion response', type: :feature do
     @development = create(:development, state: 'partially_confirmed_completed')
     Dwelling.without_auditing do
       create(:dwelling, development: @development, tenure: 'open')
-      @intermediate_dwelling = create(:dwelling, development: @development, tenure: 'intermediate', address: '1 address', registered_provider: @registered_provider1)
-      @social_dwelling = create(:dwelling, development: @development, tenure: 'social', address: '2 address', registered_provider: @registered_provider1)
+      @intermediate_dwelling = create(:dwelling, development: @development, tenure: 'intermediate', address: '1 address', uprn: 'uprn1', registered_provider: @registered_provider1)
+      @social_dwelling = create(:dwelling, development: @development, tenure: 'social', address: '2 address', uprn: 'uprn2', registered_provider: @registered_provider1)
     end
   end
 

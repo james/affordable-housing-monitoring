@@ -22,5 +22,6 @@
                 Habitable rooms: #{dwelling_form.object.habitable_rooms}
               .govuk-form-group
                 = dwelling_form.input :address, required: 'true'
+                = dwelling_form.input :uprn, required: 'true', label: 'UPRN', input_html: { class: 'govuk-input--width-12' }
                 = dwelling_form.input :registered_provider_id, collection: RegisteredProvider.all, required: 'true', wrapper: :select
         = form.submit 'Submit response', class: 'govuk-button'
