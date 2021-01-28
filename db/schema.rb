@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_102320) do
+ActiveRecord::Schema.define(version: 2021_01_27_133211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_102320) do
     t.boolean "wheelchair_accessible", default: false, null: false
     t.boolean "wheelchair_adaptable", default: false, null: false
     t.string "uprn"
+    t.string "tenure_product"
     t.index ["development_id"], name: "index_dwellings_on_development_id"
     t.index ["registered_provider_id"], name: "index_dwellings_on_registered_provider_id"
   end
