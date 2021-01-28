@@ -22,6 +22,7 @@ FactoryBot.define do
     bedrooms { 1 }
     sequence(:reference_id) { |n| "A#{n}" }
     studio { false }
+    uprn { nil }
     development
   end
 

@@ -18,6 +18,7 @@
             %div{class: "dwelling_#{dwelling_form.object.id}"}
               %p.govuk-body
                 Address: #{dwelling_form.object.address},
+                UPRN: #{dwelling_form.object.uprn},
                 Tenure: #{dwelling_form.object.tenure.humanize},
                 Bedrooms: #{dwelling_form.object.bedrooms},
                 Habitable rooms: #{dwelling_form.object.habitable_rooms}

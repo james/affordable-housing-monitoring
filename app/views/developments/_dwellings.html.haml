@@ -19,6 +19,7 @@
         %th{class: "govuk-table__header", scope: "col"} Last updated
         - if @development.completed?
           %th{class: "govuk-table__header", scope: "col"} Address
+          %th{class: "govuk-table__header", scope: "col"} UPRN
           %th{class: "govuk-table__header", scope: "col"} Registered provider
           %th{class: "govuk-table__header", scope: "col"} RP Internal ID
         %th{class: "govuk-table__header", scope: "col"} Actions
@@ -36,6 +37,7 @@
           %td.govuk-table__cell= distance_of_time_in_words(dwelling.updated_at, Time.now) + " ago"
           - if @development.completed?
             %td.govuk-table__cell= dwelling.address.present? ? dwelling.address : 'Not yet supplied'
+            %td.govuk-table__cell= dwelling.uprn.present? ? dwelling.uprn : 'Not yet supplied'
             %td.govuk-table__cell= dwelling.registered_provider.present? ? dwelling.registered_provider.name : 'Not yet supplied'
             %td.govuk-table__cell= dwelling.rp_internal_id.present? ? dwelling.rp_internal_id : 'Not yet supplied'
           %td.govuk-table__cell= link_to 'Edit', edit_development_dwelling_path(@development, dwelling), class: "govuk-link", "aria-label": "Edit dwelling #{dwelling.reference_id}"
