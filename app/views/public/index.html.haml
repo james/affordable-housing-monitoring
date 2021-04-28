@@ -1,0 +1,47 @@
+- content_for(:page_title) { page_title('Public Dashboard') }
+
+.govuk-width-container
+
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds-from-desktop
+      %h1.govuk-heading-xl Affordable Housing in Southwark
+
+  .govuk-grid-row
+    .govuk-grid-column-full
+      %h2.govuk-heading-l Summary
+      %p
+        Total affordable dwellings:
+        %strong= @dwellings.count
+        ,
+        Total affordable bedrooms:
+        %strong= @dwellings.sum(:bedrooms)
+
+  .govuk-grid-row
+    .govuk-grid-column-one-half
+      %h2.govuk-heading-l By Tenure
+      %table.govuk-table
+        %thead.govuk-table__head
+          %tr.govuk-table__row
+            %th{class: "govuk-table__header", scope: "col"} Tenure
+            %th{class: "govuk-table__header", scope: "col"} Dwellings
+            %th{class: "govuk-table__header", scope: "col"} Bedrooms
+        %tbody.govuk-table__body
+          - Dwelling.unscoped.collect {|x| x.tenure}.uniq.each do |tenure|
+            %tr.govuk-table__row
+              %th.govuk-table__header{scope: "row"}= tenure
+              %td.govuk-table__cell= @dwellings.where(tenure: tenure).count
+              %td.govuk-table__cell= @dwellings.where(tenure: tenure).sum(:bedrooms)
+    .govuk-grid-column-one-half
+      %h2.govuk-heading-l By registered provider
+      %table.govuk-table
+        %thead.govuk-table__head
+          %tr.govuk-table__row
+            %th{class: "govuk-table__header", scope: "col"} Tenure
+            %th{class: "govuk-table__header", scope: "col"} Dwellings
+            %th{class: "govuk-table__header", scope: "col"} Bedrooms
+        %tbody.govuk-table__body
+          - RegisteredProvider.all.filter {|x| Dwelling.unscoped.where(registered_provider_id: x.id).count != 0}.each do |registered_provider|
+            %tr.govuk-table__row
+              %th.govuk-table__header{scope: "row"}= registered_provider.name
+              %td.govuk-table__cell= @dwellings.where(registered_provider: registered_provider).count
+              %td.govuk-table__cell= @dwellings.where(registered_provider: registered_provider).sum(:bedrooms)

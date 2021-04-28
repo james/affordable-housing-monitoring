@@ -29,5 +29,7 @@ Rails.application.routes.draw do
 
   resources :schemes
 
+  get 'public_dashboard', to: 'public#index'
+
   get '/check', to: proc { [200, {}, ['OK']] }
 end
