@@ -1,5 +1,5 @@
 class Dwelling < ApplicationRecord
-  belongs_to :development
+  belongs_to :development, optional: true
   belongs_to :registered_provider, optional: true
 
   audited(
@@ -28,15 +28,22 @@ class Dwelling < ApplicationRecord
   ].freeze
 
   scope :within_s106, -> { where(tenure: %w[social intermediate]) }
+  default_scope -> { where('development_id IS NOT NULL') }
 
   validates :tenure, presence: true
-  validates :habitable_rooms, presence: true
-  validates :bedrooms, presence: true
-  validates :reference_id, presence: true, uniqueness: { scope: :development }
-
-  delegate :audit_changes?, to: :development
+  validates :habitable_rooms, presence: true, if: :development
+  validates :bedrooms, presence: true, if: :development
+  validates :reference_id, presence: true, uniqueness: { scope: :development }, if: :development
 
   private
+
+  def audit_changes?
+    if development
+      development.audit_changes?
+    else
+      false
+    end
+  end
 
   def write_audit(attrs)
     attrs[:planning_application_id] = audit_planning_application_id if audit_planning_application_id.present?
